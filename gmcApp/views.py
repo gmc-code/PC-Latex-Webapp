@@ -21,7 +21,7 @@ def index():
         'home.html',
         title='Home Page',
 
-    ) 
+    )
 
 @app.route('/btonestep')
 def btonestep():
@@ -87,3 +87,5 @@ if __name__ == '__main__':
     # except ValueError:
     #     PORT = 5555
     app.run()
+    # for ssl on https
+    # app.run(ssl_context=('cert.pem', 'key.pem'))
