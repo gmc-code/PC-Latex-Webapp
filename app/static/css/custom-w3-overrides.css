@@ -1,0 +1,47 @@
+
+/* .w3-margin {
+    margin: 6px !important;
+} */
+
+/* Reset default margins and paddings */
+body, h1, h2, h3, h4, h5, h6, p, form, label, input, select, button, div {
+    margin: 0;
+    padding: 0;
+}
+
+/* Reduce padding by 4px for elements */
+/* .w3-input,
+.w3-select,
+.w3-button, */
+
+.w3-container,
+.w3-row,
+.w3-col,
+.w3-card-4 {
+    padding: calc(var(--w3-padding, 0px) - 4px);
+}
+
+/* Reduce margin by 4px for elements */
+.w3-margin,
+.w3-margin-left,
+.w3-margin-top,
+.w3-margin-bottom {
+    margin: calc(var(--w3-margin, 0px) - 4px);
+}
+
+/* Additional adjustments for specific containers */
+form.w3-container {
+    padding: 12px; /* Adjust for comfortable form spacing */
+}
+
+button.w3-button {
+    margin-top: 8px; /* Keep slight spacing for button */
+    padding: 8px 16px;
+
+}
+
+.w3-input,
+.w3-select,
+.w3-button {
+    padding: 4px;
+}

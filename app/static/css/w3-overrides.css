@@ -1,0 +1,20 @@
+/* Reset default margins and paddings */
+body, h1, h2, h3, h4, h5, h6, p, form, label, input, select, button, div {
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+.w3-row {
+    margin: 2px 4px;
+}
+
+.w3-padding {
+    padding: 4px 16px !important;
+}
+
+.w3-image {
+    max-width: 740px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+}

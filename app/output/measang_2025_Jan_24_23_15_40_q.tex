@@ -1,0 +1,331 @@
+\documentclass[leqno, 12pt]{article}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{ulem}
+\usetikzlibrary{angles,quotes,intersections,arrows.meta,calc}
+\usepackage[a4paper, portrait, margin=1cm]{geometry}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+
+\def \HeadingQuestions {\section*{\Large Name: \underline{\hspace{8cm}} \hfill Date: \underline{\hspace{3cm}}} \vspace{-3mm}
+{Measuring Angles: Questions} \vspace{1pt}\hrule}
+
+% raise footer with page number; no header
+\fancypagestyle{myfancypagestyle}{
+  \fancyhf{}% clear all header and footer fields
+  \renewcommand{\headrulewidth}{0pt} % no rule under header
+  \fancyfoot[C] {\thepage} \setlength{\footskip}{14.5pt} % raise page number 6pt
+}
+\pagestyle{myfancypagestyle}  % apply myfancypagestyle
+
+
+\begin{document}
+\HeadingQuestions
+\begin{multicols}{2}
+
+
+\begin{equation}
+  \hspace{0.5cm} \parbox[t]{\textwidth}{%
+    \hspace{2.5cm} $\theta^\circ = \dotuline{~~~~~~~}^\circ$ \\
+  \begin{tikzpicture}[scale=1.0, baseline={([yshift=-1pt]current bounding box.north)}]
+    \begin{scope}[rotate=33]
+      \coordinate (B) at (0,0);
+      \coordinate (C) at (4,0);
+      \coordinate (A) at (97:4cm);
+      \coordinate (midAC) at ($(A)!0.5!(C)$);
+      \coordinate (Q) at ($(B)!0.5!(C) + (0.5cm,-0.55cm)$);
+
+
+      % Draw the angle
+      \draw (B) -- (C);
+      \draw (B) -- (A);
+
+      % Mark angles with arcs;
+      \draw ($(B)!0.5cm!(C)$) arc [start angle=0, end angle=97, radius=0.5cm];
+
+      % Label angles
+      \node at ($(A)!-0.20cm!(B)$) {Y};
+      \node at ($(B)!-0.20cm!(midAC)$) {Z};
+      \node at ($(C)!-0.20cm!(B)$) {X};
+
+      \ifdim 97 pt < 15pt
+          % Case: Angle is less than 40°
+          \node at ($(B) + (1.7cm,0.15cm)$) {$\theta^\circ$};
+      \else
+        \ifdim 97 pt < 40pt
+            % Case: Angle is less than 40°
+            \node at ($(B) + (1.1cm,0.15cm)$) {$\theta^\circ$};
+        \else
+          \ifdim 97 pt > 180pt
+              % Case: Angle is greater than 180°
+              \node at ($(B)!-0.80cm!(midAC)$) {$\theta^\circ$};
+          \else
+              % Case: Angle is between 40° and 180°
+              \node at ($(B)!0.75cm!(midAC)$) {$\theta^\circ$};
+          \fi
+        \fi
+      \fi
+
+      % Mark angles in degrees
+      % \node at ($(B)!2.0cm!(midAC)!0.5cm!(C)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+      % \node at ($(Q)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+
+    \end{scope}
+  \end{tikzpicture}
+  }
+\end{equation}\vspace{1cm} \vfill
+\begin{equation}
+  \hspace{0.5cm} \parbox[t]{\textwidth}{%
+    \hspace{2.5cm} $\theta^\circ = \dotuline{~~~~~~~}^\circ$ \\
+  \begin{tikzpicture}[scale=1.0, baseline={([yshift=-1pt]current bounding box.north)}]
+    \begin{scope}[rotate=23]
+      \coordinate (B) at (0,0);
+      \coordinate (C) at (4,0);
+      \coordinate (A) at (29:4cm);
+      \coordinate (midAC) at ($(A)!0.5!(C)$);
+      \coordinate (Q) at ($(B)!0.5!(C) + (0.5cm,-0.55cm)$);
+
+
+      % Draw the angle
+      \draw (B) -- (C);
+      \draw (B) -- (A);
+
+      % Mark angles with arcs;
+      \draw ($(B)!0.5cm!(C)$) arc [start angle=0, end angle=29, radius=0.5cm];
+
+      % Label angles
+      \node at ($(A)!-0.20cm!(B)$) {M};
+      \node at ($(B)!-0.20cm!(midAC)$) {L};
+      \node at ($(C)!-0.20cm!(B)$) {N};
+
+      \ifdim 29 pt < 15pt
+          % Case: Angle is less than 40°
+          \node at ($(B) + (1.7cm,0.15cm)$) {$\theta^\circ$};
+      \else
+        \ifdim 29 pt < 40pt
+            % Case: Angle is less than 40°
+            \node at ($(B) + (1.1cm,0.15cm)$) {$\theta^\circ$};
+        \else
+          \ifdim 29 pt > 180pt
+              % Case: Angle is greater than 180°
+              \node at ($(B)!-0.80cm!(midAC)$) {$\theta^\circ$};
+          \else
+              % Case: Angle is between 40° and 180°
+              \node at ($(B)!0.75cm!(midAC)$) {$\theta^\circ$};
+          \fi
+        \fi
+      \fi
+
+      % Mark angles in degrees
+      % \node at ($(B)!2.0cm!(midAC)!0.5cm!(C)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+      % \node at ($(Q)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+
+    \end{scope}
+  \end{tikzpicture}
+  }
+\end{equation}\vspace{1cm} \vfill
+\begin{equation}
+  \hspace{0.5cm} \parbox[t]{\textwidth}{%
+    \hspace{2.5cm} $\theta^\circ = \dotuline{~~~~~~~}^\circ$ \\
+  \begin{tikzpicture}[scale=1.0, baseline={([yshift=-1pt]current bounding box.north)}]
+    \begin{scope}[rotate=0]
+      \coordinate (B) at (0,0);
+      \coordinate (C) at (4,0);
+      \coordinate (A) at (306:4cm);
+      \coordinate (midAC) at ($(A)!0.5!(C)$);
+      \coordinate (Q) at ($(B)!0.5!(C) + (0.5cm,-0.55cm)$);
+
+
+      % Draw the angle
+      \draw (B) -- (C);
+      \draw (B) -- (A);
+
+      % Mark angles with arcs;
+      \draw ($(B)!0.5cm!(C)$) arc [start angle=0, end angle=306, radius=0.5cm];
+
+      % Label angles
+      \node at ($(A)!-0.20cm!(B)$) {T};
+      \node at ($(B)!-0.20cm!(midAC)$) {R};
+      \node at ($(C)!-0.20cm!(B)$) {S};
+
+      \ifdim 306 pt < 15pt
+          % Case: Angle is less than 40°
+          \node at ($(B) + (1.7cm,0.15cm)$) {$\theta^\circ$};
+      \else
+        \ifdim 306 pt < 40pt
+            % Case: Angle is less than 40°
+            \node at ($(B) + (1.1cm,0.15cm)$) {$\theta^\circ$};
+        \else
+          \ifdim 306 pt > 180pt
+              % Case: Angle is greater than 180°
+              \node at ($(B)!-0.80cm!(midAC)$) {$\theta^\circ$};
+          \else
+              % Case: Angle is between 40° and 180°
+              \node at ($(B)!0.75cm!(midAC)$) {$\theta^\circ$};
+          \fi
+        \fi
+      \fi
+
+      % Mark angles in degrees
+      % \node at ($(B)!2.0cm!(midAC)!0.5cm!(C)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+      % \node at ($(Q)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+
+    \end{scope}
+  \end{tikzpicture}
+  }
+\end{equation}\vspace{1cm} \vfill\columnbreak
+    
+\begin{equation}
+  \hspace{0.5cm} \parbox[t]{\textwidth}{%
+    \hspace{2.5cm} $\theta^\circ = \dotuline{~~~~~~~}^\circ$ \\
+  \begin{tikzpicture}[scale=1.0, baseline={([yshift=-1pt]current bounding box.north)}]
+    \begin{scope}[rotate=0]
+      \coordinate (B) at (0,0);
+      \coordinate (C) at (4,0);
+      \coordinate (A) at (165:4cm);
+      \coordinate (midAC) at ($(A)!0.5!(C)$);
+      \coordinate (Q) at ($(B)!0.5!(C) + (0.5cm,-0.55cm)$);
+
+
+      % Draw the angle
+      \draw (B) -- (C);
+      \draw (B) -- (A);
+
+      % Mark angles with arcs;
+      \draw ($(B)!0.5cm!(C)$) arc [start angle=0, end angle=165, radius=0.5cm];
+
+      % Label angles
+      \node at ($(A)!-0.20cm!(B)$) {C};
+      \node at ($(B)!-0.20cm!(midAC)$) {B};
+      \node at ($(C)!-0.20cm!(B)$) {A};
+
+      \ifdim 165 pt < 15pt
+          % Case: Angle is less than 40°
+          \node at ($(B) + (1.7cm,0.15cm)$) {$\theta^\circ$};
+      \else
+        \ifdim 165 pt < 40pt
+            % Case: Angle is less than 40°
+            \node at ($(B) + (1.1cm,0.15cm)$) {$\theta^\circ$};
+        \else
+          \ifdim 165 pt > 180pt
+              % Case: Angle is greater than 180°
+              \node at ($(B)!-0.80cm!(midAC)$) {$\theta^\circ$};
+          \else
+              % Case: Angle is between 40° and 180°
+              \node at ($(B)!0.75cm!(midAC)$) {$\theta^\circ$};
+          \fi
+        \fi
+      \fi
+
+      % Mark angles in degrees
+      % \node at ($(B)!2.0cm!(midAC)!0.5cm!(C)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+      % \node at ($(Q)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+
+    \end{scope}
+  \end{tikzpicture}
+  }
+\end{equation}\vspace{1cm} \vfill
+\begin{equation}
+  \hspace{0.5cm} \parbox[t]{\textwidth}{%
+    \hspace{2.5cm} $\theta^\circ = \dotuline{~~~~~~~}^\circ$ \\
+  \begin{tikzpicture}[scale=1.0, baseline={([yshift=-1pt]current bounding box.north)}]
+    \begin{scope}[rotate=53]
+      \coordinate (B) at (0,0);
+      \coordinate (C) at (4,0);
+      \coordinate (A) at (17:4cm);
+      \coordinate (midAC) at ($(A)!0.5!(C)$);
+      \coordinate (Q) at ($(B)!0.5!(C) + (0.5cm,-0.55cm)$);
+
+
+      % Draw the angle
+      \draw (B) -- (C);
+      \draw (B) -- (A);
+
+      % Mark angles with arcs;
+      \draw ($(B)!0.5cm!(C)$) arc [start angle=0, end angle=17, radius=0.5cm];
+
+      % Label angles
+      \node at ($(A)!-0.20cm!(B)$) {Z};
+      \node at ($(B)!-0.20cm!(midAC)$) {X};
+      \node at ($(C)!-0.20cm!(B)$) {Y};
+
+      \ifdim 17 pt < 15pt
+          % Case: Angle is less than 40°
+          \node at ($(B) + (1.7cm,0.15cm)$) {$\theta^\circ$};
+      \else
+        \ifdim 17 pt < 40pt
+            % Case: Angle is less than 40°
+            \node at ($(B) + (1.1cm,0.15cm)$) {$\theta^\circ$};
+        \else
+          \ifdim 17 pt > 180pt
+              % Case: Angle is greater than 180°
+              \node at ($(B)!-0.80cm!(midAC)$) {$\theta^\circ$};
+          \else
+              % Case: Angle is between 40° and 180°
+              \node at ($(B)!0.75cm!(midAC)$) {$\theta^\circ$};
+          \fi
+        \fi
+      \fi
+
+      % Mark angles in degrees
+      % \node at ($(B)!2.0cm!(midAC)!0.5cm!(C)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+      % \node at ($(Q)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+
+    \end{scope}
+  \end{tikzpicture}
+  }
+\end{equation}\vspace{1cm} \vfill
+\begin{equation}
+  \hspace{0.5cm} \parbox[t]{\textwidth}{%
+    \hspace{2.5cm} $\theta^\circ = \dotuline{~~~~~~~}^\circ$ \\
+  \begin{tikzpicture}[scale=1.0, baseline={([yshift=-1pt]current bounding box.north)}]
+    \begin{scope}[rotate=43]
+      \coordinate (B) at (0,0);
+      \coordinate (C) at (4,0);
+      \coordinate (A) at (195:4cm);
+      \coordinate (midAC) at ($(A)!0.5!(C)$);
+      \coordinate (Q) at ($(B)!0.5!(C) + (0.5cm,-0.55cm)$);
+
+
+      % Draw the angle
+      \draw (B) -- (C);
+      \draw (B) -- (A);
+
+      % Mark angles with arcs;
+      \draw ($(B)!0.5cm!(C)$) arc [start angle=0, end angle=195, radius=0.5cm];
+
+      % Label angles
+      \node at ($(A)!-0.20cm!(B)$) {N};
+      \node at ($(B)!-0.20cm!(midAC)$) {M};
+      \node at ($(C)!-0.20cm!(B)$) {L};
+
+      \ifdim 195 pt < 15pt
+          % Case: Angle is less than 40°
+          \node at ($(B) + (1.7cm,0.15cm)$) {$\theta^\circ$};
+      \else
+        \ifdim 195 pt < 40pt
+            % Case: Angle is less than 40°
+            \node at ($(B) + (1.1cm,0.15cm)$) {$\theta^\circ$};
+        \else
+          \ifdim 195 pt > 180pt
+              % Case: Angle is greater than 180°
+              \node at ($(B)!-0.80cm!(midAC)$) {$\theta^\circ$};
+          \else
+              % Case: Angle is between 40° and 180°
+              \node at ($(B)!0.75cm!(midAC)$) {$\theta^\circ$};
+          \fi
+        \fi
+      \fi
+
+      % Mark angles in degrees
+      % \node at ($(B)!2.0cm!(midAC)!0.5cm!(C)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+      % \node at ($(Q)$) {$\theta^\circ = \dotuline{~~~~~~~}^\circ$};
+
+    \end{scope}
+  \end{tikzpicture}
+  }
+\end{equation}\vspace{1cm} \vfill\newpage
+    
+
+\end{multicols}
+\end{document}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/w3-overrides.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <header class="w3-container custom-header">
+        <div class="w3-half w3-container">
+            <h1><b><a href="/" class="header-link">GMC LaTeX Worksheets</a></b></h1>
+        </div>
+        <div class="w3-half w3-container w3-right-align">
+            <img src="/static/img/logo_navyblue.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+
+    <nav class="w3-bar w3-light-grey">
+
+        <!-- <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Home<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/" class="w3-bar-item w3-button">Home</a>
+                <a href="/samples" class="w3-bar-item w3-button">Sample pdfs</a>
+            </div>
+        </div> -->
+
+        <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Backtracking <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/backtrack_onestep" class="w3-bar-item w3-button">Backtracking One Step</a>
+                <a href="/backtrack_twostep" class="w3-bar-item w3-button">Backtracking Two Step</a>
+                <a href="/backtrack_twostep_buildexpression" class="w3-bar-item w3-button">Backtracking Two Step Build
+                    Expression</a>
+                <a href="/backtrack_twostep_buildexpression_inverse" class="w3-bar-item w3-button">Backtracking Two Step
+                    Build Expression Inverse</a>
+                <a href="/backtrack_twostep_fromexpression" class="w3-bar-item w3-button">Backtracking Two Step From
+                    Expression</a>
+                <a href="/backtrack_twostep_fromequation" class="w3-bar-item w3-button">Backtracking Two Step From
+                    Equation</a>
+                <a href="/backtrack_twostep_blank" class="w3-bar-item w3-button">Backtracking Two Step Blank</a>
+            </div>
+        </div>
+
+        <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Number Lines <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/number_lines" class="w3-bar-item w3-button">Number Lines</a>
+                <a href="/number_lines_0to20" class="w3-bar-item w3-button">Number Lines 0 to 20</a>
+                <a href="/number_lines_neg20to0" class="w3-bar-item w3-button">Number Lines neg20 to 0</a>
+                <a href="/number_lines_blank" class="w3-bar-item w3-button">Blank Number Lines</a>
+                <a href="/number_lines_blank_0to20" class="w3-bar-item w3-button">Blank Number Lines 0 to 20</a>
+                <a href="/number_lines_blank_neg20to0" class="w3-bar-item w3-button">Blank Number Lines neg20 to 0</a>
+            </div>
+        </div>
+
+        <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Equations <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/check_solution_onestep" class="w3-bar-item w3-button">Check Solution</a>
+                <a href="/check_solution_twostep" class="w3-bar-item w3-button">Check Solution 2 step</a>
+
+                <a href="/equations_onestep_inverse_operations" class="w3-bar-item w3-button">Equations 1step inverse
+                    operations</a>
+                <a href="/equations_twostep_inverse_operations" class="w3-bar-item w3-button">Equations 2step inverse
+                    operations</a>
+            </div>
+        </div>
+
+        <!-- continue from here -->
+        <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Arithmetic <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/decimals_add_subtract" class="w3-bar-item w3-button">Decimals Add or Subtract</a>
+            </div>
+        </div>
+
+
+        <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Geometry <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/types_of_angles" class="w3-bar-item w3-button">Types of Angles</a>
+                <a href="/angles_in_parallel_lines" class="w3-bar-item w3-button">Angles in parallel lines</a>
+                <a href="/measuring_angles" class="w3-bar-item w3-button">Measuring angles</a>
+                <a href="/angles_in_a_right_angled_triangle" class="w3-bar-item w3-button">Angles in a Right Angled Triangle</a>
+                <a href="/angles_in_an_isosceles_triangle" class="w3-bar-item w3-button">Angles in an Isosceles triangle</a>
+                <a href="/angles_in_a_triangle" class="w3-bar-item w3-button">Angles in a triangle</a>
+                <a href="/external_angle_to_a_triangle" class="w3-bar-item w3-button">External angle to a triangle</a>
+            </div>
+        </div>
+
+        <!-- <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Charts <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/dot_plots" class="w3-bar-item w3-button">Dot plots</a>
+                <a href="/parallel_dot_plots" class="w3-bar-item w3-button">Parallel Dot plots</a>
+                <a href="/parallel_overlay_dot_plots" class="w3-bar-item w3-button">Parallel overlay Dot plots</a>
+                <a href="/divided_bar_graphs" class="w3-bar-item w3-button">Divided bar graphs</a>
+                <a href="/pie_charts" class="w3-bar-item w3-button">Pie charts</a>
+                <a href="/stem_leaf" class="w3-bar-item w3-button">Stem and leaf plots</a>
+                <a href="/stem_leaf_back_to_back" class="w3-bar-item w3-button">Stem and leaf plots back to back</a>
+            </div>
+        </div> -->
+
+        <div class="w3-dropdown-hover w3-light-grey">
+            <button class="w3-button">Paper <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/graph_paper" class="w3-bar-item w3-button">Graph_paper</a>
+                <a href="/grids" class="w3-bar-item w3-button">Grids</a>
+                <a href="/lined_paper" class="w3-bar-item w3-button">Lined paper</a>
+            </div>
+        </div>
+
+        <!-- admin -->
+        <div class="w3-dropdown-hover w3-light-grey w3-right admin-dropdown"> <button class="w3-button">Admin <i
+                    class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4 admin-dropdown-content">
+                <a href="/clean_output" class="w3-bar-item w3-button">Clean Output</a>
+            </div>
+        </div>
+
+
+    </nav>
+
+    <div class="w3-container body-content">
+        {% block content %}{% endblock %}
+        <hr />
+    </div>
+
+    {% block scripts %}{% endblock %}
+
+    <footer>
+        <div class="w3-container w3-red w3-opacity-min">
+            {% block footer %}{% endblock %}
+        </div>
+    </footer>
+
+</body>
+
+</html>

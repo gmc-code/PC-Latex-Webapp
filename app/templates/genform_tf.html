@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="w3-container w3-margin-top">
+    <div class="w3-row">
+
+        <!-- Left column: Form and Image -->
+        <div class="w3-col l6 m12 s12 w3-padding">
+            <!-- Form Section -->
+            <form action="{{link}}" class="w3-container w3-card-4 w3-light-grey">
+                <h2 class="w3-center">{{title}}</h2>
+
+                <!-- Row for adding a custom title text -->
+                <div class="w3-row">
+                    <div class="w3-half w3-padding">
+                        <label for="title_text">Title Text</label>
+                        <input class="w3-input" type="text" name="title_text" id="title_text" value="{{ title_text }}"
+                            maxlength="30" required>
+                    </div>
+                </div>
+
+                <!-- Row for file type selection -->
+                <div class="w3-row w3-padding w3-margin-right">
+                    <fieldset class="w3-col s6 m6 l6">
+                        <legend>Choose file type:</legend>
+                        <div>
+                            <input type="radio" name="file_type" value="pdf" id="pdf" checked class="w3-radio">
+                            <label for="pdf">PDF File with questions and answers</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="file_type" value="zip" id="zip" class="w3-radio">
+                            <label for="zip">ZIP File of separate questions and answers</label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="w3-row w3-center">
+                    <button type="submit" class="w3-button w3-xxlarge w3-section w3-green" id="Generate">Generate<i
+                            class="fa-solid fa-download"></i></button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div id="progress-bar" class="w3-container">
+                    <div class="progress"></div>
+                </div>
+            </form>
+
+            <!-- Image Section Below Form -->
+            <div class="w3-card-4 w3-margin-top w3-padding">
+                <div class="w3-container">
+                    <p class="w3-center">Example</p>
+                </div>
+                <div class="w3-center">
+                    <img src="/static/img/{{ img_filename }}" alt="{{ img_filename }}" class="responsive-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right column: PDF Preview -->
+        <div class="w3-col l6 m12 s12 w3-padding">
+            <div class="w3-card-4">
+                <div class="w3-container">
+                    <p class="w3-left">Sample PDF</p>
+                </div>
+                <embed src="/static/pdfs/{{ pdf_filename }}" type="application/pdf" width="100%" height="1200px">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/progress-bar.js') }}"></script>
+{% endblock %}

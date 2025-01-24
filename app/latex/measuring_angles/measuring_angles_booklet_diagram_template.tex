@@ -1,0 +1,51 @@
+
+\begin{equation}
+  \hspace{0.5cm} \parbox[t]{\textwidth}{%
+    \hspace{2.5cm} <<angleBDisplayValue>> \\
+  \begin{tikzpicture}[scale=1.0, baseline={([yshift=-1pt]current bounding box.north)}]
+    \begin{scope}[rotate=<<rotationAngleValue>>]
+      \coordinate (B) at (0,0);
+      \coordinate (C) at (<<BClengthValue>>,0);
+      \coordinate (A) at (<<angleBValue>>:<<ABlengthValue>>cm);
+      \coordinate (midAC) at ($(A)!0.5!(C)$);
+      \coordinate (Q) at ($(B)!0.5!(C) + (0.5cm,-0.55cm)$);
+
+
+      % Draw the angle
+      \draw (B) -- (C);
+      \draw (B) -- (A);
+
+      % Mark angles with arcs;
+      \draw ($(B)!0.5cm!(C)$) arc [start angle=0, end angle=<<angleBValue>>, radius=0.5cm];
+
+      % Label angles
+      \node at ($(A)!-0.20cm!(B)$) {<<angleALabel>>};
+      \node at ($(B)!-0.20cm!(midAC)$) {<<angleBLabel>>};
+      \node at ($(C)!-0.20cm!(B)$) {<<angleCLabel>>};
+
+      \ifdim <<angleBValue>> pt < 15pt
+          % Case: Angle is less than 40°
+          \node at ($(B) + (1.7cm,0.15cm)$) {$\theta^\circ$};
+      \else
+        \ifdim <<angleBValue>> pt < 40pt
+            % Case: Angle is less than 40°
+            \node at ($(B) + (1.1cm,0.15cm)$) {$\theta^\circ$};
+        \else
+          \ifdim <<angleBValue>> pt > 180pt
+              % Case: Angle is greater than 180°
+              \node at ($(B)!-0.80cm!(midAC)$) {$\theta^\circ$};
+          \else
+              % Case: Angle is between 40° and 180°
+              \node at ($(B)!0.75cm!(midAC)$) {$\theta^\circ$};
+          \fi
+        \fi
+      \fi
+
+      % Mark angles in degrees
+      % \node at ($(B)!2.0cm!(midAC)!0.5cm!(C)$) {<<angleBDisplayValue>>};
+      % \node at ($(Q)$) {<<angleBDisplayValue>>};
+
+    \end{scope}
+  \end{tikzpicture}
+  }
+\end{equation}

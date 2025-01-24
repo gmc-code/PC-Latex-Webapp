@@ -1,0 +1,81 @@
+/* Styles for the header */
+.custom-header {
+    background: linear-gradient(to right, blueviolet 15%, limegreen 50%, royalblue 80%);
+    color: #f0a30a;
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+
+.header-link {
+    text-decoration: none;
+    color: inherit;
+    /* Preserve text color */
+}
+
+.header-logo {
+    max-width: 100px;
+}
+
+/* admin styles */
+.admin-dropdown {
+    position: absolute;
+    right: 0;
+}
+
+.admin-dropdown .admin-dropdown-content {
+    right: 0;
+    left: auto;
+}
+
+
+.responsive-img {
+    max-width: 740px;
+    max-height: 280px;
+    width: auto;
+    height: auto;
+}
+
+
+/* form adjustments probably not used*/
+
+.custom-container-width {
+    width: 740px;
+}
+
+.custom-imgcontainer-width {
+    width: 740px;
+}
+
+.custom-pdfcontainer-width {
+    width: 1000px;
+}
+
+.custom-width {
+    width: 90px;
+}
+
+/* font awesome */
+
+.fa-download {
+    font-size: 48px;
+    padding-inline-start: 24px;
+}
+
+/* Initially hide the progress bar */
+#progress-bar {
+    visibility: hidden;  /* Ensure it stays hidden initially */
+    opacity: 0;  /* Initially hidden */
+    width: 100%;
+    height: 30px;
+    background-color: #f3f3f3;
+    transition: opacity 1s ease-out, visibility 0s 0s;  /* Visibility change now happens at the same time as opacity */
+}
+
+/* Style for the progress bar itself */
+.progress {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0%;  /* Start with 0% width */
+    /* transition: width 7s ease-out;  Animate width over 7 seconds */
+}

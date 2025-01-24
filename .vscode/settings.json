@@ -1,0 +1,18 @@
+{
+    "workbench.colorCustomizations": {
+
+                "statusBar.background": "#f8b147",
+                "titleBar.activeBackground": "#f8b147",
+                "titleBar.activeForeground": "#000000",
+                "tab.activeBackground": "#7a5823",  //"#fad4a8",
+                "tab.activeForeground": "#000000",
+                "tab.inactiveBackground": "#444444",
+                "tab.inactiveForeground": "#000000",
+                "tab.unfocusedActiveForeground": "#000000",  // Ensures unfocused active tabs have black text; over-ridden by icon theme
+                "tab.unfocusedInactiveForeground": "#000000" // Ensures unfocused inactive tabs have black text; over-ridden by icon theme
+            },
+            "black-formatter.args": [
+                "--line-length",
+                "300"
+            ],
+}
