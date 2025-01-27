@@ -23,9 +23,8 @@ import latex.angles_in_an_isosceles_triangle.angles_in_iso_triangle_maker as iso
 import latex.angles_in_a_triangle.angles_in_a_triangle_maker as angtri
 import latex.measuring_angles.measuring_angles_booklet_diagram_maker as measang
 
-
-
 import latex.paper.lined_paper_maker as linedpaper
+import latex.gridpapers.gridpapers_dot_maker as grdpdot
 
 
 app = Flask(__name__)
@@ -50,7 +49,10 @@ eatops = {"Random": 4, "unknown A": 1, "unknown C": 2, "unknown external B": 3}
 isotops = {"Random": 3, "unknown unique angle": 1, "unknown paired angle": 2}
 # measuring angles
 maops = {"Random": 4, "Acute": 1, "Obtuse": 2, "Reflex": 3}
-
+# gridpapers
+patternsizes_ops = {"1cm": 3, "0.25cm": 1, "0.5cm": 2,  "2cm": 4}
+dotsizes_ops = {"0.7pt": 1, "1.0pt": 2, "1.4pt": 3, "2.0pt": 4}
+colours_ops = {"black": 1, "black!90!white": 2, "gray": 3, }
 
 ##########################################################################
 
@@ -81,6 +83,7 @@ def backtrack_onestep():
     return render_template(
         "genform_tqof.html",
         title="One-Step Backtracking",
+        operation_label="Operation",
         ops=ops.keys(),
         link="/backtrack_onestep_create",
         num_per_page="10",
@@ -281,6 +284,7 @@ def number_lines():
     return render_template(
         "genform_tqof.html",
         title="Number Lines",
+        operation_label="Operation",
         ops=nlops.keys(),
         link="/number_lines_create",
         num_per_page="8",
@@ -310,6 +314,7 @@ def number_lines_0to20():
     return render_template(
         "genform_tqof.html",
         title="Number Lines 0 to 20",
+        operation_label="Operation",
         ops=nlops.keys(),
         link="/number_lines_0to20_create",
         num_per_page="8",
@@ -339,6 +344,7 @@ def number_lines_neg20to0():
     return render_template(
         "genform_tqof.html",
         title="Number Lines -20 to 0",
+        operation_label="Operation",
         ops=nlops.keys(),
         link="/number_lines_neg20to0_create",
         num_per_page="8",
@@ -441,6 +447,7 @@ def equations_onestep_inverse_operations():
     return render_template(
         "genform_tqof.html",
         title="One-Step Equations",
+        operation_label="Operation",
         ops=ops.keys(),
         link="/equations_onestep_inverse_operations_create",
         num_per_page="16",
@@ -500,6 +507,7 @@ def check_solution_onestep():
     return render_template(
         "genform_tqof.html",
         title="Check Solution One-Step",
+        operation_label="Operation",
         ops=ops.keys(),
         link="/check_solution_onestep_create",
         num_per_page="10",
@@ -618,6 +626,7 @@ def angles_in_parallel_lines():
     return render_template(
         "genform_tqof.html",
         title="Angles in Parallel Lines",
+        operation_label="Type of Angles",
         ops=plops.keys(),
         link="/angles_in_parallel_lines_create",
         num_per_page="8",
@@ -648,6 +657,7 @@ def external_angle_to_a_triangle():
     return render_template(
         "genform_tqof.html",
         title="External Angle to a Triangle",
+        operation_label="Angle",
         ops=eatops.keys(),
         link="/external_angle_to_a_triangle_create",
         num_per_page="4",
@@ -706,6 +716,7 @@ def angles_in_an_isosceles_triangle():
     return render_template(
         "genform_tqof.html",
         title="Angles in an Isosceles Triangle",
+        operation_label="Angle",
         ops=isotops.keys(),
         link="/angles_in_an_isosceles_triangle_create",
         num_per_page="4",
@@ -765,6 +776,7 @@ def measuring_angles():
     return render_template(
         "genform_tqof.html",
         title="Measuring Angles",
+        operation_label="Type of Angles",
         ops=maops.keys(),
         link="/measuring_angles_create",
         num_per_page="6",
@@ -815,9 +827,41 @@ def lined_paper_create():
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
+
+
+##########################################################################
+######## gridpapers_dots
+##########################################################################
+
+@app.route("/gridpapers_dots")
+def gridpapers_dots():
+    return render_template(
+        "gridpapers_dots_form_5o.html",
+        title="GridPapers Dots",
+        paperheight = 29.7,
+        paperwidth = 21,
+        op_patternsizes=patternsizes_ops.keys(),
+        op_dotsizes=dotsizes_ops.keys(),
+        op_colours=colours_ops.keys(),
+        link="/gridpapers_dots_create",
+        img_filename="gridpapers_dots.png",
+        pdf_filename="gridpapers_dots.pdf",
+    )
+
+
+@app.route("/gridpapers_dots_create")
+def gridpapers_dots_create():
+    # use drop down selction, no need for item value even though defined
+    paperheight = request.args.get("paperheight")
+    paperwidth = request.args.get("paperwidth")
+    patternsize = request.args.get("op_patternsize")
+    dotsize = request.args.get("op_dotsize")
+    minorcolor = request.args.get("op_colour")
+    file = grdpdot.create_gridpaper_dot(paperheight, paperwidth, patternsize, dotsize, minorcolor)
+    return send_file(file, as_attachment=True, mimetype="application/pdf")
+
 # continue from here
 
-####################################################################################################
 
 
 ##########################################################################
