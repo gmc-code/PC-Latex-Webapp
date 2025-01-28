@@ -891,7 +891,7 @@ def coming_soon():
 ##########################################################################
 
 
-# @app.after_request
+@app.after_request
 def cleanup_after_request(response):
     """Cleanup any files not in current use; after any route call"""
     clean_output()
@@ -943,4 +943,4 @@ def clean_output():
 
 if __name__ == "__main__":
     # app.run()
-    app.run(debug=True)
+    app.run(debug=False)
