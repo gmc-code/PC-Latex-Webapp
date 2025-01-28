@@ -1,3 +1,8 @@
+
+Remove using powershelll the pycache:
+Get-ChildItem -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
+
+
 Uploading a GitHub repository to PythonAnywhere involves cloning the repository to your PythonAnywhere account. Here's how you can do it:
 
 ### Step 1: Log in to PythonAnywhere
