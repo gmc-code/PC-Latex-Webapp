@@ -24,7 +24,10 @@ import latex.angles_in_a_triangle.angles_in_a_triangle_maker as angtri
 import latex.measuring_angles.measuring_angles_booklet_diagram_maker as measang
 
 import latex.paper.lined_paper_maker as linedpaper
+
+import latex.gridpapers.gridpapers_std_maker as grdpstd
 import latex.gridpapers.gridpapers_dot_maker as grdpdot
+import latex.gridpapers.gridpapers_tri_maker as grdptri
 
 
 app = Flask(__name__)
@@ -50,9 +53,17 @@ isotops = {"Random": 3, "unknown unique angle": 1, "unknown paired angle": 2}
 # measuring angles
 maops = {"Random": 4, "Acute": 1, "Obtuse": 2, "Reflex": 3}
 # gridpapers
-patternsizes_ops = {"1cm": 3, "0.25cm": 1, "0.5cm": 2,  "2cm": 4}
+patternsizes_ops = {"1cm": 3, "0.25cm": 1, "0.5cm": 2, "2cm": 4}
 dotsizes_ops = {"0.7pt": 1, "1.0pt": 2, "1.4pt": 3, "2.0pt": 4}
-colours_ops = {"black": 1, "black!90!white": 2, "gray": 3, }
+# colours_ops = {"black": 1, "black!90!white": 2, "gray": 3, "black!60!white": 4, "black!40!white": 5, "black!40!white": 6}
+colours_ops = {
+    "Black": "black",
+    "Charcoal": "black!90!white",
+    "Gray": "gray",
+    "Slate Gray": "black!60!white",
+    "Light Gray": "black!40!white",
+    "Pale Gray": "black!20!white",
+}
 
 ##########################################################################
 
@@ -754,7 +765,8 @@ def angles_in_a_triangle():
         title_text="Angles in a Triangle",
     )
 
-maops
+
+
 @app.route("/angles_in_a_triangle_create")
 def angles_in_a_triangle_create():
     numq = int(request.args.get("numq"))
@@ -763,7 +775,6 @@ def angles_in_a_triangle_create():
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
     file = angtri.create_booklet_angle_in_a_triangle(numq, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
-
 
 
 ##########################################################################
@@ -801,6 +812,7 @@ def measuring_angles_create():
 ######## paper
 ##########################################################################
 
+
 @app.route("/lined_paper")
 def lined_paper():
     return render_template(
@@ -828,40 +840,105 @@ def lined_paper_create():
 
 
 
+##########################################################################
+######## gridpapers
+##########################################################################
+
+
+@app.route("/gridpapers")
+def gridpapers():
+    return render_template(
+        "gridpapers_std_form_5o.html",
+        title="GridPapers Standard",
+        paperheight=29.7,
+        paperwidth=21,
+        op_patternsizes=patternsizes_ops.keys(),
+        # op_major_colours=colours_ops.keys(),
+        op_colours=colours_ops.keys(),
+        link="/gridpapers_create",
+        img_filename="gridpapers_standard.png",
+        pdf_filename="gridpapers_standard.pdf",
+    )
+
+
+@app.route("/gridpapers_create")
+def gridpapers_create():
+    # use drop down selction, no need for item value even though defined
+    paperheight = request.args.get("paperheight")
+    paperwidth = request.args.get("paperwidth")
+    patternsize = request.args.get("op_patternsize")
+    majorcolor = colours_ops[request.args.get("op_major_colour")]
+    minorcolor = colours_ops[request.args.get("op_minor_colour")]
+    file = grdpstd.create_gridpaper_std(paperheight, paperwidth, patternsize, majorcolor, minorcolor)
+    return send_file(file, as_attachment=True, mimetype="application/pdf")
+
+
 
 ##########################################################################
 ######## gridpapers_dots
 ##########################################################################
 
-@app.route("/gridpapers_dots")
-def gridpapers_dots():
+
+@app.route("/gridpapers_dot")
+def gridpapers_dot():
     return render_template(
-        "gridpapers_dots_form_5o.html",
+        "gridpapers_dot_form_5o.html",
         title="GridPapers Dots",
-        paperheight = 29.7,
-        paperwidth = 21,
+        paperheight=29.7,
+        paperwidth=21,
         op_patternsizes=patternsizes_ops.keys(),
         op_dotsizes=dotsizes_ops.keys(),
         op_colours=colours_ops.keys(),
-        link="/gridpapers_dots_create",
+        link="/gridpapers_dot_create",
         img_filename="gridpapers_dots.png",
         pdf_filename="gridpapers_dots.pdf",
     )
 
 
-@app.route("/gridpapers_dots_create")
-def gridpapers_dots_create():
+@app.route("/gridpapers_dot_create")
+def gridpapers_dot_create():
     # use drop down selction, no need for item value even though defined
     paperheight = request.args.get("paperheight")
     paperwidth = request.args.get("paperwidth")
     patternsize = request.args.get("op_patternsize")
     dotsize = request.args.get("op_dotsize")
-    minorcolor = request.args.get("op_colour")
+    minorcolor = colours_ops[request.args.get("op_colour")]
     file = grdpdot.create_gridpaper_dot(paperheight, paperwidth, patternsize, dotsize, minorcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
-# continue from here
 
+##########################################################################
+######## gridpapers_tri
+##########################################################################
+
+
+@app.route("/gridpapers_tri")
+def gridpapers_tri():
+    return render_template(
+        "gridpapers_tri_form_4o.html",
+        title="GridPapers Triangles",
+        paperheight=29.7,
+        paperwidth=21,
+        op_patternsizes=patternsizes_ops.keys(),
+        op_colours=colours_ops.keys(),
+        link="/gridpapers_tri_create",
+        img_filename="gridpapers_triangles.png",
+        pdf_filename="gridpapers_triangles.pdf",
+    )
+
+
+@app.route("/gridpapers_tri_create")
+def gridpapers_tri_create():
+    # use drop down selction, no need for item value even though defined
+    paperheight = request.args.get("paperheight")
+    paperwidth = request.args.get("paperwidth")
+    patternsize = request.args.get("op_patternsize")
+    minorcolor = colours_ops[request.args.get("op_colour")]
+    file = grdptri.create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor)
+    return send_file(file, as_attachment=True, mimetype="application/pdf")
+
+
+# continue from here
 
 
 ##########################################################################
@@ -943,4 +1020,4 @@ def clean_output():
 
 if __name__ == "__main__":
     # app.run()
-    app.run(debug=False)
+    app.run(debug=True)

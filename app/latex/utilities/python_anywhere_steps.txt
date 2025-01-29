@@ -1,5 +1,5 @@
 
-Remove using powershelll the pycache:
+Remove using powershell the pycache:
 Get-ChildItem -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
 
 

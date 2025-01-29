@@ -8,7 +8,7 @@ from ..utilities.util_functions import merge_files, convert_to_pdf
 #####################################################################################
 
 
-def create_gridpaper_dot_file(paperheight, paperwidth, patternsize, dotsize, minorcolor, tex_template_file, output_filename_prefix):
+def create_gridpaper_tri_file(paperheight, paperwidth, patternsize, minorcolor, tex_template_file, output_filename_prefix):
     output_dir = Path(__file__).parent.parent.parent
     timestamp = "{date:%Y_%b_%d_%H_%M_%S}".format(date=datetime.now(tz=pytz.timezone("Australia/Melbourne")))
     currfile_dir_out = output_dir / "output"
@@ -28,11 +28,10 @@ def create_gridpaper_dot_file(paperheight, paperwidth, patternsize, dotsize, min
 
 
     # Replace the placeholders in the LaTeX template
-    # paperheight, paperwidth, patternsize, dotsize, minorcolor,
+    # paperheight, paperwidth, patternsize, minorcolor,
     tex_template_txt = tex_template_txt.replace("<<paperheight>>", paperheight)
     tex_template_txt = tex_template_txt.replace("<<paperwidth>>", paperwidth)
     tex_template_txt = tex_template_txt.replace("<<patternsize>>", patternsize)
-    tex_template_txt = tex_template_txt.replace("<<dotsize>>", dotsize)
     tex_template_txt = tex_template_txt.replace("<<minorcolor>>", minorcolor)
 
     # Write the question tex to an output file
@@ -44,13 +43,12 @@ def create_gridpaper_dot_file(paperheight, paperwidth, patternsize, dotsize, min
     return tex_output_path_pdf
 
 
-def create_gridpaper_dot(paperheight, paperwidth, patternsize, dotsize, minorcolor):
-    return create_gridpaper_dot_file(
+def create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor):
+    return create_gridpaper_tri_file(
         paperheight,
         paperwidth,
         patternsize,
-        dotsize,
         minorcolor,
-        "gridpapers_dot_template.tex",
-        "gp_dot"
+        "gridpapers_tri_template.tex",
+        "gp_tri"
         )
