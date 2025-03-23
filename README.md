@@ -23,6 +23,11 @@ Uploading a GitHub repository to PythonAnywhere involves cloning the repository 
    ```
    Replace `https://github.com/username/repo.git` with your repository's URL.
 
+   e.g git clone 'https://github.com/gmc-code/PC-Latex-Webapp.git'
+
+   If the folder already exists in the PythonAnywhere files, manually delete it first.
+
+
 ---
 
 ### Step 4: Set Up a Web App
