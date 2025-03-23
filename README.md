@@ -5,17 +5,20 @@ The repo can be cloned using bash at python anywhere.
 Uploading a GitHub repository to PythonAnywhere involves cloning the repository to your PythonAnywhere account. Here's how you can do it:
 
 ### Step 1: Log in to PythonAnywhere
+
 1. Visit [PythonAnywhere](https://www.pythonanywhere.com/) and log in to your account.
 
----
+----
 
 ### Step 2: Open a Bash Console
+
 1. Navigate to the **"Consoles"** tab.
 2. Start a **Bash** console.
 
----
+----
 
 ### Step 3: Clone the GitHub Repository
+
 1. In your GitHub repository, click the green **"Code"** button and copy the HTTPS or SSH URL of the repo (e.g., `https://github.com/username/repo.git`).
 2. In the Bash console, type the following command to clone the repo:
    ```bash
@@ -23,12 +26,8 @@ Uploading a GitHub repository to PythonAnywhere involves cloning the repository 
    ```
    Replace `https://github.com/username/repo.git` with your repository's URL.
 
-   e.g git clone 'https://github.com/gmc-code/PC-Latex-Webapp.git'
 
-   If the folder already exists in the PythonAnywhere files, manually delete it first.
-
-
----
+----
 
 ### Step 4: Set Up a Web App
 
@@ -39,8 +38,25 @@ Uploading a GitHub repository to PythonAnywhere involves cloning the repository 
    - You can edit the WSGI file under the **"Web"** tab.
    - Add the path to your repository and virtual environment.
 
----
+----
 
 ### Step 5: Test Your Application
+
 1. Run your application or scripts to ensure they work correctly.
 2. Use the **"Files"** tab to view/edit files if needed.
+
+
+----
+
+### Step 6: Update form git
+
+1. Since the folder already exists in the PythonAnywhere files, manually delete it first.
+2. In your GitHub repository, click the green **"Code"** button and copy the HTTPS or SSH URL of the repo (e.g., `https://github.com/username/repo.git`).
+3. In the Bash console, type the following command to clone the repo:
+   ```bash
+   git clone https://github.com/username/repo.git
+   ```
+   e.g git clone 'https://github.com/gmc-code/PC-Latex-Webapp.git'
+
+ 4. In the PythonAnywhere web, click to reload.
+
