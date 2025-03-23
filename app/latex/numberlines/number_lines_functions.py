@@ -88,8 +88,8 @@ def go_left_dict(sub_style, adjustment):
         kv["changevaltxt_q"] = r"-(+\qgap)"
         kv["equtxt_q"] = r"\qgap - (+\qgap) = \qgap"
     else:  # plus_neg
-        kv["changevaltxt_q"] = r"+(\qgap)"
-        kv["equtxt_q"] = r"\qgap + (\qgap) = \qgap"
+        kv["changevaltxt_q"] = r"+(\qgap\qgap)"
+        kv["equtxt_q"] = r"\qgap + (\qgap\qgap) = \qgap"
     return kv
 
 
