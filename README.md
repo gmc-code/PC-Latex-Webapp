@@ -58,5 +58,15 @@ Uploading a GitHub repository to PythonAnywhere involves cloning the repository 
    ```
    e.g git clone 'https://github.com/gmc-code/PC-Latex-Webapp.git'
 
- 4. In the PythonAnywhere web, click to reload.
+4. In the PythonAnywhere web, click to reload.
 
+OR
+
+1. In the Bash console, type the following command to clone the repo:
+   ```bash
+   cd path/to/project
+   git pull https://github.com/username/repo.git
+   ```
+   e.g
+   cd  ~/PC-Latex-Webapp
+   git pull https://github.com/gmc-code/PC-Latex-Webapp.git
