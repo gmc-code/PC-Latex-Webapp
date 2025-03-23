@@ -63,7 +63,7 @@ def create_booklet_numberline_blank(numq=16, title_text="Number Lines"):
     return create_booklet_blank(
         numq,
         title_text,
-        "number_lines_booklet_template.tex",
+        "number_lines_blank_booklet_template.tex",
         "number_lines_blank_booklet_diagram_template.tex",
         "nl_blank",
     )
@@ -73,7 +73,7 @@ def create_booklet_numberline_blank_0to20(numq=16, title_text="Number Lines +"):
     return create_booklet_blank(
         numq,
         title_text,
-        "number_lines_booklet_template.tex",
+        "number_lines_blank_booklet_template.tex",
         "number_lines_0to20_blank_booklet_diagram_template.tex",
         "nl_blank_0to20",
     )
@@ -83,7 +83,7 @@ def create_booklet_numberline_blank_neg20to0(numq=16, title_text="Number Lines -
     return create_booklet_blank(
         numq,
         title_text,
-        "number_lines_booklet_template.tex",
+        "number_lines_blank_booklet_template.tex",
         "number_lines_neg20to0_blank_booklet_diagram_template.tex",
         "nl_blank_neg20to0",
     )
