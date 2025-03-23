@@ -21,10 +21,12 @@ import latex.external_angle_to_a_triangle.ext_angle_to_triangle_maker as extang
 import latex.angles_in_a_right_angled_triangle.angles_in_a_rt_triangle_maker as rttriang
 import latex.angles_in_an_isosceles_triangle.angles_in_iso_triangle_maker as isotriang
 import latex.angles_in_a_triangle.angles_in_a_triangle_maker as angtri
-import latex.measuring_angles.measuring_angles_booklet_diagram_maker as measang
+import latex.measuring_angles.measuring_angles_maker as measang
+
+import latex.coordinates.coordinates_maker as coords
+
 
 import latex.paper.lined_paper_maker as linedpaper
-
 import latex.gridpapers.gridpapers_std_maker as grdpstd
 import latex.gridpapers.gridpapers_dot_maker as grdpdot
 import latex.gridpapers.gridpapers_tri_maker as grdptri
@@ -938,10 +940,41 @@ def gridpapers_tri_create():
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
-# continue from here
 
 
 ##########################################################################
+######## coordinates
+##########################################################################
+
+
+@app.route("/coordinates")
+def coordinates():
+    return render_template(
+        "genform_tqnf.html",
+        title="Coordinates",
+        link="/coordinates_create",
+        num_graphs="1",
+        num_points_per_questions="10",
+        img_filename="coordinates.png",
+        pdf_filename="coordinates.pdf",
+        title_text="Coordinates",
+    )
+
+
+@app.route("/coordinates_create")
+def coordinates_create():
+    numq = int(request.args.get("numq"))
+    title_text = request.args.get("title_text")
+    num_points = int(request.args.get("num_points"))
+    file_type = request.args.get("file_type", "pdf")
+    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    file = coords.create_booklet_coords(numq, title_text, num_points, file_type=file_type)
+    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+
+
+
+##########################################################################
+# continue from here
 
 
 @app.route("/dot_plots")
@@ -951,9 +984,6 @@ def gridpapers_tri_create():
 @app.route("/pie_charts")
 @app.route("/stem_leaf")
 @app.route("/stem_leaf_back_to_back")
-@app.route("/graph_paper")
-@app.route("/grids")
-@app.route("/measuring_angles")
 def coming_soon():
     """not yet developed pages"""
     """Renders the coming soon page for different routes"""

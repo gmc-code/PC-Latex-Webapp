@@ -32,27 +32,27 @@ def get_angles_in_a_triangle_dict():
     kv["angleBLabel"] = angleBLabel
     kv["angleCLabel"] = angleCLabel
 
-    kv["angleADisplayValue"] = f"${angleAValue}^\circ$"
-    kv["angleBDisplayValue"] = f"${angleBValue}^\circ$"
+    kv["angleADisplayValue"] = fr"${angleAValue}^\circ$"
+    kv["angleBDisplayValue"] = fr"${angleBValue}^\circ$"
     kv["angleCDisplayValue"] = r"$\theta^\circ$"
 
     kv["CalcLine1"] = rf"\text{{$\theta^\circ$}} &= 180^\circ - (\angle \text{{{angleALabel}}} + \angle \text{{{angleBLabel}}})"
-    kv["CalcLine2"] = f"&= 180^\circ - ({angleAValue}^\circ + {angleBValue}^\circ)"
-    kv["CalcLine3"] = f"&= 180^\circ - {angleAValue + angleBValue}^\circ"
-    kv["CalcLine4"] = f"&= {angleCValue}^\circ"
+    kv["CalcLine2"] = fr"&= 180^\circ - ({angleAValue}^\circ + {angleBValue}^\circ)"
+    kv["CalcLine3"] = fr"&= 180^\circ - {angleAValue + angleBValue}^\circ"
+    kv["CalcLine4"] = fr"&= {angleCValue}^\circ"
 
     kv["CalcLine1_q"] = rf"\text{{$\theta^\circ$}} &= 180^\circ - (\angle \text{{{gaps}}} + \angle \text{{{gaps}}})"
-    kv["CalcLine2_q"] = f"&= 180^\circ - ({gaps}^\circ + {gaps}^\circ)"
-    kv["CalcLine3_q"] = f"&= 180^\circ - {gaps}^\circ"
-    kv["CalcLine4_q"] = f"&= {gaps}^\circ"
+    kv["CalcLine2_q"] = fr"&= 180^\circ - ({gaps}^\circ + {gaps}^\circ)"
+    kv["CalcLine3_q"] = fr"&= 180^\circ - {gaps}^\circ"
+    kv["CalcLine4_q"] = fr"&= {gaps}^\circ"
 
     return kv
 
+'''
 
-"""
     \angle \text{A} &= 180^\circ - (\angle \text{B} + \angle \text{C}) \\
     &= 180^\circ - (<<angleCalcBValue>>^\circ + <<angleCalcCValue>>^\circ) \\
     &= 180^\circ - <<angleCalcBCValue>>^\circ \\
     &= <<angleCalcAValue>>^\circ
 
-"""
+'''

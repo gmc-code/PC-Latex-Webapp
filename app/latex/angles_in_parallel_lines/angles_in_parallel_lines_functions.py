@@ -68,36 +68,29 @@ def make_angles_latex(angles_to_label, angles_to_value, angle_dict):
         latex_str = angle_latex_strings(ang, ang)
         anglestext += latex_str + "\n"
     for ang in angles_to_value:
-        ang_text = str(angle_dict[ang]) + "^\circ"
+        ang_text = str(angle_dict[ang]) + r"^{\circ}"
         latex_str = angle_latex_strings(ang, ang_text)
         anglestext += latex_str + "\n"
     return anglestext
 
 
+
 def angle_latex_strings(angle_letter, angle_text):
-    match angle_letter:
-        # %% Point A a-d; Point B e-h
-        case "a":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=te--A--p1e}};'
-        case "b":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p1e--A--ts}};'
-        case "c":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=ts--A--p1s}};'
-        case "d":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p1s--A--te}};'
-        case "e":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=te--B--p2e}};'
-        case "f":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p2e--B--ts}};'
-        case "g":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=ts--B--p2s}};'
-        case "h":
-            text = f'\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p2s--B--te}};'
-    return text
+    # %% Point A a-d; Point B e-h
+    tex_commands = {
+        "a": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=te--A--p1e}};',
+        "b": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p1e--A--ts}};',
+        "c": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=ts--A--p1s}};',
+        "d": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p1s--A--te}};',
+        "e": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=te--B--p2e}};',
+        "f": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p2e--B--ts}};',
+        "g": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=ts--B--p2s}};',
+        "h": f'\\draw pic["${angle_text}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm] {{angle=p2s--B--te}};'
+    }
+    return tex_commands.get(angle_letter, "")
 
 
 def get_angles_in_parallel_lines_dict(angles_to_label, angles_to_value):
-
     angleA = int(random.randint(30, 150))
     angleB = 180 - angleA
     linelength = 4

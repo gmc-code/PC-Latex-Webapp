@@ -5,23 +5,33 @@
 <div class="w3-container w3-margin-top">
     <div class="w3-row">
 
-        <!-- Left Column: Form and Image -->
+        <!-- Left Column: Form and Image Section -->
         <div class="w3-col l6 m6 s12 w3-padding">
             <!-- Form Section -->
             <form action="{{link}}" class="w3-container w3-card-4 w3-light-grey">
                 <h2 class="w3-center">{{title}}</h2>
 
-                <!-- Row for adding a custom title text & number of questions per page -->
+                <!-- Row for custom title and number of questions -->
                 <div class="w3-row">
                     <div class="w3-half w3-padding">
                         <label for="title_text">Title Text</label>
                         <input class="w3-input" type="text" name="title_text" id="title_text" value="{{ title_text }}"
                             maxlength="30" required>
                     </div>
+
                     <div class="w3-half w3-padding">
-                        <label>Number of Questions <span>({{num_per_page}} per page):</span></label>
-                        <input class="w3-input w3-border custom-width" type="number" name="numq" min="1" max="100" step="1"
-                            value="{{ num_per_page }}" required>
+                        <label>Number of Questions <span>(1 per page):</span></label>
+                        <input class="w3-input w3-border custom-width" type="number" name="numq" min="1" max="10"
+                            step="1" value="{{ num_graphs }}" required>
+                    </div>
+                </div>
+
+                <!-- Row for point numbers -->
+                <div class="w3-row">
+                    <div class="w3-half w3-padding">
+                        <label>Number of Points <span>(4 to 20):</span></label>
+                        <input class="w3-input w3-border custom-width" type="number" name="num_points" min="4" max="20"
+                            step="1" value="{{ num_points_per_questions }}" required>
                     </div>
                 </div>
 
@@ -40,7 +50,7 @@
                     </fieldset>
                 </div>
 
-                <!-- Submit Button -->
+                <!-- Submit button -->
                 <div class="w3-row w3-center">
                     <button type="submit" class="w3-button w3-xxlarge w3-section w3-green" id="Generate">Generate
                         <i class="fa-solid fa-download"></i>
@@ -64,9 +74,9 @@
             </div>
         </div>
 
-        <!-- Right Column: PDF Preview -->
-        <div class="w3-col l6 m6 s12">
-            <div class="w3-card-4 w3-padding">
+        <!-- Right Column: PDF sample -->
+        <div class="w3-col l6 m6 s12 w3-padding">
+            <div class="w3-card-4">
                 <div class="w3-container">
                     <p class="w3-left">Sample PDF</p>
                 </div>
