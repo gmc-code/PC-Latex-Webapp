@@ -8,7 +8,7 @@ from ..utilities.util_functions import merge_files, convert_to_pdf
 
 
 def make_diagram_blank(tex_diagram_template_txt):
-    posttext = r"\vspace{10pt}"
+    posttext = r"\vspace{1pt}"
     return tex_diagram_template_txt + posttext
 
 
