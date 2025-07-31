@@ -27,11 +27,24 @@ def val_in_list_exclude_zero(low, high):
         vals.remove(0)
     return random.choice(vals)
 
+def val_in_list_exclude_neg20to0(low, high):
+    # exclude middle and one to left due to room for negative sign
+    vals = list(range(low, high + 1))
+    if 0 in vals:
+        vals.remove(0)
+    if -1 in vals:
+        vals.remove(-1)
+    return random.choice(vals)
+
 
 def go_right_dict(add_style, adjustment):
     # set points
-    endval = val_in_list_exclude_zero(-7, 9)
-    startval = val_in_list_exclude_zero(-9, endval - 2)
+    if adjustment == -10:
+        endval = val_in_list_exclude_neg20to0(-7, 9)
+        startval = val_in_list_exclude_neg20to0(-9, endval - 2)
+    else:
+        endval = val_in_list_exclude_zero(-7, 9)
+        startval = val_in_list_exclude_zero(-9, endval - 2)
     endval += adjustment
     startval += adjustment
     changevaltxt = endval - startval
@@ -60,8 +73,12 @@ def go_right_dict(add_style, adjustment):
 
 def go_left_dict(sub_style, adjustment):
     # set points
-    endval = val_in_list_exclude_zero(-9, 7)
-    startval = val_in_list_exclude_zero(endval + 2, 9)
+    if adjustment == -10:
+        endval = val_in_list_exclude_neg20to0(-9, 7)
+        startval = val_in_list_exclude_neg20to0(endval + 2, 9)
+    else:
+        endval = val_in_list_exclude_zero(-9, 7)
+        startval = val_in_list_exclude_zero(endval + 2, 9)
     endval += adjustment
     startval += adjustment
     changevaltxt = endval - startval
