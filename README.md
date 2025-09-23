@@ -54,14 +54,6 @@ Uploading a GitHub repository to PythonAnywhere involves cloning the repository 
 1. In the Bash console, type the following command to update the repo:
 
    ```bash
-   git pull
-   ```
-
-
-   OR
-
-
-   ```bash
    cd path/to/project
    git pull https://github.com/username/repo.git
    ```
@@ -71,6 +63,11 @@ Uploading a GitHub repository to PythonAnywhere involves cloning the repository 
    git pull https://github.com/gmc-code/PC-Latex-Webapp.git
    ```
 
+If making more updates to the repo in git, then having already done the above in the bash console:
+
+   ```bash
+   git pull
+   ```
 
 2. In the PythonAnywhere web, click to reload.
 
