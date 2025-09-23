@@ -818,7 +818,7 @@ def measuring_angles():
 def measuring_angles_create():
     numq = int(request.args.get("numq"))
     title_text = request.args.get("title_text")
-    angle_type = maops[request.args.get("operation")]
+    angle_type = int(maops[request.args.get("operation")])
     file_type = request.args.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
     file = measang.create_booklet_angles_for_measuring(numq, title_text, angle_type, file_type=file_type)
