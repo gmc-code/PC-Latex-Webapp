@@ -74,12 +74,13 @@ colours_ops = {
 }
 
 # grids_isometric
-gridorientation_ops = {"vertical": 1, "horizontal": 2}
-isometric_dotfilltype_ops = {"filled": 1, "open": 2}
-isometric_dotspacing_ops = {"0.8": 1, "0.5": 2, "1.0": 3, "1.5": 4, "2.0": 5}
-isometric_dotsize_ops = {"0.8pt": 1, "1.2pt":2, "1.6pt": 3, "2.0pt": 4, "3.0pt": 5}
-isometric_dotstyle_ops = {"fill": 1, "draw": 2, "filldraw": 3}
-isometric_dotlinewidth_ops = {"0.4pt": 1, "0.6pt":2, "0.8pt": 3, "1.0pt": 4, "2.0pt": 5}
+gridorientation_ops = ["vertical", "horizontal"]
+isometric_dotfilltype_ops = ["filled", "open"]
+isometric_dotspacing_ops = ["0.8", "0.5", "1.0", "1.5", "2.0"]
+isometric_dotsize_ops = ["0.8pt", "1.2pt", "1.6pt", "2.0pt", "3.0pt"]
+isometric_dotstyle_ops = ["fill", "draw", "filldraw"]
+isometric_dotlinewidth_ops = ["0.4pt", "0.6pt", "0.8pt", "1.0pt", "2.0pt"]
+
 
 ##########################################################################
 
@@ -869,12 +870,12 @@ def grids_isometric():
         paperwidth=21,
         vmargin=1.5,
         hmargin=1.5,
-        op_gridorientations=gridorientation_ops.keys(),
-        op_dotfilltypes=isometric_dotfilltype_ops.keys(),
-        op_dotspacings=isometric_dotspacing_ops.keys(),
-        op_dotsizes=isometric_dotsize_ops.keys(),
-        op_dotstyles=isometric_dotstyle_ops.keys(),
-        op_dotlinewidths=isometric_dotlinewidth_ops.keys(),
+        op_gridorientations=gridorientation_ops,
+        op_dotfilltypes=isometric_dotfilltype_ops,
+        op_dotspacings=isometric_dotspacing_ops,
+        op_dotsizes=isometric_dotsize_ops,
+        op_dotstyles=isometric_dotstyle_ops,
+        op_dotlinewidths=isometric_dotlinewidth_ops,
         op_colours=colours_ops.keys(),
 
         link="/grids_isometric_create",
@@ -882,12 +883,6 @@ def grids_isometric():
         pdf_filename="grids_isometric.pdf",
     )
 
-        # gridorientation="vertical",
-        # dotfilltype="filled",
-        # dotspacing=0.8,
-        # dotsize="0.8pt",
-        # dotstyle="fill",
-        # dotlinewidth="0.4pt",
 
 @app.route("/grids_isometric_create")
 def grids_isometric_create():
@@ -900,7 +895,7 @@ def grids_isometric_create():
 
     gridorientation = request.args.get("op_gridorientation")
     dotfilltype = request.args.get("op_dotfilltype")
-    dotspacing = float(request.args.get("op_dotspacing"))
+    dotspacing = request.args.get("op_dotspacing")
     dotsize = request.args.get("op_dotsize")
     dotstyle = request.args.get("op_dotstyle")
     dotlinewidth = request.args.get("op_dotlinewidth")
@@ -908,7 +903,6 @@ def grids_isometric_create():
 
     file = grdpiso.create_grids_isometric(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotstyle, dotlinewidth, dotcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
-
 
 
 ##########################################################################

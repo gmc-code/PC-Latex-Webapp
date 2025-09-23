@@ -7,25 +7,40 @@
 % === Paper and Margin Variables ===
 % === Apply geometry using variables ===
 \geometry{
-  paperwidth=<<paperwidth>> cm,
-  paperheight=<<paperheight>> cm,
-  vmargin=<<vmargin>> cm,
-  hmargin=<<hmargin>> cm,
+  paperwidth=21 cm,
+  paperheight=29.7 cm,
+  vmargin=1.5 cm,
+  hmargin=1.5 cm,
 }
 
+
+% Helper to draw one dot
+% \newcommand{\drawdot}[2]{%
+%   \IfStrEq{filled}{open}{%
+%     \draw[draw=black, fill=none, line width=0.4pt] (#1,#2) circle (0.8pt);
+%   }{%
+%     \ifxfill\fill
+%       \fill[black] (#1,#2) circle (0.8pt);
+%     \else\ifxfill\draw
+%       \draw[black, line width=0.4pt] (#1,#2) circle (0.8pt);
+%     \else
+%       \filldraw[fill=black, draw=black, line width=0.4pt] (#1,#2) circle (0.8pt);
+%     \fi\fi
+%   }%
+% }
 % === Helper to draw one dot ===
 \newcommand{\drawdot}[2]{%
-  \IfStrEq{<<dotfilltype>>}{open}{%
+  \IfStrEq{filled}{open}{%
     % Case: open circle
-    \draw[draw=<<dotcolor>>, fill=none, line width=<<dotlinewidth>>] (#1,#2) circle (<<dotsize>>);
+    \draw[draw=black, fill=none, line width=0.4pt] (#1,#2) circle (0.8pt);
   }{%
-    \IfStrEq{<<dotstyle>>}{fill}{%
-      \fill[<<dotcolor>>] (#1,#2) circle (<<dotsize>>);
+    \IfStrEq{fill}{fill}{%
+      \fill[black] (#1,#2) circle (0.8pt);
     }{%
-      \IfStrEq{<<dotstyle>>}{draw}{%
-        \draw[<<dotcolor>>, line width=<<dotlinewidth>>] (#1,#2) circle (<<dotsize>>);
+      \IfStrEq{fill}{draw}{%
+        \draw[black, line width=0.4pt] (#1,#2) circle (0.8pt);
       }{%
-        \filldraw[fill=<<dotcolor>>, draw=<<dotcolor>>, line width=<<dotlinewidth>>] (#1,#2) circle (<<dotsize>>);
+        \filldraw[fill=black, draw=black, line width=0.4pt] (#1,#2) circle (0.8pt);
       }%
     }%
   }%
@@ -39,27 +54,27 @@
   % Anchor to bottom-left of the physical page
   \begin{scope}[shift={(current page.south west)}]
     % Work in centimeters and shift to content area
-    \begin{scope}[x=1cm, y=1cm, shift={(<<hmargin>>,<<vmargin>>)}]
+    \begin{scope}[x=1cm, y=1cm, shift={(1.5,1.5)}]
 
       % Usable area
-      \pgfmathsetmacro{\usablewidth}{<<paperwidth>> - 2*<<hmargin>>}
-      \pgfmathsetmacro{\usableheight}{<<paperheight>> - 2*<<vmargin>>}
+      \pgfmathsetmacro{\usablewidth}{21 - 2*1.5}
+      \pgfmathsetmacro{\usableheight}{29.7 - 2*1.5}
 
       % Convert pt to cm for padding
-      \pgfmathsetmacro{\pad}{(<<dotsize>> + 0.5*<<dotlinewidth>>)/28.45274}
+      \pgfmathsetmacro{\pad}{(0.8pt + 0.5*0.4pt)/28.45274}
 
       % Clip to content area (+ tiny pad)
       \clip (-\pad,-\pad) rectangle (\usablewidth+\pad, \usableheight+\pad);
 
       % Hex grid spacing based on orientation
-      \IfStrEq{<<gridorientation>>}{vertical}{
-        \pgfmathsetmacro{\dx}{<<dotspacing>>}
-        \pgfmathsetmacro{\dy}{<<dotspacing>> * sqrt(3)}
+      \IfStrEq{vertical}{vertical}{
+        \pgfmathsetmacro{\dx}{0.8}
+        \pgfmathsetmacro{\dy}{0.8 * sqrt(3)}
         \pgfmathsetmacro{\offsetx}{\dx/2}
         \pgfmathsetmacro{\offsety}{\dy/2}
       }{
-        \pgfmathsetmacro{\dy}{<<dotspacing>>}
-        \pgfmathsetmacro{\dx}{<<dotspacing>> * sqrt(3)}
+        \pgfmathsetmacro{\dy}{0.8}
+        \pgfmathsetmacro{\dx}{0.8 * sqrt(3)}
         \pgfmathsetmacro{\offsety}{\dy/2}
         \pgfmathsetmacro{\offsetx}{\dx/2}
       }

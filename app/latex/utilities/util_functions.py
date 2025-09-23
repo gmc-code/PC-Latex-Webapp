@@ -1,5 +1,5 @@
 """
-Module of functions for backtracking
+Module of functions for utilities
 """
 
 from pathlib import Path

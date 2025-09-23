@@ -7,7 +7,7 @@ from ..utilities.util_functions import merge_files, convert_to_pdf
 
 #####################################################################################
 
-def create_gridpaper_isometric_file(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotstyle, dotlinewidth, dotcolor, tex_template_file, output_filename_prefix):
+def create_grids_isometric_file(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotstyle, dotlinewidth, dotcolor, tex_template_file, output_filename_prefix):
     output_dir = Path(__file__).parent.parent.parent
     timestamp = "{date:%Y_%b_%d_%H_%M_%S}".format(
         date=datetime.now(tz=pytz.timezone("Australia/Melbourne")))
@@ -43,13 +43,17 @@ def create_gridpaper_isometric_file(paperheight, paperwidth, vmargin, hmargin, g
     with open(tex_output_path, "w") as outfile:
         outfile.write(tex_template_txt)
 
+    # return tex_output_path
     time.sleep(1)
     convert_to_pdf(tex_output_path, currfile_dir_out)
     return tex_output_path_pdf
 
 
-def create_gridpaper_isometric(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotstyle, dotlinewidth, dotcolor):
-    return create_gridpaper_isometric_file(
+def create_grids_isometric(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotstyle, dotlinewidth, dotcolor):
+
+    # print(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotstyle, dotlinewidth, dotcolor, "grids_isometric_template.tex", "gp_iso")
+
+    return create_grids_isometric_file(
         paperheight,
         paperwidth,
         vmargin,
@@ -64,3 +68,6 @@ def create_gridpaper_isometric(paperheight, paperwidth, vmargin, hmargin, gridor
         "grids_isometric_template.tex",
         "gp_iso"
     )
+
+
+# 29.7 21 1.5 1.5 vertical filled 0.8 0.8pt fill 0.4pt black grids_isometric_template.tex gp_iso
