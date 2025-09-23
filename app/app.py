@@ -27,6 +27,7 @@ import latex.coordinates.coordinates_maker as coords
 
 
 import latex.paper.lined_paper_maker as linedpaper
+import latex.gridpapers.grids_isometric_maker as grdpiso
 import latex.gridpapers.gridpapers_std_maker as grdpstd
 import latex.gridpapers.gridpapers_dot_maker as grdpdot
 import latex.gridpapers.gridpapers_tri_maker as grdptri
@@ -59,13 +60,26 @@ patternsizes_ops = {"1cm": 3, "0.25cm": 1, "0.5cm": 2, "2cm": 4}
 dotsizes_ops = {"0.7pt": 1, "1.0pt": 2, "1.4pt": 3, "2.0pt": 4}
 # colours_ops = {"black": 1, "black!90!white": 2, "gray": 3, "black!60!white": 4, "black!40!white": 5, "black!40!white": 6}
 colours_ops = {
-    "Black": "black",
-    "Charcoal": "black!90!white",
-    "Gray": "gray",
-    "Slate Gray": "black!60!white",
-    "Light Gray": "black!40!white",
-    "Pale Gray": "black!20!white",
+    "Black": "black",                     # 100% black
+    "Charcoal": "black!90!white",         # 90% black
+    "Dark Gray": "black!80!white",        # 80% black
+    "Slate Gray": "black!70!white",       # 70% black
+    "Gray": "black!60!white",             # 60% black
+    "Medium Gray": "black!50!white",      # 50% black
+    "Light Gray": "black!40!white",       # 40% black
+    "Soft Gray": "black!30!white",        # 30% black
+    "Pale Gray": "black!20!white",        # 20% black
+    "Mist Gray": "black!10!white",        # 10% black
+    "White": "white"                      # 0% black
 }
+
+# grids_isometric
+gridorientation_ops = {"vertical": 1, "horizontal": 2}
+isometric_dotfilltype_ops = {"filled": 1, "open": 2}
+isometric_dotspacing_ops = {"0.8": 1, "0.5": 2, "1.0": 3, "1.5": 4, "2.0": 5}
+isometric_dotsize_ops = {"0.8pt": 1, "1.2pt":2, "1.6pt": 3, "2.0pt": 4, "3.0pt": 5}
+isometric_dotstyle_ops = {"fill": 1, "draw": 2, "filldraw": 3}
+isometric_dotlinewidth_ops = {"0.4pt": 1, "0.6pt":2, "0.8pt": 3, "1.0pt": 4, "2.0pt": 5}
 
 ##########################################################################
 
@@ -838,6 +852,61 @@ def lined_paper_create():
         num_lines = int(num_lines) if num_lines else 4
         file = linedpaper.create_lined_paper(num_lines)
     # Return the PDF as a response
+    return send_file(file, as_attachment=True, mimetype="application/pdf")
+
+
+##########################################################################
+######## grids_isometric
+##########################################################################
+
+
+@app.route("/grids_isometric")
+def grids_isometric():
+    return render_template(
+        "grids_isometric_form.html",
+        title="Grids Isometric",
+        paperheight=29.7,
+        paperwidth=21,
+        vmargin=1.5,
+        hmargin=1.5,
+        op_gridorientations=gridorientation_ops.keys(),
+        op_dotfilltypes=isometric_dotfilltype_ops.keys(),
+        op_dotspacings=isometric_dotspacing_ops.keys(),
+        op_dotsizes=isometric_dotsize_ops.keys(),
+        op_dotstyles=isometric_dotstyle_ops.keys(),
+        op_dotlinewidths=isometric_dotlinewidth_ops.keys(),
+        op_colours=colours_ops.keys(),
+
+        link="/grids_isometric_create",
+        img_filename="grids_isometric.png",
+        pdf_filename="grids_isometric.pdf",
+    )
+
+        # gridorientation="vertical",
+        # dotfilltype="filled",
+        # dotspacing=0.8,
+        # dotsize="0.8pt",
+        # dotstyle="fill",
+        # dotlinewidth="0.4pt",
+
+@app.route("/grids_isometric_create")
+def grids_isometric_create():
+    # use drop down selction, no need for item value even though defined
+    paperheight = request.args.get("paperheight")
+    paperwidth = request.args.get("paperwidth")
+    vmargin = request.args.get("vmargin")
+    hmargin = request.args.get("hmargin")
+
+
+    gridorientation = request.args.get("op_gridorientation")
+    dotfilltype = request.args.get("op_dotfilltype")
+    dotspacing = float(request.args.get("op_dotspacing"))
+    dotsize = request.args.get("op_dotsize")
+    dotstyle = request.args.get("op_dotstyle")
+    dotlinewidth = request.args.get("op_dotlinewidth")
+    dotcolor = colours_ops[request.args.get("op_colour")]
+
+    file = grdpiso.create_grids_isometric(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotstyle, dotlinewidth, dotcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
