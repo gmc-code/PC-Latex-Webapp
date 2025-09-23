@@ -78,7 +78,8 @@ gridorientation_ops = ["vertical", "horizontal"]
 isometric_dotfilltype_ops = ["filled", "open"]
 isometric_dotspacing_ops = ["0.8", "0.5", "1.0", "1.5", "2.0"]
 isometric_dotsize_ops = ["0.8pt", "1.2pt", "1.6pt", "2.0pt", "3.0pt"]
-isometric_dotstyle_ops = ["fill", "draw", "filldraw"]
+isometric_dotstyle_ops = {"Solid": "fill", "Outline": "draw", "Filled and outlined": "filldraw"}
+# ["fill", "draw", "filldraw"]
 isometric_dotlinewidth_ops = ["0.4pt", "0.6pt", "0.8pt", "1.0pt", "2.0pt"]
 
 
@@ -874,7 +875,7 @@ def grids_isometric():
         op_dotfilltypes=isometric_dotfilltype_ops,
         op_dotspacings=isometric_dotspacing_ops,
         op_dotsizes=isometric_dotsize_ops,
-        op_dotstyles=isometric_dotstyle_ops,
+        op_dotstyles=isometric_dotstyle_ops.keys(),
         op_dotlinewidths=isometric_dotlinewidth_ops,
         op_colours=colours_ops.keys(),
 
@@ -897,7 +898,7 @@ def grids_isometric_create():
     dotfilltype = request.args.get("op_dotfilltype")
     dotspacing = request.args.get("op_dotspacing")
     dotsize = request.args.get("op_dotsize")
-    dotstyle = request.args.get("op_dotstyle")
+    dotstyle = isometric_dotstyle_ops[request.args.get("op_dotstyle")]
     dotlinewidth = request.args.get("op_dotlinewidth")
     dotcolor = colours_ops[request.args.get("op_colour")]
 
