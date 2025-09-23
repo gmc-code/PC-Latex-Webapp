@@ -13,25 +13,16 @@
   hmargin=<<hmargin>> cm,
 }
 
-% === Helper to draw one dot ===
+% ===Helper to draw one dot at x, y ===
 \newcommand{\drawdot}[2]{%
   \IfStrEq{<<dotfilltype>>}{open}{%
     % Case: open circle
     \draw[draw=<<dotcolor>>, fill=none, line width=<<dotlinewidth>>] (#1,#2) circle (<<dotsize>>);
   }{%
-    \IfStrEq{<<dotstyle>>}{fill}{%
+    % filled circle
       \fill[<<dotcolor>>] (#1,#2) circle (<<dotsize>>);
-    }{%
-      \IfStrEq{<<dotstyle>>}{draw}{%
-        \draw[<<dotcolor>>, line width=<<dotlinewidth>>] (#1,#2) circle (<<dotsize>>);
-      }{%
-        \filldraw[fill=<<dotcolor>>, draw=<<dotcolor>>, line width=<<dotlinewidth>>] (#1,#2) circle (<<dotsize>>);
-      }%
-    }%
   }%
 }
-
-
 
 
 \begin{document}
