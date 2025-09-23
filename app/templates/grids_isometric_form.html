@@ -39,7 +39,8 @@
                     </div>
                 </div>
 
-                <!-- Row for  gridorientation -->
+
+                 <!-- Row for gridorientation, dotfilltype, dotspacing -->
                 <div class="w3-row">
                     <div class="w3-half w3-padding">
                         <label for="op_gridorientation">Grid Orientation</label>
@@ -49,11 +50,6 @@
                             {% endfor %}
                         </select>
                     </div>
-                </div>
-
-
-                 <!-- Row for dotfilltype, dotspacing, dotsize, -->
-                <div class="w3-row">
                     <div class="w3-third w3-padding">
                         <label for="op_dotfilltype">Dot filltype</label>
                         <select class="w3-select w3-border" name="op_dotfilltype" required>
@@ -70,23 +66,16 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="w3-third w3-padding">
-                        <label for="op_dotsize">Dot size</label>
-                        <select class="w3-select w3-border" name="op_dotsize" required>
-                            {% for x in op_dotsizes %}
-                            <option value="{{x}}">{{x}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+
                 </div>
 
 
-             <!-- Row for dotstyle, dotlinewidth, dotcolor -->
+             <!-- Row for dotsize, dotlinewidth, dotcolor -->
                 <div class="w3-row">
-                    <div class="w3-third w3-padding">
-                        <label for="op_dotstyle">Dot style</label>
-                        <select class="w3-select w3-border" name="op_dotstyle" required>
-                            {% for x in op_dotstyles %}
+                     <div class="w3-third w3-padding">
+                        <label for="op_dotsize">Dot size</label>
+                        <select class="w3-select w3-border" name="op_dotsize" required>
+                            {% for x in op_dotsizes %}
                             <option value="{{x}}">{{x}}</option>
                             {% endfor %}
                         </select>
