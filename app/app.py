@@ -1042,7 +1042,7 @@ def coordinates_create():
 def area_of_a_square():
     return render_template(
         "genform_tqf.html",
-        title="Area of a Square,
+        title="Area of a Square",
         link="/area_of_a_square_create",
         num_per_page="4",
         img_filename="area_of_a_square.png",
