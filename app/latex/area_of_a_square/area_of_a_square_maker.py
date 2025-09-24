@@ -101,10 +101,10 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf"):
 
-# calcside_value, calcarea_value
-tex_keys_q = ['calc_sidelength', 'sidelength','rotation',
-              'vA','vB', 'vC', 'vD'
-              ]
+    # calcside_value, calcarea_value
+    tex_keys_q = ['calc_sidelength', 'sidelength','rotation',
+                'vA','vB', 'vC', 'vD'
+                ]
 
 
     def make_diagram_wrapper(tex_diagram_template_txt):
