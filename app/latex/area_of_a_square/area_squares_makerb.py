@@ -1,17 +1,14 @@
-import zipfile
 from pathlib import Path
-from datetime import datetime
-import pytz
+import subprocess
+import os
 import time
-from ..utilities.util_functions import merge_files, convert_to_pdf
-from .coordinates_functions import get_coordinates_dict, get_2step_process_dict
-
-
+import magick_pdf_to_png
+import area_squares_functions as asf
 
 currfile_dir = Path(__file__).parent
-tex_template_path = currfile_dir / "coordinates_booklet_template.tex"
-texans_template_path = currfile_dir / "coordinates_booklet_ans_template.tex"
-tex_diagram_template_path = currfile_dir / "coordinates_booklet_diagram_template.tex"
+tex_template_path = currfile_dir / "area_squares_booklet_template.tex"
+texans_template_path = currfile_dir / "area_squares_booklet_ans_template.tex"
+tex_diagram_template_path = currfile_dir / "area_squares_booklet_diagram_template.tex"
 
 
 def convert_to_pdf(tex_path, outputdir):
@@ -33,62 +30,53 @@ def convert_to_pdf(tex_path, outputdir):
         print(f"Error: {e}")
 
 
-kv_keys_q = ["points_to_list"]
-kv_keys_ans = ["points_to_list", "points_to_plot"]
-ky_keys_to_clear = ["points_to_plot"]
+# calcside_value, calcarea_value
+tex_keys_q = ['calc_sidelength', 'sidelength','rotation',
+              'vA','vB', 'vC', 'vD'
+              ]
 
 
-def make1_diagram(tex_diagram_template_txt, nump):
+def make1_diagram(tex_diagram_template_txt):
     tex_diagram_template_txt_ans = tex_diagram_template_txt
-    kv = coordf.get_coordinates_dict(nump)
+    posttext = r"\par\vspace{1cm}"  #  ~ \newline
+    kv = asf.get_area_squares_dict()
     for key, value in kv.items():
-        # show answers
-        if key in kv_keys_ans:
-            tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace(
-                "<<" + key + ">>", value)
+        tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace(
+            "<<" + key + ">>", value
+        )
     for key, value in kv.items():
-        # don't show answers
-        if key in kv_keys_q:
+        if key in tex_keys_q:
             tex_diagram_template_txt = tex_diagram_template_txt.replace(
-                "<<" + key + ">>", value)
-
-        if key in ky_keys_to_clear:
+                "<<" + key + ">>", value
+            )
+        else:
             tex_diagram_template_txt = tex_diagram_template_txt.replace(
-                "<<" + key + ">>", "")
-    return tex_diagram_template_txt, tex_diagram_template_txt_ans
+                "<<" + key + ">>", "\\dotuline{~~~~~~~}"  # non breaking spaces for gaps
+            )
+    return tex_diagram_template_txt + posttext, tex_diagram_template_txt_ans + posttext
 
 
 def main():
-    numq = input("Enter the number of graphs from 1 to 10 \n")
+    numq = input("Enter the number of questions from 1 to 20 \n")
     if numq.strip().isdigit():
         numq = int(numq)
-        if not numq in range(1, 11):
-            numq = 2  #  default
+        if not numq in range(1,21):
+            numq = 4  # random by default
     else:
-        numq = 2  # default
-    #
-    nump = input("Enter the number of points to plot from 1 to 20 \n")
-    if nump.strip().isdigit():
-        nump = int(nump)
-        if not nump in range(1, 21):
-            nump = 5  #  default
-    else:
-        nump = 5  # default
+        numq = 4  # random by default
     #
 
-    filename = input(
-        "Enter the base filename to be added to the prefix coordinates_Bk_: \n"
-    )
+    filename = input("Enter the base filename to be added to the prefix area_squares_Bk_: \n")
     if not filename:
-        filename = "1"  # "coordinates_Bk_1_q and coordinates_Bk_1_ans as default file"
+        filename = "1"  # "area_squares_Bk_1_q and area_squares_Bk_1_ans as default file"
     # set names of files that are made
     # questions
-    tex_output_path = currfile_dir / f"coordinates_Bk_{filename}_q.tex"
-    pdf_path = currfile_dir / f"coordinates_Bk_{filename}_q.pdf"
+    tex_output_path = currfile_dir / f"area_squares_Bk_{filename}_q.tex"
+    pdf_path = currfile_dir / f"area_squares_Bk_{filename}_q.pdf"
 
     # answers
-    tex_output_path_ans = currfile_dir / f"coordinates_Bk_{filename}_ans.tex"
-    pdf_path_ans = currfile_dir / f"coordinates_Bk_{filename}_ans.pdf"
+    tex_output_path_ans = currfile_dir / f"area_squares_Bk_{filename}_ans.tex"
+    pdf_path_ans = currfile_dir / f"area_squares_Bk_{filename}_ans.pdf"
 
     # Read in the LaTeX template file
     with open(tex_template_path, "r") as infile:
@@ -108,20 +96,18 @@ def main():
     diagrams_text = ""
     diagrams_text_ans = ""
     # add the headtext; disabled for now using r"" wno needed as numbers in minipage itself
-    posttext = r"\pagebreak ~ \newline ~ \newline"
+    headtext = r""  # r"\pagebreak ~ \newline ~ \newline"
     for i in range(1, numq + 1):
-        img_tex, img_tex_ans = make1_diagram(tex_diagram_template_txt, nump)
-
+        img_tex, img_tex_ans = make1_diagram(tex_diagram_template_txt)
+        if i > 4 and i % 4 == 1:
+            diagrams_text += headtext
+            diagrams_text_ans += headtext
         diagrams_text += img_tex
         diagrams_text_ans += img_tex_ans
-        if i < numq:
-            diagrams_text += posttext
-            diagrams_text_ans += posttext
 
     # Replace the <<diagrams>> placeholder in the LaTeX template
     tex_template_txt = tex_template_txt.replace("<<diagrams>>", diagrams_text)
-    tex_template_txt_ans = tex_template_txt_ans.replace(
-        "<<diagrams>>", diagrams_text_ans)
+    tex_template_txt_ans = tex_template_txt_ans.replace("<<diagrams>>", diagrams_text_ans)
     # Write the question diagrams tex to an output file
     with open(tex_output_path, "w") as outfile:
         outfile.write(tex_template_txt)

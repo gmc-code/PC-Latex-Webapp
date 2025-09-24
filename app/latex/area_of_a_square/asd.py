@@ -4,40 +4,51 @@ from datetime import datetime
 import pytz
 import time
 from ..utilities.util_functions import merge_files, convert_to_pdf
-from .angles_in_a_rt_triangle_functions import get_angles_in_a_rt_triangle_dict
+from .check_solution_functions import get_1step_process_dict, get_2step_process_dict
+
+#  python -m app.latex.check_solutions.check_solution_maker
+
 
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
     tex_diagram_template_txt_ans = tex_diagram_template_txt
-    posttext = r"\vspace{1cm} \vfill"
     for key, value in process_dict.items():
         tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace("<<" + key + ">>", value)
     for key, value in process_dict.items():
-        if key in tex_keys_q:
+        if key not in tex_keys_q:
             tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", value)
         else:
-            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", "\\dotuline{~~~~~~~}")  # non breaking spaces for gaps
-    return tex_diagram_template_txt + posttext, tex_diagram_template_txt_ans + posttext
+            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", process_dict[f"{key}q"])
+    return tex_diagram_template_txt, tex_diagram_template_txt_ans
 
 
-def generate_diagram_text(numq, process_func, tex_diagram_template_txt):
+def generate_diagram_text(numq, q_per_column, process_func, tex_diagram_template_txt):
+    q_per_page = q_per_column * 2
     # generate diagrams text and text for answers
     diagrams_text = ""
     diagrams_text_ans = ""
-    # 4 to a page
-    headtext = r"\pagebreak ~ \newline ~ \newline"
+    # add the headtext
+    # must have no space in \end{minipage}\columnbreak for column break to occur at correct place.
+    headtext_col = r"""\columnbreak
+    """
+    headtext_page = r"""\newpage
+    """
+    # headtext_page = r'''\newpage ~ \newline ~ \newline'''
+
     for i in range(1, numq + 1):
         img_tex, img_tex_ans = process_func(tex_diagram_template_txt)
-        if i > 4 and i % 4 == 1:
-            diagrams_text += headtext
-            diagrams_text_ans += headtext
         diagrams_text += img_tex
         diagrams_text_ans += img_tex_ans
+        if i % q_per_page == 0 and numq + 1 > i:
+            diagrams_text += headtext_page
+            diagrams_text_ans += headtext_page
+        elif i % q_per_column == 0 and i > 1 and numq + 1 > i:
+            diagrams_text += headtext_col
+            diagrams_text_ans += headtext_col
     return diagrams_text, diagrams_text_ans
 
 
-def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_template_file, tex_diagram_template_file, output_filename_prefix, file_type="pdf"):
-
+def create_booklet(numq, title_text, q_per_column, process_func, tex_template_file, tex_ans_template_file, tex_diagram_template_file, output_filename_prefix, file_type="pdf"):
     output_dir = Path(__file__).parent.parent.parent
     timestamp = "{date:%Y_%b_%d_%H_%M_%S}".format(date=datetime.now(tz=pytz.timezone("Australia/Melbourne")))
     currfile_dir_out = output_dir / "output"
@@ -66,7 +77,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
         tex_diagram_template_txt = infile.read()
 
     # Use the function to generate diagram_text and diagram_text_ans
-    diagram_text, diagram_text_ans = generate_diagram_text(numq, process_func, tex_diagram_template_txt)
+    diagram_text, diagram_text_ans = generate_diagram_text(numq, q_per_column, process_func, tex_diagram_template_txt)
 
     # Replace the <<title>> placeholder in the LaTeX template
     tex_template_txt = tex_template_txt.replace("<<title>>", title_text)
@@ -99,33 +110,47 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 ##############################################################################
 
-def create_booklet_angles_in_a_rt_triangle(numq=16, title_text="Angles in a Right Angled Triangle", file_type="pdf"):
-
-    # % end modify values for angles in triangle
-    # tex_keys_q = ['angleLabel2','angleValue1','angleValue2',]
-    tex_keys_q = ['angleAValue', 'angleBValue','sideCValue', 'rotationAngleValue',
-                'angleALabel','angleBLabel', 'angleCLabel',
-                'angleAValueDisplay','angleBValueDisplay',
-                'angleLabel1',
-                ]
+def create_booklet_1step(numq=16, num=5, title_text="1-step backtracking", file_type="pdf"):
+    # % end modify values for invop
+    tex_keys_q = ["LHS", "LHSsub", "LHSval", "RHS", "side_equality", "is_a_sol"]
+    q_per_column = 5
 
     def make_diagram_wrapper(tex_diagram_template_txt):
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_angles_in_a_rt_triangle_dict())
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_1step_process_dict(num))
 
     return create_booklet(
         numq,
         title_text,
+        q_per_column,
         make_diagram_wrapper,
-        "angles_in_a_rt_triangle_booklet_template.tex",
-        "angles_in_a_rt_triangle_booklet_ans_template.tex",
-        "angles_in_a_rt_triangle_booklet_diagram_template.tex",
-        "rttri",
+        "check_solution_booklet_template.tex",
+        "check_solution_booklet_ans_template.tex",
+        "check_solution_booklet_diagram_template.tex",
+        "chksol1",
         file_type,
     )
 
 
+def create_booklet_2step(numq=10, num1=5, num2=5, title_text="1-step backtracking", file_type="pdf"):
+     # % end modify values for invop
+    tex_keys_q = ["LHS", "LHSsub", "LHSval", "RHS", "side_equality", "is_a_sol"]
+    q_per_column = 5
+
+    def make_diagram_wrapper(tex_diagram_template_txt):
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_2step_process_dict(num1, num2))
+
+    return create_booklet(
+        numq,
+        title_text,
+        q_per_column,
+        make_diagram_wrapper,
+        "check_solution_booklet_template.tex",
+        "check_solution_booklet_ans_template.tex",
+        "check_solution_booklet_diagram_template.tex",
+        "chksol2",
+        file_type,
+    )
 
 
-
-
+# create_booklet_1step(numq=16, num=5, file_type="pdf")
 

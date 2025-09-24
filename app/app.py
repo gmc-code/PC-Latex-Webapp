@@ -25,6 +25,7 @@ import latex.measuring_angles.measuring_angles_maker as measang
 
 import latex.coordinates.coordinates_maker as coords
 
+import latex.area_of_a_square.area_of_a_square_maker as areasq
 
 import latex.paper.lined_paper_maker as linedpaper
 import latex.gridpapers.grids_isometric_maker as grdpiso
@@ -729,7 +730,7 @@ def angles_in_a_right_angled_triangle_create():
     title_text = request.args.get("title_text")
     file_type = request.args.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = rttriang.create_booklet_ext_angle_to_triangle(numq, title_text, file_type=file_type)
+    file = rttriang.create_booklet_angles_in_a_rt_triangle(numq, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -1031,6 +1032,34 @@ def coordinates_create():
     file = coords.create_booklet_coords(numq, title_text, num_points, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
+
+##########################################################################
+######## area
+##########################################################################
+
+
+@app.route("/area_of_a_square")
+def area_of_a_square():
+    return render_template(
+        "genform_tqf.html",
+        title="Area of a Square,
+        link="/area_of_a_square_create",
+        num_per_page="4",
+        img_filename="area_of_a_square.png",
+        pdf_filename="area_of_a_square.pdf",
+        title_text="Area of a Square",
+    )
+
+
+
+@app.route("/area_of_a_square_create")
+def area_of_a_square_create():
+    numq = int(request.args.get("numq"))
+    title_text = request.args.get("title_text")
+    file_type = request.args.get("file_type", "pdf")
+    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type)
+    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
 ##########################################################################

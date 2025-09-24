@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 import time
 from ..utilities.util_functions import merge_files, convert_to_pdf
-from .angles_in_a_rt_triangle_functions import get_angles_in_a_rt_triangle_dict
+from .area_of_a_square_functions import get_area_of_a_square_dict
 
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
@@ -99,31 +99,27 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 ##############################################################################
 
-def create_booklet_angles_in_a_rt_triangle(numq=16, title_text="Angles in a Right Angled Triangle", file_type="pdf"):
+def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf"):
 
-    # % end modify values for angles in triangle
-    # tex_keys_q = ['angleLabel2','angleValue1','angleValue2',]
-    tex_keys_q = ['angleAValue', 'angleBValue','sideCValue', 'rotationAngleValue',
-                'angleALabel','angleBLabel', 'angleCLabel',
-                'angleAValueDisplay','angleBValueDisplay',
-                'angleLabel1',
-                ]
+# calcside_value, calcarea_value
+tex_keys_q = ['calc_sidelength', 'sidelength','rotation',
+              'vA','vB', 'vC', 'vD'
+              ]
+
 
     def make_diagram_wrapper(tex_diagram_template_txt):
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_angles_in_a_rt_triangle_dict())
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_square_dict())
 
     return create_booklet(
         numq,
         title_text,
         make_diagram_wrapper,
-        "angles_in_a_rt_triangle_booklet_template.tex",
-        "angles_in_a_rt_triangle_booklet_ans_template.tex",
-        "angles_in_a_rt_triangle_booklet_diagram_template.tex",
+        "area_of_a_square_booklet_template.tex",
+        "area_of_a_square_booklet_ans_template.tex",
+        "area_of_a_square_booklet_diagram_template.tex",
         "rttri",
         file_type,
     )
-
-
 
 
 
