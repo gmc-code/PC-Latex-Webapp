@@ -117,7 +117,7 @@ def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file
         "area_of_a_square_booklet_template.tex",
         "area_of_a_square_booklet_ans_template.tex",
         "area_of_a_square_booklet_diagram_template.tex",
-        "rttri",
+        "areasq",
         file_type,
     )
 
