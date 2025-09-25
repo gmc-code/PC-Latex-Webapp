@@ -71,3 +71,28 @@ If making more updates to the repo in git, then having already done the above in
 
 2. In the PythonAnywhere web, click to reload.
 
+
+----
+
+### Error logs in bash terminal
+
+1. In the Bash console, type the following command to show the last 30 lines of the error log:
+
+   ```bash
+   tail -n 30 /var/log/username.pythonanywhere.com.error.log
+   ```
+   e.g.
+   ```bash
+   tail -n 30 /var/log/gmc.pythonanywhere.com.error.log
+   ```
+
+2. In the Bash console, type the following command to clear the error log:
+
+   ```bash
+   > /var/log/username.pythonanywhere.com.error.log
+   ```
+   e.g.
+   ```bash
+   > /var/log/gmc.pythonanywhere.com.error.log
+   ```
+

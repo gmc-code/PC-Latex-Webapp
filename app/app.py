@@ -26,6 +26,7 @@ import latex.measuring_angles.measuring_angles_maker as measang
 import latex.coordinates.coordinates_maker as coords
 
 import latex.area_of_a_square.area_of_a_square_maker as areasq
+import latex.area_of_a_rectangle.area_of_a_rectangle_maker as arearect
 
 import latex.paper.lined_paper_maker as linedpaper
 import latex.gridpapers.grids_isometric_maker as grdpiso
@@ -1035,7 +1036,7 @@ def coordinates_create():
 
 
 ##########################################################################
-######## area
+######## area of a square
 ##########################################################################
 
 
@@ -1065,6 +1066,41 @@ def area_of_a_square_create():
     file_type = request.args.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
     file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
+    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+
+
+
+##########################################################################
+######## area of a rectangle
+##########################################################################
+
+
+@app.route("/area_of_a_rectangle")
+def area_of_a_rectangle():
+    return render_template(
+        "genform_tqcbf.html",
+        title="Area of a Rectangle",
+        link="/area_of_a_rectangle_create",
+        num_per_page="4",
+        min_questions="1",
+        max_questions="20",
+        img_filename="area_of_a_rectangle.png",
+        pdf_filename="area_of_a_rectangle.pdf",
+        title_text="Area of a Rectangle",
+        checkbox_text="Show Dimension Lines",
+    )
+
+
+
+@app.route("/area_of_a_rectangle_create")
+def area_of_a_rectangle_create():
+
+    show_dimension_lines_bool = request.args.get("checkbox1") == "on"  # Checkbox returns "on" if checked
+    numq = int(request.args.get("numq", 4))
+    title_text = request.args.get("title_text", "")
+    file_type = request.args.get("file_type", "pdf")
+    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 

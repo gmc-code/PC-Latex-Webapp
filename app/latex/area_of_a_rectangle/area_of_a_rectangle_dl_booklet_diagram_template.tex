@@ -5,9 +5,9 @@
     \begin{scope}[rotate=<<rotation>>]
         % Draw square
         \draw (0,0) coordinate (<<vA>>) --
-              ++(<<sidelength>>,0) coordinate (<<vB>>) --
-              ++(0,<<sidelength>>) coordinate (<<vC>>) --
-              ++(-<<sidelength>>,0) coordinate (<<vD>>) -- cycle;
+              ++(<<sidelength1>>,0) coordinate (<<vB>>) --
+              ++(0,<<sidelength2>>) coordinate (<<vC>>) --
+              ++(-<<sidelength1>>,0) coordinate (<<vD>>) -- cycle;
 
         % Right angle markers
         \foreach \p/\q/\r in {<<vD>>/<<vA>>/<<vB>>,<<vA>>/<<vB>>/<<vC>>,<<vC>>/<<vD>>/<<vA>>,<<vD>>/<<vA>>/<<vB>>} {
@@ -19,20 +19,24 @@
             \node[\l] at (\p) {\p};
         }
 
-        % Horizontal label below side A-B
-        \node[below, xshift=2mm] at ($(<<vA>>)!.5!(<<vB>>) + (0,-0.2cm)$) {<<calc_sidelength>>\,cm};
+        % Dotted arrows shifted away from edges
+        % Horizontal side (A-B), shifted down
+        \draw[<->, dotted]
+            ($(<<vA>>) + (0,-0.2cm)$) -- ($(<<vB>>) + (0,-0.2cm)$)
+            node[midway,below, xshift=2mm] {<<calc_sidelength1>>\,cm};
 
-        % Vertical label to the right of side B-C
-        \node[right] at ($(<<vB>>)!.5!(<<vC>>) + (0.2cm,0)$) {<<calc_sidelength>>\,cm};
-
+        % Vertical side (B-C), shifted right
+        \draw[<->, dotted]
+            ($(<<vB>>) + (0.2cm,0)$) -- ($(<<vC>>) + (0.2cm,0)$)
+            node[midway,right] {<<calc_sidelength2>>\,cm};
     \end{scope}
 \end{tikzpicture}
 \end{minipage}%
 \hfill
 \begin{minipage}{.4\textwidth}
   \begin{align*}
-  \text{Area} &= l^2 \\
-  \text{Area} &= <<calcside_value>> \,\text{cm} \times <<calcside_value>> \,\text{cm} \\
+  \text{Area} &= lw \\
+  \text{Area} &= <<calcside_value1>> \,\text{cm} \times <<calcside_value2>> \,\text{cm} \\
   \text{Area} &= <<calcarea_value>> \,\text{cm}^2
   \end{align*}
 \end{minipage}

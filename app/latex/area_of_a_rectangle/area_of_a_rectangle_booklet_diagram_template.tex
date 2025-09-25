@@ -5,9 +5,9 @@
     \begin{scope}[rotate=<<rotation>>]
         % Draw square
         \draw (0,0) coordinate (<<vA>>) --
-              ++(<<sidelength>>,0) coordinate (<<vB>>) --
-              ++(0,<<sidelength>>) coordinate (<<vC>>) --
-              ++(-<<sidelength>>,0) coordinate (<<vD>>) -- cycle;
+              ++(<<sidelength1>>,0) coordinate (<<vB>>) --
+              ++(0,<<sidelength2>>) coordinate (<<vC>>) --
+              ++(-<<sidelength1>>,0) coordinate (<<vD>>) -- cycle;
 
         % Right angle markers
         \foreach \p/\q/\r in {<<vD>>/<<vA>>/<<vB>>,<<vA>>/<<vB>>/<<vC>>,<<vC>>/<<vD>>/<<vA>>,<<vD>>/<<vA>>/<<vB>>} {
@@ -31,8 +31,8 @@
 \hfill
 \begin{minipage}{.4\textwidth}
   \begin{align*}
-  \text{Area} &= l^2 \\
-  \text{Area} &= <<calcside_value>> \,\text{cm} \times <<calcside_value>> \,\text{cm} \\
+  \text{Area} &= lw \\
+  \text{Area} &= <<calcside_value1>> \,\text{cm} \times <<calcside_value2>> \,\text{cm} \\
   \text{Area} &= <<calcarea_value>> \,\text{cm}^2
   \end{align*}
 \end{minipage}
