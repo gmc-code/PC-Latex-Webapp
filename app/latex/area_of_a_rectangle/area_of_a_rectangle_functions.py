@@ -21,7 +21,7 @@ def get_rotations_shuffled():
 
 
 
-def get_area_rectangles_dict(side_pair=None, rotation=None):
+def get_area_of_a_rectangle_dict(side_pair=None, rotation=None):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
