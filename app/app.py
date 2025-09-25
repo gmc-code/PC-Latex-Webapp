@@ -1046,6 +1046,8 @@ def area_of_a_square():
         title="Area of a Square",
         link="/area_of_a_square_create",
         num_per_page="4",
+        min_questions="1",
+        min_questions="20",
         img_filename="area_of_a_square.png",
         pdf_filename="area_of_a_square.pdf",
         title_text="Area of a Square",

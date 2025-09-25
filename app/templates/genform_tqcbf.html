@@ -20,11 +20,18 @@
                     </div>
 
                     <div class="w3-half w3-padding">
-                        <label>Number of Questions <span>(1 per page):</span></label>
-                        <input class="w3-input w3-border custom-width" type="number" name="numq" min="1" max="10"
-                            step="1" value="{{ num_graphs }}" required>
+                        <label>Number of Questions <span>({{ num_per_page }} per page):</span></label>
+                        <input class="w3-input w3-border custom-width"
+                            type="number"
+                            name="numq"
+                            min="{{ min_questions }}"
+                            max="{{ max_questions }}"
+                            step="1"
+                            value="{{ num_per_page }}"
+                            required>
                     </div>
                 </div>
+
 
                 <!-- Row for checkbox label text in app checkbox_text-->
                 <div class="w3-row">
