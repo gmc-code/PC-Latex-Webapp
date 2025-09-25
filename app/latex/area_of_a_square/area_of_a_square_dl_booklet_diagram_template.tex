@@ -10,14 +10,20 @@
               ++(-<<sidelength>>,0) coordinate (<<vD>>) -- cycle;
 
         % Right angle markers
-        \foreach \p/\q/\r in {<<vD>>/<<vA>>/<<vB>>,<<vA>>/<<vB>>/<<vC>>,<<vC>>/<<vD>>/<<vA>>,<<vD>>/<<vA>>/<<vB>>} {
+        \foreach \p/\q/\r in {<<vD>>/<<vA>>/<<vB>>,<<vA>>/<<vB>>/<<vC>>,<<vB>>/<<vC>>/<<vD>>,<<vC>>/<<vD>>/<<vA>>} {
             \pic [draw, -, angle radius=0.2cm] {right angle=\p--\q--\r};
         }
 
         % Vertex LABELS
-        \foreach \p/\l in {<<vA>>/below left,<<vB>>/below right,<<vC>>/above right,<<vD>>/above left} {
-            \node[\l] at (\p) {\p};
-        }
+        % \foreach \p/\l in {<<vA>>/below left,<<vB>>/below right,<<vC>>/above right,<<vD>>/above left} {
+        %     \node[\l] at (\p) {\p};
+        % }
+        % Vertex LABELS
+        % Labels relative to shape geometry
+        \node at ($(<<vA>>)+(-0.2,-0.2)$) {<<vA>>};
+        \node at ($(<<vB>>)+(0.2,-0.2)$) {<<vB>>};
+        \node at ($(<<vC>>)+(0.2,0.2)$) {<<vC>>};
+        \node at ($(<<vD>>)+(-0.2,0.2)$) {<<vD>>};
 
         % Dotted arrows shifted away from edges
         % Horizontal side (A-B), shifted down
