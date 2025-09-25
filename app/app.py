@@ -1042,24 +1042,28 @@ def coordinates_create():
 @app.route("/area_of_a_square")
 def area_of_a_square():
     return render_template(
-        "genform_tqf.html",
+        "genform_tqcbf.html",
         title="Area of a Square",
         link="/area_of_a_square_create",
         num_per_page="4",
         img_filename="area_of_a_square.png",
         pdf_filename="area_of_a_square.pdf",
         title_text="Area of a Square",
+        checkbox_text="Show Dimension Lines",
     )
 
 
 
 @app.route("/area_of_a_square_create")
 def area_of_a_square_create():
+
+    show_dimension_lines_bool = request.args.get("checkbox1") == "on"  # Checkbox returns "on" if checked
+
     numq = int(request.args.get("numq"))
     title_text = request.args.get("title_text")
     file_type = request.args.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type)
+    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
