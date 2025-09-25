@@ -1,7 +1,7 @@
 \begin{minipage}{0.55\textwidth}
   \refstepcounter{minipagecount}
   \noindent{(\theminipagecount)}\quad
-  \begin{tikzpicture}[scale=1.1, baseline=(current bounding box.north)]
+  \begin{tikzpicture}[scale=1.0, baseline=(current bounding box.north)]
     \begin{scope}[rotate=<<rotation>>]
         % Draw square
         \draw (0,0) coordinate (<<vA>>) --
@@ -21,6 +21,35 @@
         \node at ($(<<vC>>)+(0.2,0.2)$) {<<vC>>};
         \node at ($(<<vD>>)+(-0.2,0.2)$) {<<vD>>};
 
+
+        % double Tick marks across horizontal side <<vA>>--<<vB>>
+        \draw[thin, gray]
+            ($(<<vA>>)!0.5!(<<vB>>) + (-0.03,-0.10)$) --
+            ($(<<vA>>)!0.5!(<<vB>>) + (-0.03,0.10)$);
+
+        \draw[thin, gray]
+            ($(<<vA>>)!0.5!(<<vB>>) + (0.03,-0.10)$) --
+            ($(<<vA>>)!0.5!(<<vB>>) + (0.03,0.10)$);
+
+        % double Tick marks across horizontal side <<vD>>--<<vC>>
+        \draw[thin, gray]
+            ($(<<vD>>)!0.5!(<<vC>>) + (-0.03,-0.10)$) --
+            ($(<<vD>>)!0.5!(<<vC>>) + (-0.03,0.10)$);
+
+        \draw[thin, gray]
+            ($(<<vD>>)!0.5!(<<vC>>) + (0.03,-0.10)$) --
+            ($(<<vD>>)!0.5!(<<vC>>) + (0.03,0.10)$);
+
+
+        % Tick marks across vertical sides
+        \draw[thin, gray]
+            ($(<<vB>>)!0.5!(<<vC>>) + (-0.10,0)$) --
+            ($(<<vB>>)!0.5!(<<vC>>) + (0.10,0)$);
+
+        \draw[thin, gray]
+            ($(<<vA>>)!0.5!(<<vD>>) + (-0.10,0)$) --
+            ($(<<vA>>)!0.5!(<<vD>>) + (0.10,0)$);
+
         % Horizontal label below side A-B
         \node[below, xshift=2mm] at ($(<<vA>>)!.5!(<<vB>>) + (0,-0.2cm)$) {<<calc_sidelength1>>\,cm};
 
@@ -38,3 +67,4 @@
   \text{Area} &= <<calcarea_value>> \,\text{cm}^2
   \end{align*}
 \end{minipage}
+
