@@ -1058,12 +1058,11 @@ def area_of_a_square():
 def area_of_a_square_create():
 
     show_dimension_lines_bool = request.args.get("checkbox1") == "on"  # Checkbox returns "on" if checked
-
-    numq = int(request.args.get("numq"))
-    title_text = request.args.get("title_text")
+    numq = int(request.args.get("numq", 4))
+    title_text = request.args.get("title_text", "")
     file_type = request.args.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool)
+    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 

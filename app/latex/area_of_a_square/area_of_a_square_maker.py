@@ -102,7 +102,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 ##############################################################################
 
 
-def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf", show_dimension_lines_bool):
+def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf", show_dimension_lines_bool=True):
 
     # calcside_value, calcarea_value
     tex_keys_q = ['calc_sidelength', 'sidelength','rotation', 'vA','vB', 'vC', 'vD']
