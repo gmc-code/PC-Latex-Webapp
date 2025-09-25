@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 import time
 from ..utilities.util_functions import merge_files, convert_to_pdf
-from .area_of_a_square_functions import get_area_of_a_square_dict, get_ints_shuffled_one_dig_first, get_rotations_shuffled
+from .area_of_a_square_functions import get_area_of_a_square_dict
 
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
@@ -27,9 +27,7 @@ def generate_diagram_text(numq, process_func, tex_diagram_template_txt):
     # 4 to a page
     headtext = r"\pagebreak ~ \newline ~ \newline"
     for i in range(1, numq + 1):
-        # pass in iteration number i
-        img_tex, img_tex_ans = process_func(tex_diagram_template_txt, i)
-
+        img_tex, img_tex_ans = process_func(tex_diagram_template_txt)
         if i > 4 and i % 4 == 1:
             diagrams_text += headtext
             diagrams_text_ans += headtext
@@ -101,20 +99,16 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 ##############################################################################
 
-
 def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf"):
 
     # calcside_value, calcarea_value
-    tex_keys_q = ['calc_sidelength', 'sidelength','rotation', 'vA','vB', 'vC', 'vD']
+    tex_keys_q = ['calc_sidelength', 'sidelength','rotation',
+                'vA','vB', 'vC', 'vD'
+                ]
 
-    # Generate shuffled lists of parameters
-    side_ints_list = get_ints_shuffled_one_dig_first()
-    rotations_list = get_rotations_shuffled()
 
-    def make_diagram_wrapper(tex_diagram_template_txt, idx):
-        side_int = side_ints_list[idx - 1]
-        rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_square_dict(side_int, rotation))
+    def make_diagram_wrapper(tex_diagram_template_txt):
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_square_dict())
 
     return create_booklet(
         numq,
@@ -126,7 +120,6 @@ def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file
         "areasq",
         file_type,
     )
-
 
 
 
