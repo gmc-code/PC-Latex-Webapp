@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 import time
 from ..utilities.util_functions import merge_files, convert_to_pdf
-from .area_of_a_square_functions import get_area_of_a_square_dict, get_ints_shuffled_one_dig_first, get_rotations_shuffled
+from .area_of_a_rectangle_functions import get_area_of_a_rectangle_dict, get_side_pairs, get_rotations_shuffled
 
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
@@ -102,28 +102,28 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 ##############################################################################
 
 
-def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf", show_dimension_lines_bool=True):
+def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle", file_type="pdf", show_dimension_lines_bool=True):
 
     # calcside_value, calcarea_value
     tex_keys_q = ['calc_sidelength', 'sidelength','rotation', 'vA','vB', 'vC', 'vD']
 
     # Generate shuffled lists of parameters
-    side_ints_list = get_ints_shuffled_one_dig_first()
+    side_pairs_list = get_side_pairs()
     rotations_list = get_rotations_shuffled()
 
     def make_diagram_wrapper(tex_diagram_template_txt, idx):
-        side_int = side_ints_list[idx - 1]
+        side_pair = side_pairs_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_square_dict(side_int, rotation))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_rectangle_dict(side_pair, rotation))
 
     if show_dimension_lines_bool:
         return create_booklet(
             numq,
             title_text,
             make_diagram_wrapper,
-            "area_of_a_square_booklet_template.tex",
-            "area_of_a_square_booklet_ans_template.tex",
-            "area_of_a_square_dl_booklet_diagram_template.tex",
+            "area_of_a_rectangle_booklet_template.tex",
+            "area_of_a_rectangle_booklet_ans_template.tex",
+            "area_of_a_rectangle_dl_booklet_diagram_template.tex",
             "areasq",
             file_type,
         )
@@ -132,9 +132,9 @@ def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file
             numq,
             title_text,
             make_diagram_wrapper,
-            "area_of_a_square_booklet_template.tex",
-            "area_of_a_square_booklet_ans_template.tex",
-            "area_of_a_square_booklet_diagram_template.tex",
+            "area_of_a_rectangle_booklet_template.tex",
+            "area_of_a_rectangle_booklet_ans_template.tex",
+            "area_of_a_rectangle_booklet_diagram_template.tex",
             "areasq",
             file_type,
         )
