@@ -126,7 +126,7 @@ def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle"
             "area_of_a_rectangle_booklet_template.tex",
             "area_of_a_rectangle_booklet_ans_template.tex",
             "area_of_a_rectangle_dl_booklet_diagram_template.tex",
-            "areasq",
+            "arearect",
             file_type,
         )
     else:
@@ -137,7 +137,7 @@ def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle"
             "area_of_a_rectangle_booklet_template.tex",
             "area_of_a_rectangle_booklet_ans_template.tex",
             "area_of_a_rectangle_booklet_diagram_template.tex",
-            "areasq",
+            "arearect",
             file_type,
         )
 
