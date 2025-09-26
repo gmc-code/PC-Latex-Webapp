@@ -1079,8 +1079,7 @@ def area_of_a_square():
         checkbox_text="Show Dimension Lines",
     )
 
-
-@app.route("/area_of_a_square_create")
+@app.route("/area_of_a_square_create", methods=["POST"])
 def area_of_a_square_create():
     show_dimension_lines_bool = request.args.get("checkbox1") == "on"
     # Safely parse numq
