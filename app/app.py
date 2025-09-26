@@ -1126,7 +1126,7 @@ def lined_paper_create():
         num_lines = 26
     file = linedpaper.create_lined_paper(num_lines)
     # Return the PDF as a response
-    return send_file(file, as_attachment=True, mimetype="application/pdf"))
+    return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
 ##########################################################################
