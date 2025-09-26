@@ -1399,8 +1399,13 @@ def gridpapers_tri():
 @app.route("/gridpapers_tri_create", methods=["POST"])
 def gridpapers_tri_create():
     # use drop down selction, no need for item value even though defined
-    paperheight = request.form.get("paperheight")
-    paperwidth = request.form.get("paperwidth")
+
+    paperheight = parse_and_clamp(request.form, "paperheight", 2.0, 29.7, 29.7, cast_type=float)
+    paperwidth  = parse_and_clamp(request.form, "paperwidth", 5.0, 21.0, 21.0, cast_type=float)
+    # vmargin     = parse_and_clamp(request.form, "vmargin",  0.0, 2.5, 1.5, cast_type=float)
+    # hmargin     = parse_and_clamp(request.form, "hmargin",  0.0, 2.5, 1.5, cast_type=float)
+    # paperheight = request.form.get("paperheight")
+    # paperwidth = request.form.get("paperwidth")
     patternsize = request.form.get("op_patternsize")
     minorcolor = colours_ops[request.form.get("op_colour")]
     file = grdptri.create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor)
