@@ -3,7 +3,7 @@ import os
 import glob
 
 # from flask import Flask, render_template, request, send_file, after_this_request, jsonify, url_for, send_from_directory, render_template_string
-from flask import Flask, render_template, request, send_file, after_this_request, url_for
+from flask import Flask, render_template, request, send_file, after_this_request, abort, url_for
 
 import latex.backtracking.backtracking_maker as backtrack
 
@@ -113,35 +113,83 @@ def backtrack_onestep():
         "genform_tqof.html",
         title="One-Step Backtracking",
         operation_label="Operation",
-        ops=ops.keys(),
+        ops=list(ops.keys()),  # Ensure compatibility with template rendering
         link="/backtrack_onestep_create",
-        num_per_page="10",
-        min_questions="1",
-        max_questions="100",
+        num_per_page=10,       # Pass as integer, not string
+        min_questions=1,
+        max_questions=100,
         img_filename="backtrack_onestep.png",
         pdf_filename="backtrack_onestep.pdf",
         title_text="1-step Backtracking",
     )
 
-
 @app.route("/backtrack_onestep_create", methods=["POST"])
 def backtrack_onestep_create():
-    # Safely parse numq
+    # Safely parse and clamp numq
     try:
         numq = int(request.form.get("numq", 10))
-    except ValueError:
-        numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
-    #
-    operation = ops[request.form.get("operation")]
-    title_text = request.form.get("title_text")
-    file_type = request.form.get("file_type", "pdf")
+    except (ValueError, TypeError):
+        numq = 10
+    numq = max(1, min(numq, 100))
+
+    # Validate operation key
+    operation_key = request.form.get("operation")
+    if operation_key not in ops:
+        abort(400, description="Invalid operation selected.")
+    operation = ops[operation_key]
+
+    # Get title text with fallback
+    title_text = request.form.get("title_text") or "1-step Backtracking"
+
+    # Determine file type and MIME type
+    file_type = request.form.get("file_type", "pdf").lower()
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = backtrack.create_booklet_1step(numq, operation, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    mime = mimetypes.get(file_type, "application/pdf")
+
+    # Generate file with error handling
+    try:
+        file = backtrack.create_booklet_1step(numq, operation, title_text, file_type=file_type)
+    except Exception as e:
+        abort(500, description=f"Error generating booklet: {str(e)}")
+
+    return send_file(file, as_attachment=True, mimetype=mime)
+
+
+# @app.route("/backtrack_onestep")
+# def backtrack_onestep():
+#     return render_template(
+#         "genform_tqof.html",
+#         title="One-Step Backtracking",
+#         operation_label="Operation",
+#         ops=ops.keys(),
+#         link="/backtrack_onestep_create",
+#         num_per_page="10",
+#         min_questions="1",
+#         max_questions="100",
+#         img_filename="backtrack_onestep.png",
+#         pdf_filename="backtrack_onestep.pdf",
+#         title_text="1-step Backtracking",
+#     )
+
+
+# @app.route("/backtrack_onestep_create", methods=["POST"])
+# def backtrack_onestep_create():
+#     # Safely parse numq
+#     try:
+#         numq = int(request.form.get("numq", 10))
+#     except ValueError:
+#         numq = 10  # fallback default
+#     # Clamp to range to prevent issue with user manual entry although js should catch it
+#     min_q = 1
+#     max_q = 100
+#     numq = max(min_q, min(numq, max_q))
+#     #
+#     operation = ops[request.form.get("operation")]
+#     title_text = request.form.get("title_text")
+#     file_type = request.form.get("file_type", "pdf")
+#     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+#     file = backtrack.create_booklet_1step(numq, operation, title_text, file_type=file_type)
+#     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
 ##########################################################################
