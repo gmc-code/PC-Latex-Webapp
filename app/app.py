@@ -1254,10 +1254,11 @@ def grids_isometric():
 
 @app.route("/grids_isometric_create", methods=["POST"])
 def grids_isometric_create():
-    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7)
-    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0)
-    vmargin     = parse_and_clamp(request.form, "vmargin", 2.5, 0.0, 2.5)
-    hmargin     = parse_and_clamp(request.form, "hmargin", 2.5, 0.0, 2.5)
+
+    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
+    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
+    vmargin     = parse_and_clamp(request.form, "vmargin", 2.5, 0.0, 2.5, cast_type=float)
+    hmargin     = parse_and_clamp(request.form, "hmargin", 2.5, 0.0, 2.5, cast_type=float)
 
 
     # # Safely parse paperheight
