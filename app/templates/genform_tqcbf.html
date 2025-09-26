@@ -71,23 +71,6 @@
                 </div>
             </form>
 
-            <!-- JS clamping script -->
-            <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const numInput = document.querySelector('input[name="numq"]');
-                const min = parseInt(numInput.min);
-                const max = parseInt(numInput.max);
-
-                numInput.addEventListener('input', function() {
-                    let val = parseInt(this.value);
-                    if (!isNaN(val)) {
-                        if (val < min) this.value = min;
-                        if (val > max) this.value = max;
-                    }
-                });
-            });
-            </script>
-
             <!-- Image Section Below Form -->
             <div class="w3-card-4 w3-margin-top w3-padding">
                 <div class="w3-container">
@@ -113,6 +96,8 @@
 </div> <!-- closes .w3-container -->
 {% endblock %}
 
+
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/progress-bar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/limit-questions.js') }}"></script>
 {% endblock %}

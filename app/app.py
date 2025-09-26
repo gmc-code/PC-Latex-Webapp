@@ -618,6 +618,8 @@ def decimals_add_subtract():
         dpops=dpops.keys(),
         link="/decimals_add_subtract_create",
         num_per_page="27",
+        min_questions="1",
+        max_questions="20",
         img_filename="decimals_add.png",
         pdf_filename="decimals_add_subtract.pdf",
         title_text="Decimals Short Addition Subtraction",
@@ -1120,57 +1122,15 @@ def area_of_a_rectangle():
     )
 
 
-# @app.route("/area_of_a_rectangle_create", methods=["GET", "POST"])
-# def area_of_a_rectangle_create():
-#     min_q = 1
-#     max_q = 20
-#     default_numq = 4
-#     error_msg = None
-
-#     if request.method == "POST":
-#         show_dimension_lines_bool = request.form.get("checkbox1") == "on"
-
-#         try:
-#             numq = int(request.form.get("numq", default_numq))
-#             if not (min_q <= numq <= max_q):
-#                 raise ValueError
-#         except ValueError:
-#             numq = default_numq
-#             error_msg = f"Please enter a number between {min_q} and {max_q}."
-
-#         title_text = request.form.get("title_text", "Area of a Rectangle")
-#         file_type = request.form.get("file_type", "pdf")
-#         mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-
-#         if not error_msg:
-#             # Valid input → generate file
-#             file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
-#             return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
-
-#     # GET request or invalid input → render form
-#     return render_template(
-#         "genform_tqcbf.html",
-#         title="Area of a Rectangle",
-#         link="/area_of_a_rectangle_create",
-#         num_per_page=default_numq,
-#         min_questions=min_q,
-#         max_questions=max_q,
-#         img_filename="area_of_a_rectangle.png",
-#         pdf_filename="area_of_a_rectangle.pdf",
-#         title_text="Area of a Rectangle",
-#         checkbox_text="Show Dimension Lines",
-#     )
-
 @app.route("/area_of_a_rectangle_create", methods=["POST"])
 def area_of_a_rectangle_create():
-    show_dimension_lines_bool = request.form.get(
-        "checkbox1") == "on"  # Checkbox returns "on" if checked
+    show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 4))
     except ValueError:
         numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry
+    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 20
     numq = max(min_q, min(numq, max_q))
@@ -1178,8 +1138,7 @@ def area_of_a_rectangle_create():
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = arearect.create_booklet_area_of_a_rectangle(
-        numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
+    file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
