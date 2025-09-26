@@ -168,11 +168,6 @@ def backtrack_onestep():
 def backtrack_onestep_create():
     # Safely parse and clamp numq
     numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
-    # try:
-    #     numq = int(request.form.get("numq", 10))
-    # except (ValueError, TypeError):
-    #     numq = 10
-    # numq = max(1, min(numq, 100))
 
     # Validate operation key
     operation_key = request.form.get("operation")
@@ -258,14 +253,7 @@ def backtrack_twostep():
 @app.route("/backtrack_twostep_create", methods=["POST"])
 def backtrack_twostep_create():
     # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 10))
-    except ValueError:
-        numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
+    numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
     #
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
@@ -1256,7 +1244,7 @@ def grids_isometric():
 def grids_isometric_create():
 
     # paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
-    # paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, 21.0, cast_type=float)
+    # paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
     # vmargin     = parse_and_clamp(request.form, "vmargin", 1.5, 0.0, 2.5, cast_type=float)
     # hmargin     = parse_and_clamp(request.form, "hmargin", 1.5, 0.0, 2.5, cast_type=float)
 
@@ -1399,7 +1387,7 @@ def gridpapers_tri():
 @app.route("/gridpapers_tri_create", methods=["POST"])
 def gridpapers_tri_create():
     paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
-    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, 21.0, cast_type=float)
+    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
 
     patternsize = request.form.get("op_patternsize", "1cm")
     minorcolor = colours_ops.get(request.form.get("op_colour"), "black")
