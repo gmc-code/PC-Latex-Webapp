@@ -1053,51 +1053,12 @@ def grids_isometric():
 
 @app.route("/grids_isometric_create", methods=["POST"])
 def grids_isometric_create():
-    # Safely parse and clamp num_lines
-    # paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
-    # paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
-    # vmargin     = parse_and_clamp(request.form, "vmargin", 1.5, 0.0, 2.5, cast_type=float)
-    # hmargin     = parse_and_clamp(request.form, "hmargin", 1.5, 0.0, 2.5, cast_type=float)
-
-
-    # Safely parse paperheight
-    try:
-        paperheight = float(request.form.get("paperheight", 29.7))
-    except ValueError:
-        paperheight = 29.7  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_height = 2.0
-    max_height = 29.7
-    paperheight = max(min_height, min(paperheight, max_height))
-
-    # Safely parse paperwidth
-    try:
-        paperwidth = float(request.form.get("paperwidth", 21.0))
-    except ValueError:
-        paperwidth = 21.0  # fallback default
-    min_width = 5.0
-    max_width = 21.0
-    paperwidth = max(min_width, min(paperwidth, max_width))
-
-    # Safely parse vmargin
-    try:
-        vmargin = float(request.form.get("vmargin", 2.5))
-    except ValueError:
-        vmargin = 2.5  # fallback default
-    min_vmargin = 0.0
-    max_vmargin = 2.5
-    vmargin = max(min_vmargin, min(vmargin, max_vmargin))
-
-    # Safely parse hmargin
-    try:
-        hmargin = float(request.form.get("hmargin", 2.5))
-    except ValueError:
-        hmargin = 2.5  # fallback default
-    min_hmargin = 0.0
-    max_hmargin = 2.5
-    hmargin = max(min_hmargin, min(hmargin, max_hmargin))
-
-
+    # Safely parse and clamp paperheight, paperwidth, vmargin, hmargin
+    paperheight = str(parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float))
+    paperwidth = str(parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float))
+    vmargin = str(parse_and_clamp(request.form, "vmargin", 1.5, 0.0, 2.5, cast_type=float))
+    hmargin = str(parse_and_clamp(request.form, "hmargin", 1.5, 0.0, 2.5, cast_type=float))
+    #
     gridorientation = request.form.get("op_gridorientation")
     dotfilltype = request.form.get("op_dotfilltype")
     dotspacing = request.form.get("op_dotspacing")
@@ -1133,8 +1094,8 @@ def gridpapers():
 @app.route("/gridpapers_create", methods=["POST"])
 def gridpapers_create():
     # Safely parse and clamp paperheight, paperwidth
-    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
-    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
+    paperheight = str(parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float))
+    paperwidth  = str(parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float))
     #
     patternsize = request.form.get("op_patternsize")
     majorcolor = colours_ops[request.form.get("op_major_colour")]
@@ -1167,8 +1128,8 @@ def gridpapers_dot():
 @app.route("/gridpapers_dot_create", methods=["POST"])
 def gridpapers_dot_create():
     # Safely parse and clamp paperheight, paperwidth
-    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
-    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
+    paperheight = str(parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float))
+    paperwidth  = str(parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float))
     #
     patternsize = request.form.get("op_patternsize")
     dotsize = request.form.get("op_dotsize")
@@ -1200,8 +1161,8 @@ def gridpapers_tri():
 @app.route("/gridpapers_tri_create", methods=["POST"])
 def gridpapers_tri_create():
     # Safely parse and clamp paperheight, paperwidth
-    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
-    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
+    paperheight = str(parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float))
+    paperwidth  = str(parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float))
     #
     patternsize = request.form.get("op_patternsize")
     minorcolor = colours_ops[request.form.get("op_colour")]
