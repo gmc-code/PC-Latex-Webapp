@@ -19,19 +19,36 @@
                             maxlength="30" required>
                     </div>
 
-                    <div class="w3-half w3-padding">
-                        <label>Number of Questions <span>(1 per page):</span></label>
-                        <input class="w3-input w3-border custom-width" type="number" name="numq" min="1" max="10"
-                            step="1" value="{{ num_graphs }}" required>
+                        <div class="w3-half w3-padding">
+                        <label>Number of Questions
+                            <span>({{ num_per_page }} per page, {{ min_questions }} to {{ max_questions }}):</span>
+                        </label>
+                        <input class="w3-input w3-border custom-width"
+                               type="number"
+                               name="numq"
+                               min="{{ min_questions }}"
+                               max="{{ max_questions }}"
+                               step="1"
+                               value="{{ num_per_page }}"
+                               required>
                     </div>
+
                 </div>
 
                 <!-- Row for point numbers -->
                 <div class="w3-row">
                     <div class="w3-half w3-padding">
-                        <label>Number of Points <span>(4 to 20):</span></label>
-                        <input class="w3-input w3-border custom-width" type="number" name="num_points" min="4" max="20"
-                            step="1" value="{{ num_points_per_questions }}" required>
+                        <label>Number of Points
+                            <span>({{ num_points_per_question }} per page, {{ min_points_per_question }} to {{ max_points_per_question }}):</span>
+                        </label>
+                        <input class="w3-input w3-border custom-width"
+                               type="number"
+                               name="num_points"
+                               min="{{ min_points_per_question }}"
+                               max="{{ max_points_per_question }}"
+                               step="1"
+                               value="{{ num_points_per_question }}"
+                               required>
                     </div>
                 </div>
 

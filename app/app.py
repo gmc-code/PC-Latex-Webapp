@@ -40,11 +40,9 @@ app = Flask(__name__)
 ##########################################################################
 
 # backtracking, equations, check solutions
-ops = {"Random": 5, "Addition": 1, "Subtraction": 2,
-       "Multiplication": 3, "Division": 4}
+ops = {"Random": 5, "Addition": 1, "Subtraction": 2, "Multiplication": 3, "Division": 4}
 # number lines
-nlops = {"Random": 6, "Plus": 1, "Minus Negative": 2,
-         "Minus": 3, "Minus Positive": 4, "Plus Negative": 5}
+nlops = {"Random": 6, "Plus": 1, "Minus Negative": 2, "Minus": 3, "Minus Positive": 4, "Plus Negative": 5}
 # integer places
 ipops = {"1": 1, "2": 2, "3": 3, "4": 4}
 # decimal places
@@ -52,8 +50,7 @@ dpops = {"1": 1, "2": 2, "3": 3, "4": 4, "5": 5}
 # decimals_add_sub,
 decops = {"Random": 3, "Addition": 1, "Subtraction": 2}
 # parallel lines angles
-plops = {"Random": 7, "Corresponding": 1, "Alternate": 2, "Cointerior": 3,
-         "Vertically Opposite": 4, "Consecutive Exterior": 5, "Alternate Exterior": 6}
+plops = {"Random": 7, "Corresponding": 1, "Alternate": 2, "Cointerior": 3, "Vertically Opposite": 4, "Consecutive Exterior": 5, "Alternate Exterior": 6}
 # external angle to a triangle
 eatops = {"Random": 4, "unknown A": 1, "unknown C": 2, "unknown external B": 3}
 # isosceles triangle
@@ -65,17 +62,17 @@ patternsizes_ops = {"1cm": 3, "0.25cm": 1, "0.5cm": 2, "2cm": 4}
 dotsizes_ops = {"0.7pt": 1, "1.0pt": 2, "1.4pt": 3, "2.0pt": 4}
 # colours_ops = {"black": 1, "black!90!white": 2, "gray": 3, "black!60!white": 4, "black!40!white": 5, "black!40!white": 6}
 colours_ops = {
-    "Black": "black",                     # 100% black
-    "Charcoal": "black!90!white",         # 90% black
-    "Dark Gray": "black!80!white",        # 80% black
-    "Slate Gray": "black!70!white",       # 70% black
-    "Gray": "black!60!white",             # 60% black
-    "Medium Gray": "black!50!white",      # 50% black
-    "Light Gray": "black!40!white",       # 40% black
-    "Soft Gray": "black!30!white",        # 30% black
-    "Pale Gray": "black!20!white",        # 20% black
-    "Mist Gray": "black!10!white",        # 10% black
-    "White": "white"                      # 0% black
+    "Black": "black",  # 100% black
+    "Charcoal": "black!90!white",  # 90% black
+    "Dark Gray": "black!80!white",  # 80% black
+    "Slate Gray": "black!70!white",  # 70% black
+    "Gray": "black!60!white",  # 60% black
+    "Medium Gray": "black!50!white",  # 50% black
+    "Light Gray": "black!40!white",  # 40% black
+    "Soft Gray": "black!30!white",  # 30% black
+    "Pale Gray": "black!20!white",  # 20% black
+    "Mist Gray": "black!10!white",  # 10% black
+    "White": "white",  # 0% black
 }
 
 # grids_isometric
@@ -127,24 +124,23 @@ def backtrack_onestep():
     )
 
 
-@app.route("/backtrack_onestep_create", methods=["post"])
+@app.route("/backtrack_onestep_create", methods=["POST"])
 def backtrack_onestep_create():
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 10))
     except ValueError:
-        numq = 10 # fallback default
+        numq = 10  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = backtrack.create_booklet_1step(
-        numq, operation, title_text, file_type=file_type)
+    file = backtrack.create_booklet_1step(numq, operation, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -167,25 +163,24 @@ def backtrack_twostep():
     )
 
 
-@app.route("/backtrack_twostep_create", methods=["post"])
+@app.route("/backtrack_twostep_create", methods=["POST"])
 def backtrack_twostep_create():
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 10))
     except ValueError:
-        numq = 10 # fallback default
+        numq = 10  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    operation2 = ops[request.args.get("operation2")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    operation2 = ops[request.form.get("operation2")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = backtrack.create_booklet_2step(
-        numq, operation, operation2, title_text, file_type=file_type)
+    file = backtrack.create_booklet_2step(numq, operation, operation2, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -208,25 +203,24 @@ def backtrack_twostep_buildexpression():
     )
 
 
-@app.route("/backtrack_twostep_buildexpression_create", methods=["post"])
+@app.route("/backtrack_twostep_buildexpression_create", methods=["POST"])
 def backtrack_twostep_buildexpression_create():
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 20))
     except ValueError:
-        numq = 20 # fallback default
+        numq = 20  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    operation2 = ops[request.args.get("operation2")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    operation2 = ops[request.form.get("operation2")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = backtrack.create_booklet_2step_buildexp(
-        numq, operation, operation2, title_text, file_type=file_type)
+    file = backtrack.create_booklet_2step_buildexp(numq, operation, operation2, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -249,25 +243,24 @@ def backtrack_twostep_buildexpression_inverse():
     )
 
 
-@app.route("/backtrack_twostep_buildexpression_inverse_create", methods=["post"])
+@app.route("/backtrack_twostep_buildexpression_inverse_create", methods=["POST"])
 def backtrack_twostep_buildexpression_inverse_create():
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 14))
     except ValueError:
-        numq = 14 # fallback default
+        numq = 14  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 140
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    operation2 = ops[request.args.get("operation2")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    operation2 = ops[request.form.get("operation2")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = backtrack.create_booklet_2step_buildexpinv(
-        numq, operation, operation2, title_text, file_type=file_type)
+    file = backtrack.create_booklet_2step_buildexpinv(numq, operation, operation2, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -290,25 +283,24 @@ def backtrack_twostep_fromexpression():
     )
 
 
-@app.route("/backtrack_twostep_fromexpression_create", methods=["post"])
+@app.route("/backtrack_twostep_fromexpression_create", methods=["POST"])
 def backtrack_twostep_fromexpression_create():
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 14))
     except ValueError:
-        numq = 14 # fallback default
+        numq = 14  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 140
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    operation2 = ops[request.args.get("operation2")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    operation2 = ops[request.form.get("operation2")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = backtrack.create_booklet_2step_fromexp(
-        numq, operation, operation2, title_text, file_type=file_type)
+    file = backtrack.create_booklet_2step_fromexp(numq, operation, operation2, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -331,25 +323,24 @@ def backtrack_twostep_fromequation():
     )
 
 
-@app.route("/backtrack_twostep_fromequation_create", methods=["post"])
+@app.route("/backtrack_twostep_fromequation_create", methods=["POST"])
 def backtrack_twostep_fromequation_create():
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 10))
     except ValueError:
-        numq = 10 # fallback default
+        numq = 10  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    operation2 = ops[request.args.get("operation2")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    operation2 = ops[request.form.get("operation2")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = backtrack.create_booklet_2step_fromeq(
-        numq, operation, operation2, title_text, file_type=file_type)
+    file = backtrack.create_booklet_2step_fromeq(numq, operation, operation2, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -371,19 +362,19 @@ def backtrack_twostep_blank():
     )
 
 
-@app.route("/backtrack_twostep_blank_create", methods=["post"])
+@app.route("/backtrack_twostep_blank_create", methods=["POST"])
 def backtrack_twostep_blank_create():
     # Safely parse numq
     try:
         numq = int(request.form.get("numq", 10))
     except ValueError:
-        numq = 10 # fallback default
+        numq = 10  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
+    title_text = request.form.get("title_text")
     file = backtrack.create_booklet_2step_blank(numq, title_text)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
@@ -411,7 +402,7 @@ def number_lines():
     )
 
 
-@app.route("/number_lines_create", methods=["post"])
+@app.route("/number_lines_create", methods=["POST"])
 def number_lines_create():
     # Safely parse numq
     try:
@@ -423,12 +414,11 @@ def number_lines_create():
     max_q = 80
     numq = max(min_q, min(numq, max_q))
     #
-    operation = nlops[request.args.get("operation")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = nlops[request.form.get("operation")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = numline.create_booklet_numberline(
-        numq, operation, title_text, file_type=file_type)
+    file = numline.create_booklet_numberline(numq, operation, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -453,7 +443,7 @@ def number_lines_0to20():
     )
 
 
-@app.route("/number_lines_0to20_create", methods=["post"])
+@app.route("/number_lines_0to20_create", methods=["POST"])
 def number_lines_0to20_create():
     # Safely parse numq
     try:
@@ -465,12 +455,11 @@ def number_lines_0to20_create():
     max_q = 80
     numq = max(min_q, min(numq, max_q))
     #
-    operation = nlops[request.args.get("operation")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = nlops[request.form.get("operation")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = numline.create_booklet_numberline_0to20(
-        numq, operation, title_text, file_type=file_type)
+    file = numline.create_booklet_numberline_0to20(numq, operation, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -495,7 +484,7 @@ def number_lines_neg20to0():
     )
 
 
-@app.route("/number_lines_neg20to0_create", methods=["post"])
+@app.route("/number_lines_neg20to0_create", methods=["POST"])
 def number_lines_neg20to0_create():
     # Safely parse numq
     try:
@@ -507,12 +496,11 @@ def number_lines_neg20to0_create():
     max_q = 80
     numq = max(min_q, min(numq, max_q))
     #
-    operation = nlops[request.args.get("operation")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = nlops[request.form.get("operation")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = numline.create_booklet_numberline_neg20to0(
-        numq, operation, title_text, file_type=file_type)
+    file = numline.create_booklet_numberline_neg20to0(numq, operation, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -534,7 +522,7 @@ def number_lines_blank():
     )
 
 
-@app.route("/number_lines_blank_create", methods=["post"])
+@app.route("/number_lines_blank_create", methods=["POST"])
 def number_lines_blank_create():
     # Safely parse numq
     try:
@@ -546,7 +534,7 @@ def number_lines_blank_create():
     max_q = 80
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
+    title_text = request.form.get("title_text")
     file = numlineblk.create_booklet_numberline_blank(numq, title_text)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
@@ -569,7 +557,7 @@ def number_lines_blank_0to20():
     )
 
 
-@app.route("/number_lines_blank_0to20_create", methods=["post"])
+@app.route("/number_lines_blank_0to20_create", methods=["POST"])
 def number_lines_blank_0to20_create():
     # Safely parse numq
     try:
@@ -581,7 +569,7 @@ def number_lines_blank_0to20_create():
     max_q = 80
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
+    title_text = request.form.get("title_text")
     file = numlineblk.create_booklet_numberline_blank_0to20(numq, title_text)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
@@ -604,7 +592,7 @@ def number_lines_blank_neg20to0():
     )
 
 
-@app.route("/number_lines_blank_neg20to0_create", methods=["post"])
+@app.route("/number_lines_blank_neg20to0_create", methods=["POST"])
 def number_lines_blank_neg20to0_create():
     # Safely parse numq
     try:
@@ -616,9 +604,8 @@ def number_lines_blank_neg20to0_create():
     max_q = 80
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    file = numlineblk.create_booklet_numberline_blank_neg20to0(
-        numq, title_text)
+    title_text = request.form.get("title_text")
+    file = numlineblk.create_booklet_numberline_blank_neg20to0(numq, title_text)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
@@ -644,7 +631,7 @@ def equations_onestep_inverse_operations():
     )
 
 
-@app.route("/equations_onestep_inverse_operations_create", methods=["post"])
+@app.route("/equations_onestep_inverse_operations_create", methods=["POST"])
 def equations_onestep_inverse_operations_create():
     # Safely parse numq
     try:
@@ -656,12 +643,11 @@ def equations_onestep_inverse_operations_create():
     max_q = 160
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = equations.create_booklet_1step(
-        numq, operation, title_text, file_type=file_type)
+    file = equations.create_booklet_1step(numq, operation, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -684,7 +670,7 @@ def equations_twostep_inverse_operations():
     )
 
 
-@app.route("/equations_twostep_inverse_operations_create", methods=["post"])
+@app.route("/equations_twostep_inverse_operations_create", methods=["POST"])
 def equations_twostep_inverse_operations_create():
     # Safely parse numq
     try:
@@ -696,13 +682,12 @@ def equations_twostep_inverse_operations_create():
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    operation = ops[request.args.get("operation")]
-    operation2 = ops[request.args.get("operation2")]
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    operation = ops[request.form.get("operation")]
+    operation2 = ops[request.form.get("operation2")]
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = equations.create_booklet_2step(
-        numq, operation, operation2, title_text, file_type=file_type)
+    file = equations.create_booklet_2step(numq, operation, operation2, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -720,13 +705,15 @@ def check_solution_onestep():
         ops=ops.keys(),
         link="/check_solution_onestep_create",
         num_per_page="10",
+        min_questions="1",
+        max_questions="100",
         img_filename="check_solution_onestep.png",
         pdf_filename="check_solution_onestep.pdf",
         title_text="1-step Check Solution",
     )
 
 
-@app.route("/check_solution_onestep_create", methods=["post"])
+@app.route("/check_solution_onestep_create", methods=["POST"])
 def check_solution_onestep_create():
     # Safely parse numq
     try:
@@ -738,12 +725,11 @@ def check_solution_onestep_create():
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    operation = ops[request.args.get("operation")]
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    operation = ops[request.form.get("operation")]
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = checksol.create_booklet_1step(
-        numq, operation, title_text, file_type=file_type)
+    file = checksol.create_booklet_1step(numq, operation, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -766,7 +752,7 @@ def check_solution_twostep():
     )
 
 
-@app.route("/check_solution_twostep_create", methods=["post"])
+@app.route("/check_solution_twostep_create", methods=["POST"])
 def check_solution_twostep_create():
     # Safely parse numq
     try:
@@ -778,13 +764,12 @@ def check_solution_twostep_create():
     max_q = 100
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    operation = ops[request.args.get("operation")]
-    operation2 = ops[request.args.get("operation2")]
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    operation = ops[request.form.get("operation")]
+    operation2 = ops[request.form.get("operation2")]
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = checksol.create_booklet_2step(
-        numq, operation, operation2, title_text, file_type=file_type)
+    file = checksol.create_booklet_2step(numq, operation, operation2, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -823,14 +808,13 @@ def decimals_add_subtract_create():
     max_q = 108
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    operation = decops[request.args.get("operation")]
-    numip = int(ipops[request.args.get("numip")])
-    numdp = int(dpops[request.args.get("numdp")])
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    operation = decops[request.form.get("operation")]
+    numip = int(ipops[request.form.get("numip")])
+    numdp = int(dpops[request.form.get("numdp")])
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = decas.create_booklet_add_sub(
-        numq, operation, numip, numdp, title_text, file_type=file_type)
+    file = decas.create_booklet_add_sub(numq, operation, numip, numdp, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -852,9 +836,9 @@ def types_of_angles():
     )
 
 
-@app.route("/types_of_angles_create", methods=["post"])
+@app.route("/types_of_angles_create", methods=["POST"])
 def types_of_angles_create():
-    title_text = request.args.get("title_text")
+    title_text = request.form.get("title_text")
     file = angtyp.create_worksheet_types_of_angles(title_text)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
@@ -893,12 +877,11 @@ def angles_in_parallel_lines_create():
     max_q = 80
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    angle_type = plops[request.args.get("operation")]
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    angle_type = plops[request.form.get("operation")]
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = pla.create_booklet_parallel_lines(
-        numq, angle_type, title_text, file_type=file_type)
+    file = pla.create_booklet_parallel_lines(numq, angle_type, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -936,12 +919,11 @@ def external_angle_to_a_triangle_create():
     max_q = 40
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    unknown_position = eatops[request.args.get("operation")]
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    unknown_position = eatops[request.form.get("operation")]
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = extang.create_booklet_ext_angle_to_triangle(
-        numq, title_text, unknown_position, file_type=file_type)
+    file = extang.create_booklet_ext_angle_to_triangle(numq, title_text, unknown_position, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -977,11 +959,10 @@ def angles_in_a_right_angled_triangle_create():
     max_q = 40
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = rttriang.create_booklet_angles_in_a_rt_triangle(
-        numq, title_text, file_type=file_type)
+    file = rttriang.create_booklet_angles_in_a_rt_triangle(numq, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -1019,12 +1000,11 @@ def angles_in_an_isosceles_triangle_create():
     max_q = 40
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    unknown_position = isotops[request.args.get("operation")]
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    unknown_position = isotops[request.form.get("operation")]
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = isotriang.create_booklet_iso_angle_in_triangle(
-        numq, title_text, unknown_position, file_type=file_type)  #
+    file = isotriang.create_booklet_iso_angle_in_triangle(numq, title_text, unknown_position, file_type=file_type)  #
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -1060,11 +1040,10 @@ def angles_in_a_triangle_create():
     max_q = 40
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = angtri.create_booklet_angle_in_a_triangle(
-        numq, title_text, file_type=file_type)
+    file = angtri.create_booklet_angle_in_a_triangle(numq, title_text, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -1102,12 +1081,11 @@ def measuring_angles_create():
     max_q = 60
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text")
-    angle_type = int(maops[request.args.get("operation")])
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text")
+    angle_type = int(maops[request.form.get("operation")])
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = measang.create_booklet_angles_for_measuring(
-        numq, title_text, angle_type, file_type=file_type)
+    file = measang.create_booklet_angles_for_measuring(numq, title_text, angle_type, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -1130,7 +1108,7 @@ def lined_paper():
     )
 
 
-@app.route("/lined_paper_create", methods=["post"])
+@app.route("/lined_paper_create", methods=["POST"])
 def lined_paper_create():
     # Safely parse numq
     try:
@@ -1143,7 +1121,7 @@ def lined_paper_create():
     numq = max(min_q, min(numq, max_q))
     #
     # # Checkbox returns "on" if checked
-    whole_page = request.args.get("whole_page") == "on"
+    whole_page = request.form.get("whole_page") == "on"
     if whole_page:
         num_lines = 26
         file = linedpaper.create_lined_page(num_lines)
@@ -1174,30 +1152,28 @@ def grids_isometric():
         op_dotsizes=isometric_dotsize_ops,
         op_dotlinewidths=isometric_dotlinewidth_ops,
         op_colours=colours_ops.keys(),
-
         link="/grids_isometric_create",
         img_filename="grids_isometric.png",
         pdf_filename="grids_isometric.pdf",
     )
 
 
-@app.route("/grids_isometric_create", methods=["post"])
+@app.route("/grids_isometric_create", methods=["POST"])
 def grids_isometric_create():
     # use drop down selction, no need for item value even though defined
-    paperheight = request.args.get("paperheight")
-    paperwidth = request.args.get("paperwidth")
-    vmargin = request.args.get("vmargin")
-    hmargin = request.args.get("hmargin")
+    paperheight = request.form.get("paperheight")
+    paperwidth = request.form.get("paperwidth")
+    vmargin = request.form.get("vmargin")
+    hmargin = request.form.get("hmargin")
 
-    gridorientation = request.args.get("op_gridorientation")
-    dotfilltype = request.args.get("op_dotfilltype")
-    dotspacing = request.args.get("op_dotspacing")
-    dotsize = request.args.get("op_dotsize")
-    dotlinewidth = request.args.get("op_dotlinewidth")
-    dotcolor = colours_ops[request.args.get("op_colour")]
+    gridorientation = request.form.get("op_gridorientation")
+    dotfilltype = request.form.get("op_dotfilltype")
+    dotspacing = request.form.get("op_dotspacing")
+    dotsize = request.form.get("op_dotsize")
+    dotlinewidth = request.form.get("op_dotlinewidth")
+    dotcolor = colours_ops[request.form.get("op_colour")]
 
-    file = grdpiso.create_grids_isometric(paperheight, paperwidth, vmargin, hmargin,
-                                          gridorientation, dotfilltype, dotspacing, dotsize, dotlinewidth, dotcolor)
+    file = grdpiso.create_grids_isometric(paperheight, paperwidth, vmargin, hmargin, gridorientation, dotfilltype, dotspacing, dotsize, dotlinewidth, dotcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
@@ -1222,16 +1198,15 @@ def gridpapers():
     )
 
 
-@app.route("/gridpapers_create", methods=["post"])
+@app.route("/gridpapers_create", methods=["POST"])
 def gridpapers_create():
     # use drop down selction, no need for item value even though defined
-    paperheight = request.args.get("paperheight")
-    paperwidth = request.args.get("paperwidth")
-    patternsize = request.args.get("op_patternsize")
-    majorcolor = colours_ops[request.args.get("op_major_colour")]
-    minorcolor = colours_ops[request.args.get("op_minor_colour")]
-    file = grdpstd.create_gridpaper_std(
-        paperheight, paperwidth, patternsize, majorcolor, minorcolor)
+    paperheight = request.form.get("paperheight")
+    paperwidth = request.form.get("paperwidth")
+    patternsize = request.form.get("op_patternsize")
+    majorcolor = colours_ops[request.form.get("op_major_colour")]
+    minorcolor = colours_ops[request.form.get("op_minor_colour")]
+    file = grdpstd.create_gridpaper_std(paperheight, paperwidth, patternsize, majorcolor, minorcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
@@ -1256,16 +1231,15 @@ def gridpapers_dot():
     )
 
 
-@app.route("/gridpapers_dot_create", methods=["post"])
+@app.route("/gridpapers_dot_create", methods=["POST"])
 def gridpapers_dot_create():
     # use drop down selction, no need for item value even though defined
-    paperheight = request.args.get("paperheight")
-    paperwidth = request.args.get("paperwidth")
-    patternsize = request.args.get("op_patternsize")
-    dotsize = request.args.get("op_dotsize")
-    minorcolor = colours_ops[request.args.get("op_colour")]
-    file = grdpdot.create_gridpaper_dot(
-        paperheight, paperwidth, patternsize, dotsize, minorcolor)
+    paperheight = request.form.get("paperheight")
+    paperwidth = request.form.get("paperwidth")
+    patternsize = request.form.get("op_patternsize")
+    dotsize = request.form.get("op_dotsize")
+    minorcolor = colours_ops[request.form.get("op_colour")]
+    file = grdpdot.create_gridpaper_dot(paperheight, paperwidth, patternsize, dotsize, minorcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
@@ -1289,15 +1263,14 @@ def gridpapers_tri():
     )
 
 
-@app.route("/gridpapers_tri_create", methods=["post"])
+@app.route("/gridpapers_tri_create", methods=["POST"])
 def gridpapers_tri_create():
     # use drop down selction, no need for item value even though defined
-    paperheight = request.args.get("paperheight")
-    paperwidth = request.args.get("paperwidth")
-    patternsize = request.args.get("op_patternsize")
-    minorcolor = colours_ops[request.args.get("op_colour")]
-    file = grdptri.create_gridpaper_tri(
-        paperheight, paperwidth, patternsize, minorcolor)
+    paperheight = request.form.get("paperheight")
+    paperwidth = request.form.get("paperwidth")
+    patternsize = request.form.get("op_patternsize")
+    minorcolor = colours_ops[request.form.get("op_colour")]
+    file = grdptri.create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
@@ -1312,23 +1285,44 @@ def coordinates():
         "genform_tqnf.html",
         title="Coordinates",
         link="/coordinates_create",
-        num_graphs="1",
-        num_points_per_questions="10",
+        numq="1",
+        min_questions="1",
+        max_questions="10",
+        num_points_per_question="10",
+        min_points_per_question="4",
+        max_points_per_question="20",
         img_filename="coordinates.png",
         pdf_filename="coordinates.pdf",
         title_text="Coordinates",
     )
 
 
-@app.route("/coordinates_create", methods=["post"])
+@app.route("/coordinates_create", methods=["POST"])
 def coordinates_create():
-    numq = int(request.args.get("numq"))
-    title_text = request.args.get("title_text")
-    num_points = int(request.args.get("num_points"))
-    file_type = request.args.get("file_type", "pdf")
+    # Safely parse numq
+    try:
+        numq = int(request.form.get("numq", 4))
+    except ValueError:
+        numq = 4  # fallback default
+    # Clamp to range to prevent issue with user manual entry
+    min_q = 1
+    max_q = 20
+    numq = max(min_q, min(numq, max_q))
+    #
+    # Safely parse num_points
+    try:
+        num_points = int(request.form.get("num_points", 10))
+    except ValueError:
+        num_points = 10  # fallback default
+    # Clamp to range to prevent issue with user manual entry
+    min_num_points = 4
+    max_num_points = 20
+    num_points = max(min_num_points, min(numq, max_num_points))
+    #
+    title_text = request.form.get("title_text")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    file = coords.create_booklet_coords(
-        numq, title_text, num_points, file_type=file_type)
+    file = coords.create_booklet_coords(numq, title_text, num_points, file_type=file_type)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
 
@@ -1351,6 +1345,7 @@ def area_of_a_square():
         title_text="Area of a Square",
         checkbox_text="Show Dimension Lines",
     )
+
 
 @app.route("/area_of_a_square_create", methods=["POST"])
 def area_of_a_square_create():
