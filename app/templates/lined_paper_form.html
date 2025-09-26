@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<!-- usage: lined paper only-->
+
 <div class="w3-container w3-margin-top">
     <div class="w3-row">
 
@@ -21,16 +23,16 @@
                     </div>
 
                     <div class="w3-half w3-padding">
-                        <label>Number of Questions
-                            <span>({{ num_per_page }} per page, {{ min_questions }} to {{ max_questions }}):</span>
+                        <label>Number of Lines
+                            <span>({{ num_lines }} lines, {{ min_lines}} to {{ max_lines }}):</span>
                         </label>
                         <input class="w3-input w3-border custom-width"
                                type="number"
-                               name="numq"
-                               min="{{ min_questions }}"
-                               max="{{ max_questions }}"
+                               name="num_lines"
+                               min="{{ min_lines }}"
+                               max="{{ max_lines }}"
                                step="1"
-                               value="{{ num_per_page }}"
+                               value="{{ num_lines }}"
                                required>
                     </div>
                 </div>

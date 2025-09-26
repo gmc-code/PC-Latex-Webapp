@@ -1100,9 +1100,9 @@ def lined_paper():
         "lined_paper_form.html",
         title="Lined Paper",
         link="/lined_paper_create",
-        num_per_page="4",
-        min_questions="1",
-        max_questions="26",
+        num_lines="4",
+        min_lines="1",
+        max_lines="26",
         img_filename="lined_paper.png",
         pdf_filename="lined_paper.pdf",
     )
@@ -1110,15 +1110,15 @@ def lined_paper():
 
 @app.route("/lined_paper_create", methods=["POST"])
 def lined_paper_create():
-    # Safely parse numq
+    # Safely parse num_lines
     try:
-        numq = int(request.form.get("numq", 4))
+        num_lines = int(request.form.get("num_lines", 4))
     except ValueError:
-        numq = 4  # fallback default
+        num_lines = 4  # fallback default
     # Clamp to range to prevent issue with user manual entry alhtough js should catch it
     min_q = 1
     max_q = 26
-    numq = max(min_q, min(numq, max_q))
+    num_lines = max(min_q, min(num_lines, max_q))
     #
     # # Checkbox returns "on" if checked
     whole_page = request.form.get("whole_page") == "on"
