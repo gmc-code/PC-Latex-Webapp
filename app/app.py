@@ -103,6 +103,19 @@ def index():
 #         title="Sample pdfs",
 #     )
 
+@app.errorhandler(400)
+def bad_request(error):
+    return render_template("400.html", error=error), 400
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template("500.html", error=error), 500
+
+@app.errorhandler(504)
+def gateway_timeout(e):
+    return render_template("504.html", error=e), 504
+
+
 
 ##########################################################################
 
