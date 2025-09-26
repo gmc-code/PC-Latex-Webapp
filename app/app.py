@@ -1121,8 +1121,8 @@ def area_of_a_rectangle():
 
 
 
-@app.route("/area_of_a_rectangle", methods=["GET", "POST"])
-def area_of_a_rectangle():
+@app.route("/area_of_a_rectangle_create", methods=["GET", "POST"])
+def area_of_a_rectangle_create():
     min_q = 1
     max_q = 20
     default_numq = 4
