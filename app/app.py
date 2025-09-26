@@ -440,7 +440,10 @@ def backtrack_twostep_blank_create():
     #
     title_text = request.form.get("title_text")
     file = backtrack.create_booklet_2step_blank(numq, title_text)
-    return send_file(file, As Attachment= True, Mimetype="application/pdf")
+    file_type = request.form.get("file_type", "pdf")
+    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+
 
 
 ##########################################################################
