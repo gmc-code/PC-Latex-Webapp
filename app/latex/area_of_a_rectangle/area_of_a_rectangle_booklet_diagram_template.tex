@@ -50,11 +50,17 @@
             ($(<<vA>>)!0.5!(<<vD>>) + (-0.10,0)$) --
             ($(<<vA>>)!0.5!(<<vD>>) + (0.10,0)$);
 
-        % Horizontal label below side A-B
-        \node[below, xshift=2mm] at ($(<<vA>>)!.5!(<<vB>>) + (0,-0.2cm)$) {<<calc_sidelength1>>\,cm};
 
-        % Vertical label to the right of side B-C
-        \node[right] at ($(<<vB>>)!.5!(<<vC>>) + (0.2cm,0)$) {<<calc_sidelength2>>\,cm};
+        % Horizontal side (A-B), shifted down
+        \draw[draw=none]
+            ($(<<vA>>) + (0,-0.45cm)$) -- ($(<<vB>>) + (0,-0.45cm)$)
+            node[black, midway, fill=white, inner sep=3pt] {<<calc_sidelength1>>\,cm};
+
+        % Vertical side (B-C), shifted right
+        \draw[draw=none]
+            ($(<<vB>>) + (0.45cm,0)$) -- ($(<<vC>>) + (0.45cm,0)$)
+            node[black, midway, fill=white, xshift=2mm, inner sep=3pt] {<<calc_sidelength2>>\,cm};
+
 
     \end{scope}
 \end{tikzpicture}
