@@ -21,7 +21,7 @@
 
                         <div class="w3-half w3-padding">
                         <label>Number of Questions
-                            <span>({{ num_per_page }} per page, {{ min_questions }} to {{ max_questions }}):</span>
+                            <span>(1 per page, {{ min_questions }} to {{ max_questions }}):</span>
                         </label>
                         <input class="w3-input w3-border custom-width"
                                type="number"
@@ -29,7 +29,7 @@
                                min="{{ min_questions }}"
                                max="{{ max_questions }}"
                                step="1"
-                               value="{{ num_per_page }}"
+                               value="{{ numq }}"
                                required>
                     </div>
 

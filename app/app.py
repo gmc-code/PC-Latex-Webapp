@@ -1327,7 +1327,7 @@ def gridpapers_tri_create():
 @app.route("/coordinates")
 def coordinates():
     return render_template(
-        "genform_tqnf.html",
+        "coordinates_form.html",
         title="Coordinates",
         link="/coordinates_create",
         numq="1",
@@ -1362,7 +1362,7 @@ def coordinates_create():
     # Clamp to range to prevent issue with user manual entry
     min_num_points = 4
     max_num_points = 20
-    num_points = max(min_num_points, min(numq, max_num_points))
+    num_points = max(min_num_points, min(num_points, max_num_points))
     #
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
