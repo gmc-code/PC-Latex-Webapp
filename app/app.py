@@ -39,6 +39,10 @@ app = Flask(__name__)
 
 ##########################################################################
 
+# backtrack_onestep_create has an example of using 400 and 500 aborts
+
+##########################################################################
+
 # backtracking, equations, check solutions
 ops = {"Random": 5, "Addition": 1, "Subtraction": 2, "Multiplication": 3, "Division": 4}
 # number lines
@@ -157,8 +161,7 @@ def backtrack_onestep_create():
 
     # Determine file type and MIME type
     file_type = request.form.get("file_type", "pdf").lower()
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    mime = mimetypes.get(file_type, "application/pdf")
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
 
     # Generate file with error handling
     try:
@@ -166,7 +169,7 @@ def backtrack_onestep_create():
     except Exception as e:
         abort(500, description=f"Error generating booklet: {str(e)}")
 
-    return send_file(file, as_attachment=True, mimetype=mime)
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 
@@ -203,9 +206,9 @@ def backtrack_onestep_create():
 #     operation = ops[request.form.get("operation")]
 #     title_text = request.form.get("title_text")
 #     file_type = request.form.get("file_type", "pdf")
-#     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+#     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
 #     file = backtrack.create_booklet_1step(numq, operation, title_text, file_type=file_type)
-#     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+#     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -243,9 +246,9 @@ def backtrack_twostep_create():
     operation2 = ops[request.form.get("operation2")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = backtrack.create_booklet_2step(numq, operation, operation2, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -283,9 +286,9 @@ def backtrack_twostep_buildexpression_create():
     operation2 = ops[request.form.get("operation2")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = backtrack.create_booklet_2step_buildexp(numq, operation, operation2, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -323,9 +326,9 @@ def backtrack_twostep_buildexpression_inverse_create():
     operation2 = ops[request.form.get("operation2")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = backtrack.create_booklet_2step_buildexpinv(numq, operation, operation2, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -363,9 +366,9 @@ def backtrack_twostep_fromexpression_create():
     operation2 = ops[request.form.get("operation2")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = backtrack.create_booklet_2step_fromexp(numq, operation, operation2, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -403,9 +406,9 @@ def backtrack_twostep_fromequation_create():
     operation2 = ops[request.form.get("operation2")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = backtrack.create_booklet_2step_fromeq(numq, operation, operation2, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -440,9 +443,7 @@ def backtrack_twostep_blank_create():
     #
     title_text = request.form.get("title_text")
     file = backtrack.create_booklet_2step_blank(numq, title_text)
-    file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
 
@@ -484,9 +485,9 @@ def number_lines_create():
     operation = nlops[request.form.get("operation")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = numline.create_booklet_numberline(numq, operation, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -525,9 +526,9 @@ def number_lines_0to20_create():
     operation = nlops[request.form.get("operation")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = numline.create_booklet_numberline_0to20(numq, operation, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -566,9 +567,9 @@ def number_lines_neg20to0_create():
     operation = nlops[request.form.get("operation")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = numline.create_booklet_numberline_neg20to0(numq, operation, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -713,9 +714,9 @@ def equations_onestep_inverse_operations_create():
     operation = ops[request.form.get("operation")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = equations.create_booklet_1step(numq, operation, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -753,9 +754,9 @@ def equations_twostep_inverse_operations_create():
     operation2 = ops[request.form.get("operation2")]
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = equations.create_booklet_2step(numq, operation, operation2, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -795,9 +796,9 @@ def check_solution_onestep_create():
     title_text = request.form.get("title_text")
     operation = ops[request.form.get("operation")]
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = checksol.create_booklet_1step(numq, operation, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ####################################################################################################
@@ -835,9 +836,9 @@ def check_solution_twostep_create():
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = checksol.create_booklet_2step(numq, operation, operation2, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -880,9 +881,9 @@ def decimals_add_subtract_create():
     numip = int(ipops[request.form.get("numip")])
     numdp = int(dpops[request.form.get("numdp")])
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = decas.create_booklet_add_sub(numq, operation, numip, numdp, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -947,9 +948,9 @@ def angles_in_parallel_lines_create():
     title_text = request.form.get("title_text")
     angle_type = plops[request.form.get("operation")]
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = pla.create_booklet_parallel_lines(numq, angle_type, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -989,9 +990,9 @@ def external_angle_to_a_triangle_create():
     title_text = request.form.get("title_text")
     unknown_position = eatops[request.form.get("operation")]
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = extang.create_booklet_ext_angle_to_triangle(numq, title_text, unknown_position, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -1028,9 +1029,9 @@ def angles_in_a_right_angled_triangle_create():
     #
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = rttriang.create_booklet_angles_in_a_rt_triangle(numq, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -1070,9 +1071,9 @@ def angles_in_an_isosceles_triangle_create():
     title_text = request.form.get("title_text")
     unknown_position = isotops[request.form.get("operation")]
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = isotriang.create_booklet_iso_angle_in_triangle(numq, title_text, unknown_position, file_type=file_type)  #
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -1109,9 +1110,9 @@ def angles_in_a_triangle_create():
     #
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = angtri.create_booklet_angle_in_a_triangle(numq, title_text, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -1151,9 +1152,9 @@ def measuring_angles_create():
     title_text = request.form.get("title_text")
     angle_type = int(maops[request.form.get("operation")])
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = measang.create_booklet_angles_for_measuring(numq, title_text, angle_type, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -1385,9 +1386,9 @@ def coordinates_create():
     #
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = coords.create_booklet_coords(numq, title_text, num_points, file_type=file_type)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -1426,9 +1427,9 @@ def area_of_a_square_create():
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
@@ -1467,9 +1468,9 @@ def area_of_a_rectangle_create():
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
-    mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
-    return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+    return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
 ##########################################################################
