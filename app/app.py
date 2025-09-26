@@ -167,7 +167,7 @@ def backtrack_onestep_create():
         abort(500, description=f"Error generating booklet: {str(e)}")
 
     return send_file(file, as_attachment=True, mimetype=mime)
-)
+
 
 # @app.route("/backtrack_onestep")
 # def backtrack_onestep():
