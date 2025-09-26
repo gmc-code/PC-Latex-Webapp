@@ -143,11 +143,12 @@ def backtrack_onestep():
 @app.route("/backtrack_onestep_create", methods=["POST"])
 def backtrack_onestep_create():
     # Safely parse and clamp numq
-    try:
-        numq = int(request.form.get("numq", 10))
-    except (ValueError, TypeError):
-        numq = 10
-    numq = max(1, min(numq, 100))
+    numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
+    # try:
+    #     numq = int(request.form.get("numq", 10))
+    # except (ValueError, TypeError):
+    #     numq = 10
+    # numq = max(1, min(numq, 100))
 
     # Validate operation key
     operation_key = request.form.get("operation")
@@ -741,14 +742,16 @@ def equations_twostep_inverse_operations():
 @app.route("/equations_twostep_inverse_operations_create", methods=["POST"])
 def equations_twostep_inverse_operations_create():
     # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 10))
-    except ValueError:
-        numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
+    numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
+
+    # try:
+    #     numq = int(request.form.get("numq", 10))
+    # except ValueError:
+    #     numq = 10  # fallback default
+    # # Clamp to range to prevent issue with user manual entry although js should catch it
+    # min_q = 1
+    # max_q = 100
+    # numq = max(min_q, min(numq, max_q))
     #
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
@@ -1223,13 +1226,73 @@ def grids_isometric():
     )
 
 
+def parse_and_clamp(form, field_name, default, min_val, max_val, cast_type=float):
+    """
+    Safely parse a numeric field from a form and clamp it to a specified range.
+
+    Parameters:
+        form (ImmutableMultiDict): The request.form object.
+        field_name (str): The name of the field to retrieve.
+        default (float or int): The fallback value if parsing fails.
+        min_val (float or int): Minimum allowed value.
+        max_val (float or int): Maximum allowed value.
+        cast_type (type): Type to cast the value to (float or int).
+
+    Returns:
+        float or int: The clamped numeric value.
+    """
+    try:
+        value = cast_type(form.get(field_name, default))
+    except (ValueError, TypeError):
+        value = default
+    return max(min_val, min(value, max_val))
+
+
 @app.route("/grids_isometric_create", methods=["POST"])
 def grids_isometric_create():
-    # use drop down selction, no need for item value even though defined
-    paperheight = request.form.get("paperheight")
-    paperwidth = request.form.get("paperwidth")
-    vmargin = request.form.get("vmargin")
-    hmargin = request.form.get("hmargin")
+    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7)
+    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0)
+    vmargin     = parse_and_clamp(request.form, "vmargin", 2.5, 0.0, 2.5)
+    hmargin     = parse_and_clamp(request.form, "hmargin", 2.5, 0.0, 2.5)
+
+
+    # # Safely parse paperheight
+    # try:
+    #     paperheight = float(request.form.get("paperheight", 29.7))
+    # except ValueError:
+    #     paperheight = 29.7  # fallback default
+    # # Clamp to range to prevent issue with user manual entry
+    # min_height = 2.0
+    # max_height = 29.7
+    # paperheight = max(min_height, min(paperheight, max_height))
+
+    # # Safely parse paperwidth
+    # try:
+    #     paperwidth = float(request.form.get("paperwidth", 21.0))
+    # except ValueError:
+    #     paperwidth = 21.0  # fallback default
+    # min_width = 5.0
+    # max_width = 21.0
+    # paperwidth = max(min_width, min(paperwidth, max_width))
+
+    # # Safely parse vmargin
+    # try:
+    #     vmargin = float(request.form.get("vmargin", 2.5))
+    # except ValueError:
+    #     vmargin = 2.5  # fallback default
+    # min_vmargin = 0.0
+    # max_vmargin = 2.5
+    # vmargin = max(min_vmargin, min(vmargin, max_vmargin))
+
+    # # Safely parse hmargin
+    # try:
+    #     hmargin = float(request.form.get("hmargin", 2.5))
+    # except ValueError:
+    #     hmargin = 2.5  # fallback default
+    # min_hmargin = 0.0
+    # max_hmargin = 2.5
+    # hmargin = max(min_hmargin, min(hmargin, max_hmargin))
+
 
     gridorientation = request.form.get("op_gridorientation")
     dotfilltype = request.form.get("op_dotfilltype")

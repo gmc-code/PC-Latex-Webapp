@@ -13,7 +13,7 @@
 
                 <!-- Row for custom title and number of questions -->
                 <div class="w3-row">
-                    <div class="w3-half w3-padding" >
+                    <div class="w3-half w3-padding">
                         <label for="title_text">Title Text</label>
                         <input class="w3-input" type="text" name="title_text" id="title_text" value="{{ title_text }}"
                             maxlength="30" required>
@@ -23,14 +23,9 @@
                         <label>Number of Questions
                             <span>({{ num_per_page }} per page, {{ min_questions }} to {{ max_questions }}):</span>
                         </label>
-                        <input class="w3-input w3-border custom-width"
-                               type="number"
-                               name="numq"
-                               min="{{ min_questions }}"
-                               max="{{ max_questions }}"
-                               step="1"
-                               value="{{ num_per_page }}"
-                               required>
+                        <input class="w3-input w3-border custom-width" type="number" name="numq"
+                            min="{{ min_questions }}" max="{{ max_questions }}" step="1" value="{{ num_per_page }}"
+                            required>
                     </div>
                 </div>
 
