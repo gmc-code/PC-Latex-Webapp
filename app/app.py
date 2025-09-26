@@ -1255,10 +1255,10 @@ def grids_isometric():
 @app.route("/grids_isometric_create", methods=["POST"])
 def grids_isometric_create():
 
-    # paperheight = parse_and_clamp(request.form, "paperheight", 2.0, 29.7, 29.7, cast_type=float)
-    # paperwidth  = parse_and_clamp(request.form, "paperwidth", 5.0, 21.0, 21.0, cast_type=float)
-    # vmargin     = parse_and_clamp(request.form, "vmargin",  0.0, 2.5, 1.5, cast_type=float)
-    # hmargin     = parse_and_clamp(request.form, "hmargin",  0.0, 2.5, 1.5, cast_type=float)
+    # paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
+    # paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, 21.0, cast_type=float)
+    # vmargin     = parse_and_clamp(request.form, "vmargin", 1.5, 0.0, 2.5, cast_type=float)
+    # hmargin     = parse_and_clamp(request.form, "hmargin", 1.5, 0.0, 2.5, cast_type=float)
 
 
     # Safely parse paperheight
@@ -1398,18 +1398,26 @@ def gridpapers_tri():
 
 @app.route("/gridpapers_tri_create", methods=["POST"])
 def gridpapers_tri_create():
-    # use drop down selction, no need for item value even though defined
+    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
+    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, 21.0, cast_type=float)
 
-    paperheight = parse_and_clamp(request.form, "paperheight", 2.0, 29.7, 29.7, cast_type=float)
-    paperwidth  = parse_and_clamp(request.form, "paperwidth", 5.0, 21.0, 21.0, cast_type=float)
-    # vmargin     = parse_and_clamp(request.form, "vmargin",  0.0, 2.5, 1.5, cast_type=float)
-    # hmargin     = parse_and_clamp(request.form, "hmargin",  0.0, 2.5, 1.5, cast_type=float)
-    # paperheight = request.form.get("paperheight")
-    # paperwidth = request.form.get("paperwidth")
-    patternsize = request.form.get("op_patternsize")
-    minorcolor = colours_ops[request.form.get("op_colour")]
+    patternsize = request.form.get("op_patternsize", "1cm")
+    minorcolor = colours_ops.get(request.form.get("op_colour"), "black")
+
     file = grdptri.create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
+
+
+# @app.route("/gridpapers_tri_create", methods=["POST"])
+# def gridpapers_tri_create():
+#     # use drop down selction, no need for item value even though defined
+
+#     # paperheight = request.form.get("paperheight")
+#     # paperwidth = request.form.get("paperwidth")
+#     patternsize = request.form.get("op_patternsize")
+#     minorcolor = colours_ops[request.form.get("op_colour")]
+#     file = grdptri.create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor)
+#     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
 ##########################################################################
