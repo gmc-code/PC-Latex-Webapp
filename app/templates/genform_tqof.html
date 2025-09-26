@@ -20,9 +20,17 @@
                     </div>
 
                     <div class="w3-half w3-padding">
-                        <label>Number of Questions <span>({{num_per_page}} per page):</span></label>
-                        <input class="w3-input w3-border custom-width" type="number" name="numq" min="1" max="100"
-                            step="1" value="{{ num_per_page }}" required>
+                        <label>Number of Questions
+                            <span>({{ num_per_page }} per page, {{ min_questions }} to {{ max_questions }}):</span>
+                        </label>
+                        <input class="w3-input w3-border custom-width"
+                               type="number"
+                               name="numq"
+                               min="{{ min_questions }}"
+                               max="{{ max_questions }}"
+                               step="1"
+                               value="{{ num_per_page }}"
+                               required>
                     </div>
                 </div>
 
@@ -94,4 +102,5 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/progress-bar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/limit-questions.js') }}"></script>
 {% endblock %}
