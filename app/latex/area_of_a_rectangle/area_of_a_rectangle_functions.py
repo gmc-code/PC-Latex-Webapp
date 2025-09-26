@@ -30,7 +30,7 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None):
 
     calc_sidelength1 = side_pair[1]
     calc_sidelength2 = side_pair[0]
-    sidelength2 = round(random.uniform(0, 1.0) + 1.0, 3)
+    sidelength2 = round(random.uniform(0, 0.8) + 1.2, 3)
     sidelength1 = round(sidelength2 * (calc_sidelength1 / calc_sidelength2), 3)
     calcarea_value = calc_sidelength1 * calc_sidelength2
 
