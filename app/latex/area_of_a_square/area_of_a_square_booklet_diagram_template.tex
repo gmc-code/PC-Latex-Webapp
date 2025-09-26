@@ -39,8 +39,11 @@
             ($(<<vA>>)!0.5!(<<vD>>) + (-0.10,0)$) --
             ($(<<vA>>)!0.5!(<<vD>>) + (0.10,0)$);
 
-        % Vertical label to the right of side B-C
-        \node[right] at ($(<<vB>>)!.5!(<<vC>>) + (0.25cm,0)$) {<<calc_sidelength>>\,cm};
+        % dotted/dashed arrows shifted away from edges
+        % % Vertical side (B-C), shifted right
+        \draw[draw=none]
+            ($(<<vB>>) + (0.45cm,0)$) -- ($(<<vC>>) + (0.45cm,0)$)
+            node[black, midway, fill=white, xshift=2mm, inner sep=2pt] {<<calc_sidelength>>\,cm};
 
     \end{scope}
 \end{tikzpicture}
