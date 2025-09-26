@@ -123,6 +123,30 @@ def gateway_timeout(e):
 
 ##########################################################################
 
+def parse_and_clamp(form, field_name, default, min_val, max_val, cast_type=float):
+    """
+    Safely parse a numeric field from a form and clamp it to a specified range.
+
+    Parameters:
+        form (ImmutableMultiDict): The request.form object.
+        field_name (str): The name of the field to retrieve.
+        default (float or int): The fallback value if parsing fails.
+        min_val (float or int): Minimum allowed value.
+        max_val (float or int): Maximum allowed value.
+        cast_type (type): Type to cast the value to (float or int).
+
+    Returns:
+        float or int: The clamped numeric value.
+    """
+    try:
+        value = cast_type(form.get(field_name, default))
+    except (ValueError, TypeError):
+        value = default
+    return max(min_val, min(value, max_val))
+
+
+
+##########################################################################
 
 @app.route("/backtrack_onestep")
 def backtrack_onestep():
@@ -1226,26 +1250,6 @@ def grids_isometric():
     )
 
 
-def parse_and_clamp(form, field_name, default, min_val, max_val, cast_type=float):
-    """
-    Safely parse a numeric field from a form and clamp it to a specified range.
-
-    Parameters:
-        form (ImmutableMultiDict): The request.form object.
-        field_name (str): The name of the field to retrieve.
-        default (float or int): The fallback value if parsing fails.
-        min_val (float or int): Minimum allowed value.
-        max_val (float or int): Maximum allowed value.
-        cast_type (type): Type to cast the value to (float or int).
-
-    Returns:
-        float or int: The clamped numeric value.
-    """
-    try:
-        value = cast_type(form.get(field_name, default))
-    except (ValueError, TypeError):
-        value = default
-    return max(min_val, min(value, max_val))
 
 
 @app.route("/grids_isometric_create", methods=["POST"])
