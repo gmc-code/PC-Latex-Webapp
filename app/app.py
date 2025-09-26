@@ -192,36 +192,10 @@ def backtrack_onestep_create():
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
-
-
-# @app.route("/backtrack_onestep")
-# def backtrack_onestep():
-#     return render_template(
-#         "genform_tqof.html",
-#         title="One-Step Backtracking",
-#         operation_label="Operation",
-#         ops=ops.keys(),
-#         link="/backtrack_onestep_create",
-#         num_per_page="10",
-#         min_questions="1",
-#         max_questions="100",
-#         img_filename="backtrack_onestep.png",
-#         pdf_filename="backtrack_onestep.pdf",
-#         title_text="1-step Backtracking",
-#     )
-
-
 # @app.route("/backtrack_onestep_create", methods=["POST"])
 # def backtrack_onestep_create():
-#     # Safely parse numq
-#     try:
-#         numq = int(request.form.get("numq", 10))
-#     except ValueError:
-#         numq = 10  # fallback default
-#     # Clamp to range to prevent issue with user manual entry although js should catch it
-#     min_q = 1
-#     max_q = 100
-#     numq = max(min_q, min(numq, max_q))
+#     # Safely parse and clamp numq
+#     numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
 #     #
 #     operation = ops[request.form.get("operation")]
 #     title_text = request.form.get("title_text")
@@ -285,15 +259,8 @@ def backtrack_twostep_buildexpression():
 
 @app.route("/backtrack_twostep_buildexpression_create", methods=["POST"])
 def backtrack_twostep_buildexpression_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 20))
-    except ValueError:
-        numq = 20  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 20, 1, 100, cast_type=int)
     #
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
@@ -325,15 +292,8 @@ def backtrack_twostep_buildexpression_inverse():
 
 @app.route("/backtrack_twostep_buildexpression_inverse_create", methods=["POST"])
 def backtrack_twostep_buildexpression_inverse_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 14))
-    except ValueError:
-        numq = 14  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 140
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 14, 1, 140, cast_type=int)
     #
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
@@ -365,15 +325,8 @@ def backtrack_twostep_fromexpression():
 
 @app.route("/backtrack_twostep_fromexpression_create", methods=["POST"])
 def backtrack_twostep_fromexpression_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 14))
-    except ValueError:
-        numq = 14  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 140
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 14, 1, 140, cast_type=int)
     #
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
@@ -405,15 +358,8 @@ def backtrack_twostep_fromequation():
 
 @app.route("/backtrack_twostep_fromequation_create", methods=["POST"])
 def backtrack_twostep_fromequation_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 10))
-    except ValueError:
-        numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
     #
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
@@ -444,15 +390,8 @@ def backtrack_twostep_blank():
 
 @app.route("/backtrack_twostep_blank_create", methods=["POST"])
 def backtrack_twostep_blank_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 10))
-    except ValueError:
-        numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
     #
     title_text = request.form.get("title_text")
     file = backtrack.create_booklet_2step_blank(numq, title_text)
@@ -485,15 +424,8 @@ def number_lines():
 
 @app.route("/number_lines_create", methods=["POST"])
 def number_lines_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 8))
-    except ValueError:
-        numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 80
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 8, 1, 80, cast_type=int)
     #
     operation = nlops[request.form.get("operation")]
     title_text = request.form.get("title_text")
@@ -526,15 +458,8 @@ def number_lines_0to20():
 
 @app.route("/number_lines_0to20_create", methods=["POST"])
 def number_lines_0to20_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 8))
-    except ValueError:
-        numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 80
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 8, 1, 80, cast_type=int)
     #
     operation = nlops[request.form.get("operation")]
     title_text = request.form.get("title_text")
@@ -567,15 +492,8 @@ def number_lines_neg20to0():
 
 @app.route("/number_lines_neg20to0_create", methods=["POST"])
 def number_lines_neg20to0_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 8))
-    except ValueError:
-        numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 80
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 8, 1, 80, cast_type=int)
     #
     operation = nlops[request.form.get("operation")]
     title_text = request.form.get("title_text")
@@ -605,15 +523,8 @@ def number_lines_blank():
 
 @app.route("/number_lines_blank_create", methods=["POST"])
 def number_lines_blank_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 8))
-    except ValueError:
-        numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 80
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 8, 1, 80, cast_type=int)
     #
     title_text = request.form.get("title_text")
     file = numlineblk.create_booklet_numberline_blank(numq, title_text)
@@ -640,15 +551,8 @@ def number_lines_blank_0to20():
 
 @app.route("/number_lines_blank_0to20_create", methods=["POST"])
 def number_lines_blank_0to20_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 8))
-    except ValueError:
-        numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 80
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 8, 1, 80, cast_type=int)
     #
     title_text = request.form.get("title_text")
     file = numlineblk.create_booklet_numberline_blank_0to20(numq, title_text)
@@ -675,15 +579,8 @@ def number_lines_blank_neg20to0():
 
 @app.route("/number_lines_blank_neg20to0_create", methods=["POST"])
 def number_lines_blank_neg20to0_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 8))
-    except ValueError:
-        numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 80
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 8, 1, 80, cast_type=int)
     #
     title_text = request.form.get("title_text")
     file = numlineblk.create_booklet_numberline_blank_neg20to0(numq, title_text)
@@ -714,15 +611,8 @@ def equations_onestep_inverse_operations():
 
 @app.route("/equations_onestep_inverse_operations_create", methods=["POST"])
 def equations_onestep_inverse_operations_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 16))
-    except ValueError:
-        numq = 16  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 160
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 16, 1, 160, cast_type=int)
     #
     operation = ops[request.form.get("operation")]
     title_text = request.form.get("title_text")
@@ -753,17 +643,8 @@ def equations_twostep_inverse_operations():
 
 @app.route("/equations_twostep_inverse_operations_create", methods=["POST"])
 def equations_twostep_inverse_operations_create():
-    # Safely parse numq
+    # Safely parse and clamp numq
     numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
-
-    # try:
-    #     numq = int(request.form.get("numq", 10))
-    # except ValueError:
-    #     numq = 10  # fallback default
-    # # Clamp to range to prevent issue with user manual entry although js should catch it
-    # min_q = 1
-    # max_q = 100
-    # numq = max(min_q, min(numq, max_q))
     #
     operation = ops[request.form.get("operation")]
     operation2 = ops[request.form.get("operation2")]
@@ -798,15 +679,8 @@ def check_solution_onestep():
 
 @app.route("/check_solution_onestep_create", methods=["POST"])
 def check_solution_onestep_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 10))
-    except ValueError:
-        numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
     #
     title_text = request.form.get("title_text")
     operation = ops[request.form.get("operation")]
@@ -837,15 +711,8 @@ def check_solution_twostep():
 
 @app.route("/check_solution_twostep_create", methods=["POST"])
 def check_solution_twostep_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 10))
-    except ValueError:
-        numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 100
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 10, 1, 100, cast_type=int)
     #
     title_text = request.form.get("title_text")
     operation = ops[request.form.get("operation")]
@@ -881,15 +748,8 @@ def decimals_add_subtract():
 
 @app.route("/decimals_add_subtract_create", methods=["POST"])
 def decimals_add_subtract_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 27))
-    except ValueError:
-        numq = 27  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 108
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 27, 1, 108, cast_type=int)
     #
     title_text = request.form.get("title_text")
     operation = decops[request.form.get("operation")]
@@ -950,15 +810,8 @@ def angles_in_parallel_lines():
 
 @app.route("/angles_in_parallel_lines_create", methods=["POST"])
 def angles_in_parallel_lines_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 8))
-    except ValueError:
-        numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 80
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 8, 1, 80, cast_type=int)
     #
     title_text = request.form.get("title_text")
     angle_type = plops[request.form.get("operation")]
@@ -992,15 +845,8 @@ def external_angle_to_a_triangle():
 
 @app.route("/external_angle_to_a_triangle_create", methods=["POST"])
 def external_angle_to_a_triangle_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 4))
-    except ValueError:
-        numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 40
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 40, cast_type=int)
     #
     title_text = request.form.get("title_text")
     unknown_position = eatops[request.form.get("operation")]
@@ -1032,15 +878,8 @@ def angles_in_a_right_angled_triangle():
 
 @app.route("/angles_in_a_right_angled_triangle_create", methods=["POST"])
 def angles_in_a_right_angled_triangle_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 4))
-    except ValueError:
-        numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 40
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 40, cast_type=int)
     #
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
@@ -1073,15 +912,8 @@ def angles_in_an_isosceles_triangle():
 
 @app.route("/angles_in_an_isosceles_triangle_create", methods=["POST"])
 def angles_in_an_isosceles_triangle_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 4))
-    except ValueError:
-        numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 40
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 40, cast_type=int)
     #
     title_text = request.form.get("title_text")
     unknown_position = isotops[request.form.get("operation")]
@@ -1113,15 +945,8 @@ def angles_in_a_triangle():
 
 @app.route("/angles_in_a_triangle_create", methods=["POST"])
 def angles_in_a_triangle_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 4))
-    except ValueError:
-        numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 40
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 40, cast_type=int)
     #
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
@@ -1154,15 +979,8 @@ def measuring_angles():
 
 @app.route("/measuring_angles_create", methods=["POST"])
 def measuring_angles_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 6))
-    except ValueError:
-        numq = 6  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 60
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 6, 1, 60, cast_type=int)
     #
     title_text = request.form.get("title_text")
     angle_type = int(maops[request.form.get("operation")])
@@ -1193,15 +1011,8 @@ def lined_paper():
 
 @app.route("/lined_paper_create", methods=["POST"])
 def lined_paper_create():
-    # Safely parse num_lines
-    try:
-        num_lines = int(request.form.get("num_lines", 4))
-    except ValueError:
-        num_lines = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 26
-    num_lines = max(min_q, min(num_lines, max_q))
+    # Safely parse and clamp num_lines
+    num_lines = parse_and_clamp(request.form, "num_lines", 4, 1, 26, cast_type=int)
     #
     # # Checkbox returns "on" if checked
     whole_page = request.form.get("whole_page") == "on"
@@ -1242,7 +1053,7 @@ def grids_isometric():
 
 @app.route("/grids_isometric_create", methods=["POST"])
 def grids_isometric_create():
-
+    # Safely parse and clamp num_lines
     # paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
     # paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
     # vmargin     = parse_and_clamp(request.form, "vmargin", 1.5, 0.0, 2.5, cast_type=float)
@@ -1321,9 +1132,10 @@ def gridpapers():
 
 @app.route("/gridpapers_create", methods=["POST"])
 def gridpapers_create():
-    # use drop down selction, no need for item value even though defined
-    paperheight = request.form.get("paperheight")
-    paperwidth = request.form.get("paperwidth")
+    # Safely parse and clamp paperheight, paperwidth
+    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
+    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
+    #
     patternsize = request.form.get("op_patternsize")
     majorcolor = colours_ops[request.form.get("op_major_colour")]
     minorcolor = colours_ops[request.form.get("op_minor_colour")]
@@ -1354,9 +1166,10 @@ def gridpapers_dot():
 
 @app.route("/gridpapers_dot_create", methods=["POST"])
 def gridpapers_dot_create():
-    # use drop down selction, no need for item value even though defined
-    paperheight = request.form.get("paperheight")
-    paperwidth = request.form.get("paperwidth")
+    # Safely parse and clamp paperheight, paperwidth
+    paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
+    paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
+    #
     patternsize = request.form.get("op_patternsize")
     dotsize = request.form.get("op_dotsize")
     minorcolor = colours_ops[request.form.get("op_colour")]
@@ -1386,12 +1199,12 @@ def gridpapers_tri():
 
 @app.route("/gridpapers_tri_create", methods=["POST"])
 def gridpapers_tri_create():
+    # Safely parse and clamp paperheight, paperwidth
     paperheight = parse_and_clamp(request.form, "paperheight", 29.7, 2.0, 29.7, cast_type=float)
     paperwidth  = parse_and_clamp(request.form, "paperwidth", 21.0, 5.0, 21.0, cast_type=float)
-
-    patternsize = request.form.get("op_patternsize", "1cm")
-    minorcolor = colours_ops.get(request.form.get("op_colour"), "black")
-
+    #
+    patternsize = request.form.get("op_patternsize")
+    minorcolor = colours_ops[request.form.get("op_colour")]
     file = grdptri.create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor)
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
@@ -1423,7 +1236,7 @@ def coordinates():
         min_questions="1",
         max_questions="10",
         num_points_per_question="10",
-        min_points_per_question="4",
+        min_points_per_question="1",
         max_points_per_question="20",
         img_filename="coordinates.png",
         pdf_filename="coordinates.pdf",
@@ -1433,25 +1246,11 @@ def coordinates():
 
 @app.route("/coordinates_create", methods=["POST"])
 def coordinates_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 4))
-    except ValueError:
-        numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 20
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 1, 1, 10, cast_type=int)
     #
-    # Safely parse num_points
-    try:
-        num_points = int(request.form.get("num_points", 10))
-    except ValueError:
-        num_points = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_num_points = 4
-    max_num_points = 20
-    num_points = max(min_num_points, min(num_points, max_num_points))
+    # Safely parse and clamp num_points
+    num_points = parse_and_clamp(request.form, "num_points", 10, 1, 20, cast_type=int)
     #
     title_text = request.form.get("title_text")
     file_type = request.form.get("file_type", "pdf")
@@ -1483,15 +1282,8 @@ def area_of_a_square():
 
 @app.route("/area_of_a_square_create", methods=["POST"])
 def area_of_a_square_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 4))
-    except ValueError:
-        numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry
-    min_q = 1
-    max_q = 20
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     title_text = request.form.get("title_text", "")
@@ -1524,15 +1316,8 @@ def area_of_a_rectangle():
 
 @app.route("/area_of_a_rectangle_create", methods=["POST"])
 def area_of_a_rectangle_create():
-    # Safely parse numq
-    try:
-        numq = int(request.form.get("numq", 4))
-    except ValueError:
-        numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry although js should catch it
-    min_q = 1
-    max_q = 40
-    numq = max(min_q, min(numq, max_q))
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 40, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     title_text = request.form.get("title_text", "")
