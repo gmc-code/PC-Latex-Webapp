@@ -131,7 +131,7 @@ def backtrack_onestep_create():
         numq = int(request.form.get("numq", 10))
     except ValueError:
         numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -170,7 +170,7 @@ def backtrack_twostep_create():
         numq = int(request.form.get("numq", 10))
     except ValueError:
         numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -210,7 +210,7 @@ def backtrack_twostep_buildexpression_create():
         numq = int(request.form.get("numq", 20))
     except ValueError:
         numq = 20  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -250,7 +250,7 @@ def backtrack_twostep_buildexpression_inverse_create():
         numq = int(request.form.get("numq", 14))
     except ValueError:
         numq = 14  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 140
     numq = max(min_q, min(numq, max_q))
@@ -290,7 +290,7 @@ def backtrack_twostep_fromexpression_create():
         numq = int(request.form.get("numq", 14))
     except ValueError:
         numq = 14  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 140
     numq = max(min_q, min(numq, max_q))
@@ -330,7 +330,7 @@ def backtrack_twostep_fromequation_create():
         numq = int(request.form.get("numq", 10))
     except ValueError:
         numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -369,7 +369,7 @@ def backtrack_twostep_blank_create():
         numq = int(request.form.get("numq", 10))
     except ValueError:
         numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -409,7 +409,7 @@ def number_lines_create():
         numq = int(request.form.get("numq", 8))
     except ValueError:
         numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 80
     numq = max(min_q, min(numq, max_q))
@@ -450,7 +450,7 @@ def number_lines_0to20_create():
         numq = int(request.form.get("numq", 8))
     except ValueError:
         numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 80
     numq = max(min_q, min(numq, max_q))
@@ -491,7 +491,7 @@ def number_lines_neg20to0_create():
         numq = int(request.form.get("numq", 8))
     except ValueError:
         numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 80
     numq = max(min_q, min(numq, max_q))
@@ -529,7 +529,7 @@ def number_lines_blank_create():
         numq = int(request.form.get("numq", 8))
     except ValueError:
         numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 80
     numq = max(min_q, min(numq, max_q))
@@ -564,7 +564,7 @@ def number_lines_blank_0to20_create():
         numq = int(request.form.get("numq", 8))
     except ValueError:
         numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 80
     numq = max(min_q, min(numq, max_q))
@@ -599,7 +599,7 @@ def number_lines_blank_neg20to0_create():
         numq = int(request.form.get("numq", 8))
     except ValueError:
         numq = 8  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 80
     numq = max(min_q, min(numq, max_q))
@@ -638,7 +638,7 @@ def equations_onestep_inverse_operations_create():
         numq = int(request.form.get("numq", 16))
     except ValueError:
         numq = 16  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 160
     numq = max(min_q, min(numq, max_q))
@@ -677,7 +677,7 @@ def equations_twostep_inverse_operations_create():
         numq = int(request.form.get("numq", 10))
     except ValueError:
         numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -720,7 +720,7 @@ def check_solution_onestep_create():
         numq = int(request.form.get("numq", 10))
     except ValueError:
         numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -759,7 +759,7 @@ def check_solution_twostep_create():
         numq = int(request.form.get("numq", 10))
     except ValueError:
         numq = 10  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 100
     numq = max(min_q, min(numq, max_q))
@@ -1115,7 +1115,7 @@ def lined_paper_create():
         num_lines = int(request.form.get("num_lines", 4))
     except ValueError:
         num_lines = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 26
     num_lines = max(min_q, min(num_lines, max_q))
@@ -1124,10 +1124,7 @@ def lined_paper_create():
     whole_page = request.form.get("whole_page") == "on"
     if whole_page:
         num_lines = 26
-        file = linedpaper.create_lined_page(num_lines)
-    else:
-        num_lines = int(num_lines) if num_lines else 4
-        file = linedpaper.create_lined_paper(num_lines)
+    file = linedpaper.create_lined_paper(num_lines)
     # Return the PDF as a response
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
@@ -1395,7 +1392,7 @@ def area_of_a_rectangle_create():
         numq = int(request.form.get("numq", 4))
     except ValueError:
         numq = 4  # fallback default
-    # Clamp to range to prevent issue with user manual entry alhtough js should catch it
+    # Clamp to range to prevent issue with user manual entry although js should catch it
     min_q = 1
     max_q = 40
     numq = max(min_q, min(numq, max_q))
