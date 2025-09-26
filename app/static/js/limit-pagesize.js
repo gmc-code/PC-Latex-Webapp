@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
             input.addEventListener('input', function () {
                 let val = parseFloat(this.value);
                 if (!isNaN(val) && (val < min || val > max)) {
-                    this.style.borderColor = 'red';
+                    this.style.border = '2px solid red'; // stronger override
                 } else {
-                    this.style.borderColor = '';
+                    this.style.border = ''; // reset to default
                 }
             });
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (val < min) this.value = min;
                     if (val > max) this.value = max;
                 }
-                this.style.borderColor = ''; // Reset border after clamping
+                this.style.border = ''; // reset after clamping
             });
         }
     });
