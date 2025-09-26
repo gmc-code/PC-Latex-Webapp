@@ -147,7 +147,8 @@ def backtrack_onestep_create():
 
     # Validate operation key
     operation_key = request.form.get("operation")
-    if operation_key not in ops:
+    # not in
+    if operation_key in ops:
         abort(400, description="Invalid operation selected.")
     operation = ops[operation_key]
 
