@@ -1081,10 +1081,10 @@ def area_of_a_square():
 
 @app.route("/area_of_a_square_create", methods=["POST"])
 def area_of_a_square_create():
-    show_dimension_lines_bool = request.args.get("checkbox1") == "on"
+    show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     # Safely parse numq
     try:
-        numq = int(request.args.get("numq", 4))
+        numq = int(request.form.get("numq", 4))
     except ValueError:
         numq = 4  # fallback default
     # Clamp to range to prevent issue with user manual entry
@@ -1092,11 +1092,12 @@ def area_of_a_square_create():
     max_q = 20
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text", "")
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text", "")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
     file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
     return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
+
 
 ##########################################################################
 # area of a rectangle
@@ -1119,13 +1120,13 @@ def area_of_a_rectangle():
     )
 
 
-@app.route("/area_of_a_rectangle_create")
+@app.route("/area_of_a_rectangle_create", methods=["POST"])
 def area_of_a_rectangle_create():
-    show_dimension_lines_bool = request.args.get(
+    show_dimension_lines_bool = request.form.get(
         "checkbox1") == "on"  # Checkbox returns "on" if checked
     # Safely parse numq
     try:
-        numq = int(request.args.get("numq", 4))
+        numq = int(request.form.get("numq", 4))
     except ValueError:
         numq = 4  # fallback default
     # Clamp to range to prevent issue with user manual entry
@@ -1133,8 +1134,8 @@ def area_of_a_rectangle_create():
     max_q = 20
     numq = max(min_q, min(numq, max_q))
     #
-    title_text = request.args.get("title_text", "")
-    file_type = request.args.get("file_type", "pdf")
+    title_text = request.form.get("title_text", "")
+    file_type = request.form.get("file_type", "pdf")
     mimetypes = {"zip": "application/zip", "pdf": "application/pdf"}
     file = arearect.create_booklet_area_of_a_rectangle(
         numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
