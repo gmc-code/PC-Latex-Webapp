@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="w3-container w3-margin-top">
     <div class="w3-row">
 
@@ -10,15 +11,11 @@
             <form action="{{ link }}" method="post" class="w3-container w3-card-4 w3-light-grey">
                 <h2 class="w3-center">{{ title }}</h2>
 
-                {% if error_msg %}
-                <p style="color:red;">{{ error_msg }}</p>
-                {% endif %}
-
                 <div class="w3-row">
                     <div class="w3-half w3-padding">
                         <label for="title_text">Title Text</label>
-                        <input class="w3-input" type="text" name="title_text" id="title_text"
-                               value="{{ request.form.get('title_text', title_text) }}" maxlength="30" required>
+                        <input class="w3-input" type="text" name="title_text" id="title_text" value="{{ title_text }}"
+                            maxlength="30" required>
                     </div>
 
                     <div class="w3-half w3-padding">
@@ -31,39 +28,46 @@
                                min="{{ min_questions }}"
                                max="{{ max_questions }}"
                                step="1"
-                               value="{{ request.form.get('numq', num_per_page) }}"
+                               value="{{ num_per_page }}"
                                required>
                     </div>
                 </div>
 
+                <!-- Row for checkbox label text in app checkbox_text-->
                 <div class="w3-row">
                     <div class="w3-half w3-padding">
-                        <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check"
-                               {% if request.form.get('checkbox1') %}checked{% endif %}>
+                        <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check"> -->
+                        <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" {% if checkbox1_checked %}checked{% endif %}> -->
+                        <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" checked>
                         <label for="checkbox1">{{ checkbox_text }}</label>
                     </div>
                 </div>
 
+                <!-- Row for file type selection -->
                 <div class="w3-row w3-padding w3-margin-right">
                     <fieldset class="w3-col s6 m6 l6">
                         <legend>Choose file type:</legend>
                         <div>
-                            <input type="radio" name="file_type" value="pdf" id="pdf"
-                                   {% if request.form.get('file_type', 'pdf') == 'pdf' %}checked{% endif %} class="w3-radio">
+                            <input type="radio" name="file_type" value="pdf" id="pdf" checked class="w3-radio">
                             <label for="pdf">PDF File with questions and answers</label>
                         </div>
                         <div>
-                            <input type="radio" name="file_type" value="zip" id="zip"
-                                   {% if request.form.get('file_type') == 'zip' %}checked{% endif %} class="w3-radio">
+                            <input type="radio" name="file_type" value="zip" id="zip" class="w3-radio">
                             <label for="zip">ZIP File of separate questions and answers</label>
                         </div>
                     </fieldset>
                 </div>
 
+                <!-- Submit button -->
                 <div class="w3-row w3-center">
-                    <button type="submit" class="w3-button w3-xxlarge w3-section w3-green" id="Generate">
-                        Generate <i class="fa-solid fa-download"></i>
+                    <button type="submit" class="w3-button w3-xxlarge w3-section w3-green" id="Generate">Generate
+                        <i class="fa-solid fa-download"></i>
                     </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div id="progress-bar" class="w3-container">
+                    <div class="progress"></div>
                 </div>
             </form>
 
@@ -84,9 +88,18 @@
             });
             </script>
 
-        </div> <!-- closes left column -->
+            <!-- Image Section Below Form -->
+            <div class="w3-card-4 w3-margin-top w3-padding">
+                <div class="w3-container">
+                    <p class="w3-center">Example</p>
+                </div>
+                <div class="w3-center">
+                    <img src="/static/img/{{ img_filename }}" alt="{{ img_filename }}" class="responsive-img">
+                </div>
+            </div>
+        </div>
 
-        <!-- Right Column: PDF preview or image -->
+        <!-- Right Column: PDF sample -->
         <div class="w3-col l6 m6 s12 w3-padding">
             <div class="w3-card-4">
                 <div class="w3-container">

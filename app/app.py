@@ -1120,7 +1120,6 @@ def area_of_a_rectangle():
     )
 
 
-
 @app.route("/area_of_a_rectangle_create", methods=["GET", "POST"])
 def area_of_a_rectangle_create():
     min_q = 1
@@ -1145,23 +1144,14 @@ def area_of_a_rectangle_create():
 
         if not error_msg:
             # Valid input → generate file
-            file = arearect.create_booklet_area_of_a_rectangle(
-                numq,
-                title_text,
-                file_type=file_type,
-                show_dimension_lines_bool=show_dimension_lines_bool
-            )
-            return send_file(
-                file,
-                as_attachment=True,
-                mimetype=mimetypes.get(file_type, "application/pdf")
-            )
+            file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
+            return send_file(file, as_attachment=True, mimetype=mimetypes.get(file_type, "application/pdf"))
 
     # GET request or invalid input → render form
     return render_template(
         "genform_tqcbf.html",
         title="Area of a Rectangle",
-        link="/area_of_a_rectangle",
+        link="/area_of_a_rectangle_create",
         num_per_page=default_numq,
         min_questions=min_q,
         max_questions=max_q,
@@ -1169,7 +1159,6 @@ def area_of_a_rectangle_create():
         pdf_filename="area_of_a_rectangle.pdf",
         title_text="Area of a Rectangle",
         checkbox_text="Show Dimension Lines",
-        error_msg=error_msg
     )
 
 # @app.route("/area_of_a_rectangle_create", methods=["POST"])
