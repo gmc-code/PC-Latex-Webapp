@@ -7,24 +7,22 @@ document.addEventListener('DOMContentLoaded', function () {
             const min = parseFloat(input.min);
             const max = parseFloat(input.max);
 
-            // Show red border if out of range while typing
             input.addEventListener('input', function () {
                 let val = parseFloat(this.value);
                 if (!isNaN(val) && (val < min || val > max)) {
-                    this.style.border = '2px solid red'; // stronger override
+                    this.classList.add('input-invalid');
                 } else {
-                    this.style.border = ''; // reset to default
+                    this.classList.remove('input-invalid');
                 }
             });
 
-            // Clamp value when user leaves the field
             input.addEventListener('blur', function () {
                 let val = parseFloat(this.value);
                 if (!isNaN(val)) {
                     if (val < min) this.value = min;
                     if (val > max) this.value = max;
                 }
-                this.style.border = ''; // reset after clamping
+                this.classList.remove('input-invalid');
             });
         }
     });
