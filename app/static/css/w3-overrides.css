@@ -19,15 +19,8 @@ body, h1, h2, h3, h4, h5, h6, p, form, label, input, select, button, div {
     height: auto;
 }
 
-@keyframes pulseBorder {
-    0%   { border-color: red; }
-    50%  { border-color: darkred; }
-    100% { border-color: red; }
-}
 
 input.w3-input.input-invalid {
     border: 4px solid red !important;
-    animation: pulseBorder 1s infinite;
 }
-
 
