@@ -19,6 +19,6 @@ body, h1, h2, h3, h4, h5, h6, p, form, label, input, select, button, div {
     height: auto;
 }
 
-.input-invalid {
+input.w3-input.input-invalid {
     border: 2px solid red !important;
 }
