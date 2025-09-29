@@ -114,6 +114,12 @@ def index():
 def bad_request(error):
     return render_template("400.html", error=error), 400
 
+
+@app.errorhandler(404)
+def bad_request(error):
+    return render_template("404.html", error=error), 400
+
+
 @app.errorhandler(500)
 def internal_error(error):
     return render_template("500.html", error=error), 500
