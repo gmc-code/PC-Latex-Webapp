@@ -39,7 +39,7 @@ def generate_diagram_text(numq, process_func):
     return diagrams_text, diagrams_text_ans
 
 
-def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_template_file, diagram_templates_dict, output_filename_prefix, file_type="pdf"):
+def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_template_file, output_filename_prefix, file_type="pdf"):
     output_dir = Path(__file__).parent.parent.parent
     currfile_dir = Path(__file__).parent
     timestamp = datetime.now(tz=pytz.timezone("Australia/Melbourne")).strftime("%Y_%b_%d_%H_%M_%S")
@@ -57,9 +57,6 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
     tex_template_txt = (currfile_dir / tex_template_file).read_text()
     tex_template_txt_ans = (currfile_dir / tex_ans_template_file).read_text()
-
-    diagram_template_paths_dict = {k: currfile_dir / v for k, v in diagram_templates_dict.items()}
-    diagram_template_texts_dict = {k: path.read_text() for k, path in diagram_template_paths_dict.items()}
 
     diagram_text, diagram_text_ans = generate_diagram_text(numq, process_func)
 
@@ -121,6 +118,10 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="p
             "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
 
     diagram_templates_dict = {i + 1: name for i, name in enumerate(diagram_templates)}
+    # Load diagram templates once and share with inner function
+    currfile_dir = Path(__file__).parent
+    diagram_template_paths_dict = {k: currfile_dir / v for k, v in diagram_templates_dict.items()}
+    diagram_template_texts_dict = {k: path.read_text() for k, path in diagram_template_paths_dict.items()}
 
     def make_diagram_wrapper(idx):
         side_pair = side_pairs_list[idx - 1]
@@ -133,10 +134,6 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="p
 
         return make_diagram(tex_diagram_template_txt, tex_keys_q, triangle_dict)
 
-    # Load diagram templates once and share with inner function
-    currfile_dir = Path(__file__).parent
-    diagram_template_paths_dict = {k: currfile_dir / v for k, v in diagram_templates_dict.items()}
-    diagram_template_texts_dict = {k: path.read_text() for k, path in diagram_template_paths_dict.items()}
 
     return create_booklet(
         numq,
@@ -144,7 +141,6 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="p
         make_diagram_wrapper,
         "area_of_a_triangle_booklet_template.tex",
         "area_of_a_triangle_booklet_ans_template.tex",
-        diagram_templates_dict,
         "areatri",
         file_type,
     )
