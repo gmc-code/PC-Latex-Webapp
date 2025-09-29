@@ -48,8 +48,8 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None):
     sidelength2 = round(random.uniform(0, 1.0) + 1.5, 3)
     sidelength1 = round(sidelength2 * (calc_sidelength1 / calc_sidelength2), 3)
 
-    if sidelength1 > 8:
-        ratio = 8 / sidelength1
+    if sidelength1 > 7:
+        ratio = 7 / sidelength1
         sidelength1 = round(sidelength1 * ratio, 3)
         sidelength2 = round(sidelength2 * ratio, 3)
 
@@ -101,8 +101,8 @@ def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None):
     height = round(random.uniform(0, 1.0) + 1.5, 3)
     base = round(height * (calc_base / calc_height), 3)
 
-    if base > 8:
-        ratio = 8 / base
+    if base > 7:
+        ratio = 7 / base
         base = round(base * ratio, 3)
         height = round(height * ratio, 3)
 
