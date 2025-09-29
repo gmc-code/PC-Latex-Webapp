@@ -109,6 +109,7 @@ def create_booklet(numq, title_text, q_per_column, process_func, tex_template_fi
         raise ValueError("Invalid file type. Choose either 'pdf' or 'zip'.")
 
 ##############################################################################
+
 def create_booklet_1step(numq=16, num=5, title_text="1-step Equations", file_type="pdf"):
     # % end modify values for invop
     tex_keys_q = ["line2_LHS", "line2_RHS", "line3_RHS"]

@@ -117,24 +117,17 @@ def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file
         return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_square_dict(side_int, rotation))
 
     if show_dimension_lines_bool:
-        return create_booklet(
-            numq,
-            title_text,
-            make_diagram_wrapper,
-            "area_of_a_square_booklet_template.tex",
-            "area_of_a_square_booklet_ans_template.tex",
-            "area_of_a_square_dl_booklet_diagram_template.tex",
-            "areasq",
-            file_type,
-        )
+        diag_template = "area_of_a_square_dl_booklet_diagram_template.tex"
     else:
-         return create_booklet(
+        diag_template = "area_of_a_square_booklet_diagram_template.tex"
+
+    return create_booklet(
             numq,
             title_text,
             make_diagram_wrapper,
             "area_of_a_square_booklet_template.tex",
             "area_of_a_square_booklet_ans_template.tex",
-            "area_of_a_square_booklet_diagram_template.tex",
+            diag_template,
             "areasq",
             file_type,
         )

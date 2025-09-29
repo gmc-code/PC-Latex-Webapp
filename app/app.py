@@ -27,6 +27,7 @@ import latex.coordinates.coordinates_maker as coords
 
 import latex.area_of_a_square.area_of_a_square_maker as areasq
 import latex.area_of_a_rectangle.area_of_a_rectangle_maker as arearect
+import latex.area_of_a_triangle.area_of_a_triangle_maker as areatri
 
 import latex.paper.lined_paper_maker as linedpaper
 import latex.gridpapers.grids_isometric_maker as grdpiso
@@ -61,6 +62,8 @@ eatops = {"Random": 4, "unknown A": 1, "unknown C": 2, "unknown external B": 3}
 isotops = {"Random": 3, "unknown unique angle": 1, "unknown paired angle": 2}
 # measuring angles
 maops = {"Random": 4, "Acute": 1, "Obtuse": 2, "Reflex": 3}
+# area of a triangle
+atops = {"Random": 4, "Right": 1, "Acute": 2, "Obtuse": 3}
 # gridpapers
 patternsizes_ops = {"1cm": 3, "0.25cm": 1, "0.5cm": 2, "2cm": 4}
 dotsizes_ops = {"0.7pt": 1, "1.0pt": 2, "1.4pt": 3, "2.0pt": 4}
@@ -1170,18 +1173,6 @@ def gridpapers_tri_create():
     return send_file(file, as_attachment=True, mimetype="application/pdf")
 
 
-# @app.route("/gridpapers_tri_create", methods=["POST"])
-# def gridpapers_tri_create():
-#     # use drop down selction, no need for item value even though defined
-
-#     # paperheight = request.form.get("paperheight")
-#     # paperwidth = request.form.get("paperwidth")
-#     patternsize = request.form.get("op_patternsize")
-#     minorcolor = colours_ops[request.form.get("op_colour")]
-#     file = grdptri.create_gridpaper_tri(paperheight, paperwidth, patternsize, minorcolor)
-#     return send_file(file, as_attachment=True, mimetype="application/pdf")
-
-
 ##########################################################################
 # coordinates
 ##########################################################################
@@ -1233,7 +1224,7 @@ def area_of_a_square():
         link="/area_of_a_square_create",
         num_per_page="4",
         min_questions="1",
-        max_questions="40",
+        max_questions="20",
         img_filename="area_of_a_square.png",
         pdf_filename="area_of_a_square.pdf",
         title_text="Area of a Square",
@@ -1267,7 +1258,7 @@ def area_of_a_rectangle():
         link="/area_of_a_rectangle_create",
         num_per_page="4",
         min_questions="1",
-        max_questions="40",
+        max_questions="20",
         img_filename="area_of_a_rectangle.png",
         pdf_filename="area_of_a_rectangle.pdf",
         title_text="Area of a Rectangle",
@@ -1278,13 +1269,49 @@ def area_of_a_rectangle():
 @app.route("/area_of_a_rectangle_create", methods=["POST"])
 def area_of_a_rectangle_create():
     # Safely parse and clamp numq
-    numq = parse_and_clamp(request.form, "numq", 4, 1, 40, cast_type=int)
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
+    return send_file(file, as_attachment=True, mimetype=mimetype)
+
+
+##########################################################################
+# area of a triangle
+##########################################################################
+
+
+@app.route("/area_of_a_triangle")
+def area_of_a_triangle():
+    return render_template(
+        "genform_tqocbf.html",
+        title="Area of a Triangle",
+        ops=eatops.keys(),
+        link="/area_of_a_triangle_create",
+        num_per_page="4",
+        min_questions="1",
+        max_questions="20",
+        img_filename="area_of_a_triangle.png",
+        pdf_filename="area_of_a_triangle.pdf",
+        title_text="Area of a Triangle",
+        checkbox_text="Show Dimension Lines",
+    )
+
+
+@app.route("/area_of_a_triangle_create", methods=["POST"])
+def area_of_a_triangle_create():
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
+    #
+    show_dimension_lines_bool = request.form.get("checkbox1") == "on"
+    triangle_type_num = atops[request.form.get("operation")]
+    title_text = request.form.get("title_text", "")
+    file_type = request.form.get("file_type", "pdf")
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
+    file = areatri.create_booklet_area_of_a_triangle(numq, triangle_type_num, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
