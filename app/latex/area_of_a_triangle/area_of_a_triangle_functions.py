@@ -5,14 +5,14 @@ Module of functions to return diagram dictionary for LaTeX
 import random
 
 
-def get_area_of_a_triangle_dict(num):
+def get_area_of_a_triangle_dict(num,side_pair=None, rotation=None):
     match num:
         case 1:
-            return get_area_of_a_triangle_right_dict()
+            return get_area_of_a_triangle_right_dict(side_pair, rotation)
         case 2:
-            return get_area_of_a_triangle_acute_dict()
+            return get_area_of_a_triangle_acute_dict(side_pair, rotation)
         case 3:
-            return get_area_of_a_triangle_obtuse_dict()
+            return get_area_of_a_triangle_obtuse_dict(side_pair, rotation)
 
 
 
