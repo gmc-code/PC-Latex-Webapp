@@ -101,7 +101,9 @@ def get_kv(num, side_pair, rotation):
     return get_area_of_a_triangle_dict(num, side_pair, rotation)
 
 
-def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="pdf", show_dimension_lines_bool=True):
+
+
+def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text,file_type="pdf", show_dimension_lines_bool=True):
     title_text = "Area of a Triangle"
     side_pairs_list = get_side_pairs()
     rotations_list = get_rotations_shuffled()
