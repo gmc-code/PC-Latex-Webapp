@@ -1295,7 +1295,7 @@ def area_of_a_rectangle_create():
 @app.route("/area_of_a_triangle")
 def area_of_a_triangle():
     return render_template(
-        "genform_tqocbf.html",
+        "genform_tqtcbf.html",
         title="Area of a Triangle",
         ops=atops.keys(),
         link="/area_of_a_triangle_create",
