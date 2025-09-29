@@ -63,7 +63,9 @@ isotops = {"Random": 3, "unknown unique angle": 1, "unknown paired angle": 2}
 # measuring angles
 maops = {"Random": 4, "Acute": 1, "Obtuse": 2, "Reflex": 3}
 # area of a triangle
-atops = {"Random": 4, "Right": 1, "Acute": 2, "Obtuse": 3}
+atops = {"Random": 4, "Right": 1, "Acute": 2, "Obtuse": 3}'
+
+
 # gridpapers
 patternsizes_ops = {"1cm": 3, "0.25cm": 1, "0.5cm": 2, "2cm": 4}
 dotsizes_ops = {"0.7pt": 1, "1.0pt": 2, "1.4pt": 3, "2.0pt": 4}
@@ -1295,7 +1297,7 @@ def area_of_a_triangle():
     return render_template(
         "genform_tqocbf.html",
         title="Area of a Triangle",
-        ops=eatops.keys(),
+        ops=atops.keys(),
         link="/area_of_a_triangle_create",
         num_per_page="4",
         min_questions="1",
