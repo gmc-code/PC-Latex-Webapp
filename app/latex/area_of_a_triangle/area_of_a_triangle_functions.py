@@ -8,11 +8,11 @@ import random
 def get_area_triangle_dict(num):
     match num:
         case 1:
-            return get_area_triangles_right_dict()
+            return get_area_of_a_triangle_right_dict()
         case 2:
-            return get_area_triangles_acute_dict()
+            return get_area_of_a_triangle_acute_dict()
         case 3:
-            return get_area_triangles_obtuse_dict()
+            return get_area_of_a_triangle_obtuse_dict()
 
 
 
@@ -36,7 +36,7 @@ def get_rotations_shuffled():
     return angles
 
 
-def get_area_triangles_right_dict(side_pair=None, rotation=None):
+def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
@@ -89,7 +89,7 @@ def get_area_triangles_right_dict(side_pair=None, rotation=None):
 
 
 
-def get_area_triangles_acute_dict(side_pair=None, rotation=None):
+def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
@@ -146,7 +146,7 @@ def get_area_triangles_acute_dict(side_pair=None, rotation=None):
 
 
 
-def get_area_triangles_obtuse_dict(side_pair=None, rotation=None):
+def get_area_of_a_triangle_obtuse_dict(side_pair=None, rotation=None):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
