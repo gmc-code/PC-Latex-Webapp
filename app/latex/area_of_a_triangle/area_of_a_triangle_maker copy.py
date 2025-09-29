@@ -121,8 +121,8 @@ def get_keys(num):
         case 3:
             return tex_keys_q_obtuse
 
-def get_kv(num,side_pair, rotation):
-    return get_area_of_a_triangle_dict(num,side_pair, rotation)
+def get_kv(num, side_pair, rotation):
+    return get_area_of_a_triangle_dict(num, side_pair, rotation)
 
 
 def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="pdf", show_dimension_lines_bool=True):
