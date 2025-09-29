@@ -109,11 +109,17 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="p
     side_pairs_list = get_side_pairs()
     rotations_list = get_rotations_shuffled()
 
-    diagram_templates = [
-        "area_of_a_triangle_right_booklet_diagram_template.tex",
-        "area_of_a_triangle_acute_booklet_diagram_template.tex",
-        "area_of_a_triangle_obtuse_booklet_diagram_template.tex",
-    ]
+
+    if show_dimension_lines_bool:
+        # add in dl ones after testing
+        diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
+            "area_of_a_triangle_acute_booklet_diagram_template.tex",
+            "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
+    else:
+        diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
+            "area_of_a_triangle_acute_booklet_diagram_template.tex",
+            "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
+
     diagram_templates_dict = {i + 1: name for i, name in enumerate(diagram_templates)}
 
     def make_diagram_wrapper(idx):
