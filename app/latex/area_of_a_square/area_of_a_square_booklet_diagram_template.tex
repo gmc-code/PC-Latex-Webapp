@@ -41,7 +41,8 @@
 
         % dotted/dashed arrows shifted away from edges
         % % Vertical side (B-C), shifted right
-        \draw[draw=none]
+        % draw=none; <->, gray
+        \draw[<<draw_style>>]
             ($(<<vB>>) + (0.50cm,0)$) -- ($(<<vC>>) + (0.50cm,0)$)
             node[black, midway, fill=white, xshift=2mm, inner sep=2pt] {<<calc_sidelength>>\,cm};
 
