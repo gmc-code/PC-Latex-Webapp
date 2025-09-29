@@ -22,13 +22,15 @@
 
 
         % dotted/dashed arrows shifted away from edges
-        % Horizontal side (A-B), shifted down  ift=0mm,
-        \draw[<->, gray]
+        % Horizontal side (A-B), shifted down  yshift=0mm,
+        % draw=none; <->, gray
+        \draw[<<draw_style>>]
             ($(<<vA>>) + (0,-1.0cm)$) -- ($(<<vB>>) + (0,-1.0cm)$)
             node[black, midway, fill=white, inner sep=2.5pt] {<<calc_base>>\,cm};
 
         % Vertical side (B-C), shifted right xshift=0mm,
-        \draw[<->, gray]
+        % draw=none; <->, gray
+        \draw[<<draw_style>>]
             ($(<<vB>> |- <<vD>>)+(0.6,0)$) -- ($(<<vB>> |- <<vC>>)+(0.6,0)$)
             node[black, midway, fill=white, inner sep=2.5pt] {<<calc_height>>\,cm};
 

@@ -84,9 +84,9 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 
 def get_keys(num):
-    tex_keys_q_right = ["calc_sidelength1", "calc_sidelength2", "sidelength1", "sidelength2", "rotation", "vA", "vB", "vC"]
-    tex_keys_q_acute = ["calc_base", "calc_height", "leftoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD"]
-    tex_keys_q_obtuse = ["calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD"]
+    tex_keys_q_right = ['draw_style', "calc_sidelength1", "calc_sidelength2", "sidelength1", "sidelength2", "rotation", "vA", "vB", "vC"]
+    tex_keys_q_acute = ['draw_style', "calc_base", "calc_height", "leftoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD"]
+    tex_keys_q_obtuse = ['draw_style', "calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD"]
 
     match num:
         case 1:
@@ -97,8 +97,8 @@ def get_keys(num):
             return tex_keys_q_obtuse
 
 
-def get_kv(num, side_pair, rotation):
-    return get_area_of_a_triangle_dict(num, side_pair, rotation)
+def get_kv(num, side_pair, rotation, show_dimension_lines_bool):
+    return get_area_of_a_triangle_dict(num, side_pair, rotation, show_dimension_lines_bool)
 
 
 
@@ -107,15 +107,7 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text="
     title_text = "Area of a Triangle"
     side_pairs_list = get_side_pairs()
     rotations_list = get_rotations_shuffled()
-
-
-    if show_dimension_lines_bool:
-        # add in dl ones after testing
-        diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
-            "area_of_a_triangle_acute_booklet_diagram_template.tex",
-            "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
-    else:
-        diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
+    diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
             "area_of_a_triangle_acute_booklet_diagram_template.tex",
             "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
 
@@ -131,7 +123,7 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text="
         tri_num = random.randint(1, 3) if triangle_type_num == 4 else triangle_type_num
 
         tex_keys_q = get_keys(tri_num)
-        triangle_dict = get_kv(tri_num, side_pair, rotation)
+        triangle_dict = get_kv(tri_num, side_pair, rotation, show_dimension_lines_bool)
         tex_diagram_template_txt = diagram_template_texts_dict[tri_num]
 
         return make_diagram(tex_diagram_template_txt, tex_keys_q, triangle_dict)
