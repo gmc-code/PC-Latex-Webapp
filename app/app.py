@@ -63,7 +63,7 @@ isotops = {"Random": 3, "unknown unique angle": 1, "unknown paired angle": 2}
 # measuring angles
 maops = {"Random": 4, "Acute": 1, "Obtuse": 2, "Reflex": 3}
 # area of a triangle
-atops = {"Random": 4, "Right": 1, "Acute": 2, "Obtuse": 3}'
+atops = {"Random": 4, "Right": 1, "Acute": 2, "Obtuse": 3}
 
 
 # gridpapers
