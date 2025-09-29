@@ -21,7 +21,7 @@ def get_rotations_shuffled():
 
 
 
-def get_area_of_a_rectangle_dict(side_pair=None, rotation=None):
+def get_area_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimension_lines_bool=True):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
@@ -70,5 +70,10 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None):
     kv["calcside_value1"] = f"{calc_sidelength1}"
     kv["calcside_value2"] = f"{calc_sidelength2}"
     kv["calcarea_value"] = f"{calcarea_value}"
+
+    if show_dimension_lines_bool is True:
+        kv["draw_style"] = "<->, gray"
+    else:
+        kv["draw_style"] = "draw=none"
 
     return kv

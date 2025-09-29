@@ -105,7 +105,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle", file_type="pdf", show_dimension_lines_bool=True):
 
     # calcside_value1, calcside_value2, calcarea_value
-    tex_keys_q = ['calc_sidelength1', 'calc_sidelength2', 'sidelength1', 'sidelength2', 'rotation',
+    tex_keys_q = ['draw_style', 'calc_sidelength1', 'calc_sidelength2', 'sidelength1', 'sidelength2', 'rotation',
                 'vA','vB', 'vC', 'vD'
                 ]
 
@@ -118,12 +118,7 @@ def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle"
         # within which generate_diagram_text uses the tex_diagram_template_txt parameter and gets the idx parameter from the repeat loop
         side_pair = side_pairs_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_rectangle_dict(side_pair, rotation))
-
-    if show_dimension_lines_bool:
-        diag_template = "area_of_a_rectangle_dl_booklet_diagram_template.tex"
-    else:
-        diag_template = "area_of_a_rectangle_booklet_diagram_template.tex"
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_rectangle_dict(side_pair, rotation,show_dimension_lines_bool))
 
     return create_booklet(
         numq,
@@ -131,7 +126,7 @@ def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle"
         make_diagram_wrapper,
         "area_of_a_rectangle_booklet_template.tex",
         "area_of_a_rectangle_booklet_ans_template.tex",
-        diag_template,
+        "area_of_a_rectangle_booklet_diagram_template.tex",
         "arearect",
         file_type,
     )
