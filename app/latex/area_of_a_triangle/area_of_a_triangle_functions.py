@@ -5,7 +5,7 @@ Module of functions to return diagram dictionary for LaTeX
 import random
 
 
-def get_area_triangle_dict(num):
+def get_area_of_a_triangle_dict(num):
     match num:
         case 1:
             return get_area_of_a_triangle_right_dict()
