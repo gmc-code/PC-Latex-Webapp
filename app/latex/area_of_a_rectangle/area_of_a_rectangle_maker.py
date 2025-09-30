@@ -118,7 +118,7 @@ def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle"
         # within which generate_diagram_text uses the tex_diagram_template_txt parameter and gets the idx parameter from the repeat loop
         side_pair = side_pairs_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_rectangle_dict(side_pair, rotation,show_dimension_lines_bool))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_rectangle_dict(side_pair, rotation, show_dimension_lines_bool))
 
     return create_booklet(
         numq,
