@@ -1334,14 +1334,14 @@ def area_of_a_triangle_create():
 def area_of_a_parallelogram():
     return render_template(
         "genform_tqcbf.html",
-        title="Area of a parallelogram",
+        title="Area of a Parallelogram",
         link="/area_of_a_parallelogram_create",
         num_per_page="4",
         min_questions="1",
         max_questions="20",
         img_filename="area_of_a_parallelogram.png",
         pdf_filename="area_of_a_parallelogram.pdf",
-        title_text="Area of a parallelogram",
+        title_text="Area of a Parallelogram",
         checkbox_text="Show Dimension Lines",
     )
 

@@ -125,7 +125,7 @@ def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parall
         "area_of_a_parallelogram_booklet_template.tex",
         "area_of_a_parallelogram_booklet_ans_template.tex",
         "area_of_a_parallelogram_booklet_diagram_template.tex",
-        "arearect",
+        "areapar",
         file_type,
     )
 
