@@ -29,6 +29,7 @@ import latex.area_of_a_square.area_of_a_square_maker as areasq
 import latex.area_of_a_rectangle.area_of_a_rectangle_maker as arearect
 import latex.area_of_a_triangle.area_of_a_triangle_maker as areatri
 import latex.area_of_a_parallelogram.area_of_a_parallelogram_maker as areapar
+import latex.area_of_a_circle.area_of_a_circle_maker as areacirc
 
 import latex.paper.lined_paper_maker as linedpaper
 import latex.gridpapers.grids_isometric_maker as grdpiso
@@ -1361,9 +1362,43 @@ def area_of_a_parallelogram_create():
 
 
 ##########################################################################
+# area of a circle
+##########################################################################
+
+
+@app.route("/area_of_a_circle")
+def area_of_a_circle():
+    return render_template(
+        "genform_tqcbf.html",
+        title="Area of a Circle",
+        link="/area_of_a_circle_create",
+        num_per_page="4",
+        min_questions="1",
+        max_questions="20",
+        img_filename="area_of_a_circle.png",
+        pdf_filename="area_of_a_circle.pdf",
+        title_text="Area of a Circle",
+        checkbox_text="Show Dimension Lines",
+    )
+
+
+@app.route("/area_of_a_circle_create", methods=["POST"])
+def area_of_a_circle_create():
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
+    #
+    show_dimension_lines_bool = request.form.get("checkbox1") == "on"
+    title_text = request.form.get("title_text", "")
+    file_type = request.form.get("file_type", "pdf")
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
+    file = areacirc.create_booklet_area_of_a_circle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
+    return send_file(file, as_attachment=True, mimetype=mimetype)
+
+##########################################################################
 # continue from here
 
 
+@app.route("/circumference_of_a_circle")
 @app.route("/dot_plots")
 @app.route("/parallel_dot_plots")
 @app.route("/parallel_overlay_dot_plots")
