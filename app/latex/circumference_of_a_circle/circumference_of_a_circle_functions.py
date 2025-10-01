@@ -44,7 +44,7 @@ def get_circumference_of_a_circle_dict(radius=None, rotation=None, show_dimensio
     kv["rotation"] = f"{rotation}"
 
     kv["calc_radius_value"] = f"{calc_radius_value}"
-    kv["calccircumference_value"] = f"{calc_circumference_value}"
+    kv["calc_circumference_value"] = f"{calc_circumference_value}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"
