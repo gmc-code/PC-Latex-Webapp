@@ -24,8 +24,10 @@ def get_rotations_shuffled():
     random.shuffle(angles)
     return angles
 
+
 def get_random_units():
-    return random.choice("mm", "cm", "m", "km")
+    return random.choice(["mm", "cm", "m", "km"])
+
 
 def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines_bool=True, allow_rotation_bool=True, units="cm"):
     if side_int is None:
@@ -33,7 +35,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
     if rotation is None:
         rotation = get_rotations_shuffled()[0]
     if allow_rotation_bool is False:
-        #remove rotation by setting to 0
+        # remove rotation by setting to 0
         rotation = 0
     if units == "Random":
         units = get_random_units()
