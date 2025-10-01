@@ -44,7 +44,7 @@
         % draw=none; <->, gray
         \draw[<<draw_style>>]
             ($(<<vB>>) + (0.50cm,0)$) -- ($(<<vC>>) + (0.50cm,0)$)
-            node[black, midway, fill=white, xshift=2mm, inner sep=2pt] {<<calc_sidelength>>\,cm};
+            node[black, midway, fill=white, xshift=2mm, inner sep=2pt] {<<calc_sidelength>><<units>>};
 
     \end{scope}
 \end{tikzpicture}
@@ -53,7 +53,7 @@
 \begin{minipage}{.4\textwidth}
   \begin{align*}
   \text{Area} &= l^2 \\
-  \text{Area} &= <<calcside_value>> \,\text{cm} \times <<calcside_value>> \,\text{cm} \\
-  \text{Area} &= <<calcarea_value>> \,\text{cm}^2
+  \text{Area} &= <<calcside_value>> \,\text{<<units>>} \times <<calcside_value>> \,\text{<<units>>} \\
+  \text{Area} &= <<calcarea_value>> \,\text{<<units>>}^2
   \end{align*}
 \end{minipage}

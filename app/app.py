@@ -68,6 +68,8 @@ isotops = {"Random": 3, "unknown unique angle": 1, "unknown paired angle": 2}
 maops = {"Random": 4, "Acute": 1, "Obtuse": 2, "Reflex": 3}
 # area of a triangle
 atops = {"Random": 4, "Right": 1, "Acute": 2, "Obtuse": 3}
+# units for measurements
+measops = {"Random": 5, "mm": 1, "cm": 2, "m": 3, "km": 4}
 
 
 # gridpapers
@@ -1231,16 +1233,19 @@ def coordinates_create():
 @app.route("/area_of_a_square")
 def area_of_a_square():
     return render_template(
-        "genform_tqcbf.html",
+        "genform_tq2cbof.html",
         title="Area of a Square",
         link="/area_of_a_square_create",
         num_per_page="4",
         min_questions="1",
         max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
         img_filename="area_of_a_square.png",
         pdf_filename="area_of_a_square.pdf",
         title_text="Area of a Square",
-        checkbox_text="Show Dimension Lines",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Allow rotation",
     )
 
 
@@ -1250,10 +1255,12 @@ def area_of_a_square_create():
     numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
+    allow_rotation_bool = request.form.get("checkbox2") == "on"
+    option = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
+    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=option)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1301,6 +1308,7 @@ def area_of_a_triangle():
     return render_template(
         "genform_tqtcbf.html",
         title="Area of a Triangle",
+        type_label="Triangle Type",
         ops=atops.keys(),
         link="/area_of_a_triangle_create",
         num_per_page="4",

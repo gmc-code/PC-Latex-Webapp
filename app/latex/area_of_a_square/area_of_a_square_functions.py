@@ -24,12 +24,19 @@ def get_rotations_shuffled():
     random.shuffle(angles)
     return angles
 
+def get_random_units():
+    return random.choice("mm", "cm", "m", "km")
 
-def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines_bool=True):
+def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines_bool=True, allow_rotation_bool=True, units="cm"):
     if side_int is None:
         side_int = get_ints_shuffled_one_dig_first()[0]
     if rotation is None:
         rotation = get_rotations_shuffled()[0]
+    if allow_rotation_bool is False:
+        #remove rotation by setting to 0
+        rotation = 0
+    if units == "Random":
+        units = get_random_units()
 
     calc_sidelength = side_int
     sidelength = round(random.uniform(0, 1.5) + 1.5, 3)
@@ -52,6 +59,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
     kv["calc_sidelength"] = f"{calc_sidelength}"
     kv["sidelength"] = f"{sidelength}"
     kv["rotation"] = f"{rotation}"
+    kv["units"] = f"{units}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
