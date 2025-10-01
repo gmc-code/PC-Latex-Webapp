@@ -25,7 +25,7 @@ def get_rotations_shuffled():
     return angles
 
 
-def get_area_of_a_circle_dict(radius=None, rotation=None,show_dimension_lines_bool=True):
+def get_area_of_a_circle_dict(radius=None, rotation=None, show_dimension_lines_bool=True):
     if radius is None:
         radius = random_float_1dp()
     if rotation is None:
@@ -45,5 +45,10 @@ def get_area_of_a_circle_dict(radius=None, rotation=None,show_dimension_lines_bo
 
     kv["calc_radius_value"] = f"{calc_radius_value}"
     kv["calcarea_value"] = f"{calcarea_value}"
+
+    if show_dimension_lines_bool is True:
+        kv["draw_style"] = "<->, gray"
+    else:
+        kv["draw_style"] = "draw=none"
 
     return kv

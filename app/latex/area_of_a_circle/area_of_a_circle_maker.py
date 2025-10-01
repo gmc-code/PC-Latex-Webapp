@@ -108,13 +108,13 @@ def create_booklet_area_of_a_circle(numq=20, title_text="Area of a circle", file
     tex_keys_q = ['calc_radius', 'draw_radius', 'rotation']
 
     # Generate shuffled lists of parameters
-    side_ints_list = get_random_float_1dp_list()
+    radius_list = get_random_float_1dp_list()
     rotations_list = get_rotations_shuffled()
 
     def make_diagram_wrapper(tex_diagram_template_txt, idx):
-        side_int = side_ints_list[idx - 1]
+        radius = radius_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_circle_dict(side_int, rotation, show_dimension_lines_bool))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_circle_dict(radius, rotation, show_dimension_lines_bool))
 
     return create_booklet(
             numq,
