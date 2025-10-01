@@ -105,7 +105,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 def create_booklet_area_of_a_circle(numq=20, title_text="Area of a circle", file_type="pdf", show_dimension_lines_bool=True):
 
     # calcside_value, calcarea_value
-    tex_keys_q = ['draw_style', 'calc_sidelength', 'sidelength','rotation', 'vA','vB', 'vC', 'vD']
+    tex_keys_q = ['calc_radius', 'draw_radius', 'rotation']
 
     # Generate shuffled lists of parameters
     side_ints_list = get_random_float_1dp_list()
@@ -123,7 +123,7 @@ def create_booklet_area_of_a_circle(numq=20, title_text="Area of a circle", file
             "area_of_a_circle_booklet_template.tex",
             "area_of_a_circle_booklet_ans_template.tex",
             "area_of_a_circle_booklet_diagram_template.tex",
-            "areasq",
+            "areacirc",
             file_type,
         )
 
