@@ -1394,6 +1394,7 @@ def area_of_a_circle_create():
     file = areacirc.create_booklet_area_of_a_circle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
+
 ##########################################################################
 # continue from here
 
