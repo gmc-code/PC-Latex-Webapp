@@ -33,7 +33,7 @@ def get_circumference_of_a_circle_dict(radius=None, rotation=None, show_dimensio
 
     draw_radius = round(random.uniform(0, 2.0) + 1.3, 3)
     calc_radius_value = radius
-    calc_circumference_value = round(math.pi * radius ** 2,3)
+    calc_circumference_value = round(2 * math.pi * radius,3)
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
