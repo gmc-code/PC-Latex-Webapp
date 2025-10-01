@@ -31,7 +31,7 @@ def get_circumference_of_a_circle_dict(radius=None, rotation=None, show_dimensio
     if rotation is None:
         rotation = get_rotations_shuffled()[0]
 
-    draw_radius = round(random.uniform(0, 1.0) + 1.3, 3)
+    draw_radius = round(random.uniform(0, 2.0) + 1.3, 3)
     calc_radius_value = radius
     calc_circumference_value = round(math.pi * radius ** 2,3)
 
