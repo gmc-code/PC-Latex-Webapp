@@ -1256,11 +1256,11 @@ def area_of_a_square_create():
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     allow_rotation_bool = request.form.get("checkbox2") == "on"
-    option = request.form.get("option")
+    units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=option)
+    file = areasq.create_booklet_area_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1272,7 +1272,7 @@ def area_of_a_square_create():
 @app.route("/area_of_a_rectangle")
 def area_of_a_rectangle():
     return render_template(
-        "genform_tqcbf.html",
+        "genform_tq2cbof.html",
         title="Area of a Rectangle",
         link="/area_of_a_rectangle_create",
         num_per_page="4",
@@ -1292,11 +1292,11 @@ def area_of_a_rectangle_create():
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     allow_rotation_bool = request.form.get("checkbox2") == "on"
-    option = request.form.get("option")
+    units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=option)
+    file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1308,10 +1308,12 @@ def area_of_a_rectangle_create():
 @app.route("/area_of_a_triangle")
 def area_of_a_triangle():
     return render_template(
-        "genform_tqtcbf.html",
+        "genform_tq2o2cbf.html",
         title="Area of a Triangle",
-        type_label="Triangle Type",
-        ops=atops.keys(),
+        option_label1="Triangle Type",
+        ops1=atops.keys(),
+        option_label2="Units",
+        ops2=measops.keys(),
         link="/area_of_a_triangle_create",
         num_per_page="4",
         min_questions="1",
@@ -1330,12 +1332,12 @@ def area_of_a_triangle_create():
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     allow_rotation_bool = request.form.get("checkbox2") == "on"
-    option = request.form.get("option")
+    units = request.form.get("option")
     triangle_type_num = atops[request.form.get("type")]
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = areatri.create_booklet_area_of_a_triangle(numq, triangle_type_num, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=option)
+    file = areatri.create_booklet_area_of_a_triangle(numq, triangle_type_num, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1348,7 +1350,7 @@ def area_of_a_triangle_create():
 @app.route("/area_of_a_parallelogram")
 def area_of_a_parallelogram():
     return render_template(
-        "genform_tqcbf.html",
+        "genform_tq2cbof.html",
         title="Area of a Parallelogram",
         link="/area_of_a_parallelogram_create",
         num_per_page="4",
@@ -1368,11 +1370,11 @@ def area_of_a_parallelogram_create():
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     allow_rotation_bool = request.form.get("checkbox2") == "on"
-    option = request.form.get("option")
+    units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = areapar.create_booklet_area_of_a_parallelogram(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=option)
+    file = areapar.create_booklet_area_of_a_parallelogram(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1385,7 +1387,7 @@ def area_of_a_parallelogram_create():
 @app.route("/area_of_a_circle")
 def area_of_a_circle():
     return render_template(
-        "genform_tqcbf.html",
+        "genform_tq2cbof.html",
         title="Area of a Circle",
         link="/area_of_a_circle_create",
         num_per_page="4",
@@ -1405,11 +1407,11 @@ def area_of_a_circle_create():
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     allow_rotation_bool = request.form.get("checkbox2") == "on"
-    option = request.form.get("option")
+    units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = areacirc.create_booklet_area_of_a_circle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=option)
+    file = areacirc.create_booklet_area_of_a_circle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1422,7 +1424,7 @@ def area_of_a_circle_create():
 @app.route("/circumference_of_a_circle")
 def circumference_of_a_circle():
     return render_template(
-        "genform_tqcbf.html",
+        "genform_tq2cbof.html",
         title="Circumference of a Circle",
         link="/circumference_of_a_circle_create",
         num_per_page="4",
@@ -1442,11 +1444,11 @@ def circumference_of_a_circle_create():
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     allow_rotation_bool = request.form.get("checkbox2") == "on"
-    option = request.form.get("option")
+    units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = circcirc.create_booklet_circumference_of_a_circle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=option)
+    file = circcirc.create_booklet_circumference_of_a_circle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 

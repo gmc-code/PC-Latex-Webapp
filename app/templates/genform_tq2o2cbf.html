@@ -29,25 +29,40 @@
                     </div>
                 </div>
 
-                <!-- Row for type -->
+                <!-- Row for 2 options -->
                 <div class="w3-row">
+
                     <div class="w3-half w3-padding">
-                        <label>{{ type_label }}</label>
-                        <select class="w3-select w3-border" name="type" required>
-                            {% for x in ops %}
+                        <label>{{ option_label1 }}</label>
+                        <select class="w3-select w3-border" name="option1" required>
+                            {% for x in ops1 %}
                             <option value="{{x}}">{{x}}</option>
                             {% endfor %}
                         </select>
                     </div>
+                    <div class="w3-half w3-padding">
+                        <label>{{ option_label2 }}</label>
+                        <select class="w3-select w3-border" name="option2" required>
+                            {% for x in ops2 %}
+                            <option value="{{x}}">{{x}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
                 </div>
 
-                <!-- Row for checkbox label text in app checkbox_text-->
+                <!-- Row for 2 checkboxes -->
                 <div class="w3-row">
                     <div class="w3-half w3-padding">
                         <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check"> -->
                         <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" {% if checkbox1_checked %}checked{% endif %}> -->
                         <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" checked>
-                        <label for="checkbox1">{{ checkbox_text }}</label>
+                        <label for="checkbox1">{{ checkbox_text1 }}</label>
+                    </div>
+
+                    <div class="w3-half w3-padding">
+                        <input type="checkbox" id="checkbox2" name="checkbox2" class="w3-check" checked>
+                        <label for="checkbox2">{{ checkbox_text2 }}</label>
                     </div>
                 </div>
 
