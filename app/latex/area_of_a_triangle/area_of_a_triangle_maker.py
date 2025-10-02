@@ -130,8 +130,8 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 
 def get_keys(num):
-    tex_keys_q_right = ["draw_style", "calc_sidelength1", "calc_sidelength2",
-                        "sidelength1", "sidelength2", 'rotation', 'units', "vA", "vB", "vC"]
+    tex_keys_q_right = ["draw_style", "calc_base", "calc_height",
+                        "base", "height", 'rotation', 'units', "vA", "vB", "vC"]
     tex_keys_q_acute = ["draw_style", "calc_base", "calc_height",
                         "leftoffset", "base", "height", 'rotation', 'units', "vA", "vB", "vC", "vD"]
     tex_keys_q_obtuse = ["draw_style", "calc_base", "calc_height",
