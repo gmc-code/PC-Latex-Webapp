@@ -102,7 +102,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 ##############################################################################
 
 
-def create_booklet_area_of_a_circle(numq=20, title_text="Area of a circle", file_type="pdf", show_dimension_lines_bool=True):
+def create_booklet_area_of_a_circle(numq=20, title_text="Area of a circle", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
 
     # calcside_value, calcarea_value
     tex_keys_q = ['calc_radius', 'draw_radius', 'rotation']
@@ -114,7 +114,7 @@ def create_booklet_area_of_a_circle(numq=20, title_text="Area of a circle", file
     def make_diagram_wrapper(tex_diagram_template_txt, idx):
         radius = radius_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_circle_dict(radius, rotation, show_dimension_lines_bool))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_circle_dict(radius, rotation, show_dimension_lines_bool, allow_rotation_bool, units))
 
     return create_booklet(
             numq,

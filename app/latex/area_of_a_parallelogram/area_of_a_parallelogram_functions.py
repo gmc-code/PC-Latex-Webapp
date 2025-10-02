@@ -35,12 +35,22 @@ def get_rotations_shuffled():
 
 
 
-def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimension_lines_bool=True):
+def get_random_units():
+    return random.choice(["mm", "cm", "m", "km"])
+
+
+def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
     if rotation is None:
         rotation = get_rotations_shuffled()[0]
+    if allow_rotation_bool is False:
+        # remove rotation by setting to 0
+        rotation = 0
+    if units == "Random":
+        units = get_random_units()
+
 
     calc_base = side_pair[1]  # longer
     calc_height = side_pair[0]  # shorter
@@ -80,6 +90,7 @@ def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimensi
     kv["height"] = f"{height}"
     kv["rightoffset"] = f"{rightoffset}"
     kv["rotation"] = f"{rotation}"
+    kv["units"] = f"{units}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"

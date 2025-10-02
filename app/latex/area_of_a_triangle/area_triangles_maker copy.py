@@ -125,24 +125,16 @@ def get_kv(num,side_pair, rotation):
     return get_area_of_a_triangle_dict(num,side_pair, rotation)
 
 
-def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="pdf", show_dimension_lines_bool=True):
+def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
     # from webpage app
 
 
     # Generate shuffled lists of parameters
     side_pairs_list = get_side_pairs()
     rotations_list = get_rotations_shuffled()
-
-    if show_dimension_lines_bool:
-        # add in dl ones after testing
-        diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
-            "area_of_a_triangle_acute_booklet_diagram_template.tex",
-            "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
-    else:
-        diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
-            "area_of_a_triangle_acute_booklet_diagram_template.tex",
-            "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
-
+    diagram_templates = ["area_of_a_triangle_right_booklet_diagram_template.tex",
+        "area_of_a_triangle_acute_booklet_diagram_template.tex",
+        "area_of_a_triangle_obtuse_booklet_diagram_template.tex",]
     diagram_templates_dict = {i + 1: name for i, name in enumerate(diagram_templates)}
 
 

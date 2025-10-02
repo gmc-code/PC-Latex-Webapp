@@ -102,7 +102,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 ##############################################################################
 
 
-def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parallelogram", file_type="pdf", show_dimension_lines_bool=True):
+def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parallelogram", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
 
     # "calc_base", "calc_height", calcarea_value
     tex_keys_q = ['draw_style', "calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD", "vE"]
@@ -116,7 +116,7 @@ def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parall
         # within which generate_diagram_text uses the tex_diagram_template_txt parameter and gets the idx parameter from the repeat loop
         side_pair = side_pairs_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_parallelogram_dict(side_pair, rotation, show_dimension_lines_bool))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_parallelogram_dict(side_pair, rotation, show_dimension_lines_bool, allow_rotation_bool, units))
 
     return create_booklet(
         numq,
