@@ -153,6 +153,7 @@ def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None, show_dimens
     kv["height"] = f"{height}"
     kv["leftoffset"] = f"{leftoffset}"
     kv["rotation"] = f"{rotation}"
+    kv["units"] = f"{units}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
