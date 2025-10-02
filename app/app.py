@@ -1496,7 +1496,7 @@ def coming_soon():
 @app.after_request
 def cleanup_after_request(response):
     """Cleanup any files not in current use; after any route call"""
-    # clean_output()
+    clean_output()
     return response
 
 
@@ -1506,7 +1506,7 @@ def add_cleanup_after_request():
 
     @after_this_request
     def after_request(response):
-        # clean_output()
+        clean_output()
         return response
 
     return after_request
@@ -1521,8 +1521,8 @@ def get_output_path():
 def remove_output_files(directory):
     """not use here yet"""
     # List of file extensions to remove
-    # file_extensions = ["*.tex", "*.pdf", "*.aux", "*fdb_latexmk", "*.fls", "*.log", "*.zip"]
-    file_extensions = ["*.aux", "*fdb_latexmk", "*.fls"]
+    file_extensions = ["*.tex", "*.pdf", "*.aux", "*fdb_latexmk", "*.fls", "*.log", "*.zip"]
+    # file_extensions = ["*.aux", "*fdb_latexmk", "*.fls"]
     # standard_file_extensions = ["*.tex", "*.pdf"]
     # Iterate over each extension and remove matching files
     for ext in file_extensions:
