@@ -53,17 +53,19 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None, show_dimens
         units = get_random_units()
 
 
-    calc_sidelength1 = side_pair[1]  # longer
-    calc_sidelength2 = side_pair[0]  # shorter
-    sidelength2 = round(random.uniform(0, 1.0) + 1.5, 3)
-    sidelength1 = round(sidelength2 * (calc_sidelength1 / calc_sidelength2), 3)
+    calc_base = side_pair[1]  # longer
+    calc_height = side_pair[0]  # shorter
+    height = round(random.uniform(0, 1.0) + 1.5, 3)
+    base = round(height * (calc_base / calc_height), 3)
 
-    if sidelength1 > 7:
-        ratio = 7 / sidelength1
-        sidelength1 = round(sidelength1 * ratio, 3)
-        sidelength2 = round(sidelength2 * ratio, 3)
+    if base > 7:
+        ratio = 7 / base
+        base = round(base * ratio, 3)
+        height = round(height * ratio, 3)
 
-    calc_area_value = 0.5 * calc_sidelength1 * calc_sidelength2
+    calc_area_value = 0.5 * calc_base * calc_height
+    calc_formula_part1 = "\frac{1}{2}"
+    calc_formula_part2 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -80,20 +82,22 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None, show_dimens
 
     kv = dict()
 
-    kv["calc_sidelength1"] = f"{calc_sidelength1}"
-    kv["calc_sidelength2"] = f"{calc_sidelength2}"
-    kv["sidelength1"] = f"{sidelength1}"
-    kv["sidelength2"] = f"{sidelength2}"
+    kv["calc_base"] = f"{calc_base}"
+    kv["calc_height"] = f"{calc_height}"
+    kv["base"] = f"{base}"
+    kv["height"] = f"{height}"
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
+    kv["calc_formula_part1"] = f"{calc_formula_part1}"
+    kv["calc_formula_part2"] = f"{calc_formula_part2}
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
     kv["vC"] = f"{vC}"
 
-    kv["calcside_value1"] = f"{calc_sidelength1}"
-    kv["calcside_value2"] = f"{calc_sidelength2}"
+    kv["calcside_value1"] = f"{calc_base}"
+    kv["calcside_value2"] = f"{calc_height}"
     kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
@@ -130,6 +134,8 @@ def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None, show_dimens
 
     leftoffset = round(random.uniform(0, base - 1) + 0.5, 3)
     calc_area_value = 0.5 * calc_base * calc_height
+    calc_formula_part1 = "\frac{1}{2}"
+    calc_formula_part2 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -156,6 +162,8 @@ def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None, show_dimens
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
+    kv["calc_formula_part1"] = f"{calc_formula_part1}"
+    kv["calc_formula_part2"] = f"{calc_formula_part2}
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
