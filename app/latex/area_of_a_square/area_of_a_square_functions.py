@@ -62,6 +62,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
     kv["sidelength"] = f"{sidelength}"
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
+    kv["calc_units"] = f"{units}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"

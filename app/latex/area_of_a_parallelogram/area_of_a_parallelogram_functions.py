@@ -91,6 +91,7 @@ def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimensi
     kv["rightoffset"] = f"{rightoffset}"
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
+    kv["calc_units"] = f"{units}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"

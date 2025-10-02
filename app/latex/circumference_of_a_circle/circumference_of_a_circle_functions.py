@@ -54,6 +54,7 @@ def get_circumference_of_a_circle_dict(radius=None, rotation=None, show_dimensio
     kv["draw_radius"] = f"{draw_radius}"
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
+    kv["calc_units"] = f"{units}"
 
     kv["calc_radius_value"] = f"{calc_radius_value}"
     kv["calc_circumference_value"] = f"{calc_circumference_value}"

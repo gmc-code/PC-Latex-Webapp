@@ -72,6 +72,7 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimension_l
     kv["sidelength2"] = f"{sidelength2}"
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
+    kv["calc_units"] = f"{units}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
