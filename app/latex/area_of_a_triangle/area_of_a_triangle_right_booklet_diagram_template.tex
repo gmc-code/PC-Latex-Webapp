@@ -23,13 +23,13 @@
         % draw=none; <->, gray
         \draw[<<draw_style>>]
             ($(<<vA>>) + (0,-0.6cm)$) -- ($(<<vB>>) + (0,-0.6cm)$)
-            node[black, midway, fill=white, inner sep=2.5pt] {<<calc_sidelength1>><<units>>};
+            node[black, midway, fill=white, inner sep=2.5pt] {<<calc_base>><<units>>};
 
         % Vertical side (B-C), shifted right
         % draw=none; <->, gray
         \draw[<<draw_style>>]
             ($(<<vB>>) + (0.6cm,0)$) -- ($(<<vC>>) + (0.6cm,0)$)
-            node[black, midway, fill=white, xshift=0mm, inner sep=2.5pt] {<<calc_sidelength2>><<units>>};
+            node[black, midway, fill=white, xshift=0mm, inner sep=2.5pt] {<<calc_height>><<units>>};
 
     \end{scope}
 \end{tikzpicture}
@@ -38,7 +38,7 @@
 \begin{minipage}{.4\textwidth}
   \begin{align*}
     \text{Area} &= \frac{1}{2} \text{bh} \\
-    \text{Area} &= <<calc_formula_part1>> \times <<calcside_value1>> \text{<<calc_units>>} \times <<calcside_value2>> \text{<<calc_units>>} \\
+    \text{Area} &= <<calc_formula_part1>> \times <<calc_base_value>> \text{<<calc_units>>} \times <<calc_height_value>> \text{<<calc_units>>} \\
     \text{Area} &= <<calc_area_value>> \text{<<calc_units>>}<<calc_formula_part2>>
   \end{align*}
 \end{minipage}

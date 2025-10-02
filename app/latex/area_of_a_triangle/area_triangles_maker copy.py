@@ -110,9 +110,9 @@ def create_booklet(numq, triangle_type_num, title_text, process_func, tex_templa
 
 
 def get_keys(num):
-    tex_keys_q_right = ["calc_sidelength1", "calc_sidelength2", "sidelength1", "sidelength2", "rotation", "vA", "vB", "vC"]
-    tex_keys_q_acute = ["calc_base", "calc_height", "leftoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD"]
-    tex_keys_q_obtuse = ["calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD"]
+    tex_keys_q_right = ["calc_base", "calc_height", "base", "height", "rotation", "units", "vA", "vB", "vC"]
+    tex_keys_q_acute = ["calc_base", "calc_height", "leftoffset", "base", "height", "rotation", "units", "vA", "vB", "vC", "vD"]
+    tex_keys_q_obtuse = ["calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "units", "vA", "vB", "vC", "vD"]
     match num:
         case 1:
             return tex_keys_q_right

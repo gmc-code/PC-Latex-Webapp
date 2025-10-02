@@ -96,8 +96,8 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None, show_dimens
     kv["vB"] = f"{vB}"
     kv["vC"] = f"{vC}"
 
-    kv["calcside_value1"] = f"{calc_base}"
-    kv["calcside_value2"] = f"{calc_height}"
+    kv["calc_base_value"] = f"{calc_base}"
+    kv["calc_height_value"] = f"{calc_height}"
     kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
