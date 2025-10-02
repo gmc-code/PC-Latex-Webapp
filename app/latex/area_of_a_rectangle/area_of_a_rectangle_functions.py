@@ -48,7 +48,7 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimension_l
         sidelength1 = round(sidelength1 * ratio, 3)
         sidelength2 = round(sidelength2 * ratio, 3)
 
-    calcarea_value = calc_sidelength1 * calc_sidelength2
+    calc_area_value = calc_sidelength1 * calc_sidelength2
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -81,7 +81,7 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimension_l
 
     kv["calcside_value1"] = f"{calc_sidelength1}"
     kv["calcside_value2"] = f"{calc_sidelength2}"
-    kv["calcarea_value"] = f"{calcarea_value}"
+    kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"

@@ -63,7 +63,7 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None, show_dimens
         sidelength1 = round(sidelength1 * ratio, 3)
         sidelength2 = round(sidelength2 * ratio, 3)
 
-    calcarea_value = 0.5 * calc_sidelength1 * calc_sidelength2
+    calc_area_value = 0.5 * calc_sidelength1 * calc_sidelength2
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -94,7 +94,7 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None, show_dimens
 
     kv["calcside_value1"] = f"{calc_sidelength1}"
     kv["calcside_value2"] = f"{calc_sidelength2}"
-    kv["calcarea_value"] = f"{calcarea_value}"
+    kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"
@@ -129,7 +129,7 @@ def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None, show_dimens
         height = round(height * ratio, 3)
 
     leftoffset = round(random.uniform(0, base - 1) + 0.5, 3)
-    calcarea_value = 0.5 * calc_base * calc_height
+    calc_area_value = 0.5 * calc_base * calc_height
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -164,7 +164,7 @@ def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None, show_dimens
 
     kv["calc_base_value"] = f"{calc_base}"
     kv["calc_height_value"] = f"{calc_height}"
-    kv["calcarea_value"] = f"{calcarea_value}"
+    kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"
@@ -199,7 +199,8 @@ def get_area_of_a_triangle_obtuse_dict(side_pair=None, rotation=None, show_dimen
         rightoffset = round(rightoffset * ratio, 3)
         height = round(height * ratio, 3)
 
-    calcarea_value = 0.5 * calc_base * calc_height
+    calc_area_value = 0.5 * calc_base * calc_height
+    calc_formula_part1 = "\frac{1}{2}"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -226,6 +227,7 @@ def get_area_of_a_triangle_obtuse_dict(side_pair=None, rotation=None, show_dimen
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
+    kv["calc_formula_part1"] = f"{calc_formula_part1}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
@@ -234,7 +236,7 @@ def get_area_of_a_triangle_obtuse_dict(side_pair=None, rotation=None, show_dimen
 
     kv["calc_base_value"] = f"{calc_base}"
     kv["calc_height_value"] = f"{calc_height}"
-    kv["calcarea_value"] = f"{calcarea_value}"
+    kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"

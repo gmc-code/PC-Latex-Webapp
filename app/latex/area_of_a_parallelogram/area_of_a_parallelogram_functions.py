@@ -64,7 +64,7 @@ def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimensi
         rightoffset = round(rightoffset * ratio, 3)
         height = round(height * ratio, 3)
 
-    calcarea_value = calc_base * calc_height
+    calc_area_value = calc_base * calc_height
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -101,7 +101,7 @@ def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimensi
 
     kv["calc_base_value"] = f"{calc_base}"
     kv["calc_height_value"] = f"{calc_height}"
-    kv["calcarea_value"] = f"{calcarea_value}"
+    kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"

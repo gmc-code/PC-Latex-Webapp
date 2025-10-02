@@ -42,7 +42,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
 
     calc_sidelength = side_int
     sidelength = round(random.uniform(0, 1.5) + 1.5, 3)
-    calcarea_value = calc_sidelength * calc_sidelength
+    calc_area_value = calc_sidelength * calc_sidelength
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -70,7 +70,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
     kv["vD"] = f"{vD}"
 
     kv["calcside_value"] = f"{calc_sidelength}"
-    kv["calcarea_value"] = f"{calcarea_value}"
+    kv["calc_area_value"] = f"{calc_area_value}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"

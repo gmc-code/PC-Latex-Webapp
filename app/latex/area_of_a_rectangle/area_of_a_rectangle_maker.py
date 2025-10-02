@@ -104,7 +104,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 def create_booklet_area_of_a_rectangle(numq=20, title_text="Area of a Rectangle", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
 
-    # calcside_value1, calcside_value2, calcarea_value
+    # calcside_value1, calcside_value2, calc_area_value
     tex_keys_q = ['draw_style', 'calc_sidelength1', 'calc_sidelength2', 'sidelength1', 'sidelength2', 'rotation', 'units',
                 'vA','vB', 'vC', 'vD'
                 ]

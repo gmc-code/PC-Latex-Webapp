@@ -45,6 +45,8 @@ def get_circumference_of_a_circle_dict(radius=None, rotation=None, show_dimensio
     draw_radius = round(random.uniform(0, 1.8) + 1.3, 3)
     calc_radius_value = radius
     calc_circumference_value = round(2 * math.pi * radius,3)
+    calc_formula_part1 = 2
+    calc_formula_part2 = "\pi"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -58,6 +60,8 @@ def get_circumference_of_a_circle_dict(radius=None, rotation=None, show_dimensio
 
     kv["calc_radius_value"] = f"{calc_radius_value}"
     kv["calc_circumference_value"] = f"{calc_circumference_value}"
+    kv["calc_formula_part1"] = f"{calc_formula_part1}"
+    kv["calc_formula_part2"] = f"{calc_formula_part2}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"

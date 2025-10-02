@@ -104,7 +104,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
 
-    # calcside_value, calcarea_value
+    # calcside_value, calc_area_value
     tex_keys_q = ['draw_style', 'calc_sidelength', 'sidelength', 'rotation', 'units', 'vA', 'vB', 'vC', 'vD']
 
     # Generate shuffled lists of parameters
