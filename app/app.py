@@ -1278,6 +1278,8 @@ def area_of_a_rectangle():
         num_per_page="4",
         min_questions="1",
         max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
         img_filename="area_of_a_rectangle.png",
         pdf_filename="area_of_a_rectangle.pdf",
         title_text="Area of a Rectangle",
@@ -1334,8 +1336,8 @@ def area_of_a_triangle_create():
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
     allow_rotation_bool = request.form.get("checkbox2") == "on"
-    units = request.form.get("option")
-    triangle_type_num = atops[request.form.get("type")]
+    units = request.form.get("option2")
+    triangle_type_num = atops[request.form.get("option1")]
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
@@ -1358,6 +1360,8 @@ def area_of_a_parallelogram():
         num_per_page="4",
         min_questions="1",
         max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
         img_filename="area_of_a_parallelogram.png",
         pdf_filename="area_of_a_parallelogram.pdf",
         title_text="Area of a Parallelogram",
@@ -1396,6 +1400,8 @@ def area_of_a_circle():
         num_per_page="4",
         min_questions="1",
         max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
         img_filename="area_of_a_circle.png",
         pdf_filename="area_of_a_circle.pdf",
         title_text="Area of a Circle",
@@ -1434,6 +1440,8 @@ def circumference_of_a_circle():
         num_per_page="4",
         min_questions="1",
         max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
         img_filename="circumference_of_a_circle.png",
         pdf_filename="circumference_of_a_circle.pdf",
         title_text="Circumference of a Circle",
