@@ -1521,8 +1521,8 @@ def get_output_path():
 def remove_output_files(directory):
     """not use here yet"""
     # List of file extensions to remove
-    file_extensions = ["*.tex", "*.pdf", "*.aux", "*fdb_latexmk", "*.fls", "*.log", "*.zip"]
-
+    # file_extensions = ["*.tex", "*.pdf", "*.aux", "*fdb_latexmk", "*.fls", "*.log", "*.zip"]
+    file_extensions = ["*.aux", "*fdb_latexmk", "*.fls"]
     # standard_file_extensions = ["*.tex", "*.pdf"]
     # Iterate over each extension and remove matching files
     for ext in file_extensions:
