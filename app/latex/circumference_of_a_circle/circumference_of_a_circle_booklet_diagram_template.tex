@@ -11,7 +11,7 @@
         \draw[<->, gray, shorten <=2pt, shorten >=1.5pt]
           (A) -- (B)
           node[pos=0.35, sloped, above, fill=white, inner sep=2pt, xshift=0pt, yshift=3pt, transform shape]
-          {\textcolor{black}{$<<calc_radius>>\,\text{cm}$}};
+          {\textcolor{black}{$<<calc_radius>>\,\text{<<units>>}$}};
     \end{scope}
   \end{tikzpicture}
 \end{minipage}%
@@ -19,7 +19,7 @@
 \begin{minipage}{0.45\textwidth}
   \begin{align*}
   \text{Circumference} &= 2\pi r \\
-  \text{Circumference} &= 2 \times \pi \times <<calc_radius_value>>\,\text{cm} \\
-  \text{Circumference} &\approx <<calc_circumference_value>> \,\text{cm}
+  \text{Circumference} &= 2 \times \pi \times <<calc_radius_value>>\,\text{<<units>>} \\
+  \text{Circumference} &\approx <<calc_circumference_value>> \,\text{<<units>>}
   \end{align*}
 \end{minipage}

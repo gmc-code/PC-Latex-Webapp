@@ -29,7 +29,7 @@ import latex.area_of_a_square.area_of_a_square_maker as areasq
 import latex.area_of_a_rectangle.area_of_a_rectangle_maker as arearect
 import latex.area_of_a_triangle.area_of_a_triangle_maker as areatri
 import latex.area_of_a_parallelogram.area_of_a_parallelogram_maker as areapar
-import latex.area_of_a_circle.area_of_a_circle_maker as circcirc
+import latex.area_of_a_circle.area_of_a_circle_maker as areacirc
 
 import latex.circumference_of_a_circle.circumference_of_a_circle_maker as circcirc
 

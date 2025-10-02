@@ -12,7 +12,7 @@
         \draw[<->, gray, shorten <=2pt, shorten >=1.5pt]
           (A) -- (B)
           node[pos=0.35, sloped, above, fill=white, inner sep=2pt, xshift=0pt, yshift=3pt, transform shape]
-          {\textcolor{black}{$<<calc_radius>>\,\text{cm}$}};
+          {\textcolor{black}{$<<calc_radius>>\,\text{<<units>>}$}};
     \end{scope}
   \end{tikzpicture}
 \end{minipage}%
@@ -20,7 +20,7 @@
 \begin{minipage}{.4\textwidth}
   \begin{align*}
   \text{Area} &= \pi r^2 \\
-  \text{Area} &= \pi \times (<<calc_radius_value>>\,\text{cm})^2 \\
-  \text{Area} &\approx <<calcarea_value>> \,\text{cm}^2
+  \text{Area} &= \pi \times (<<calc_radius_value>>\,\text{<<units>>})^2 \\
+  \text{Area} &\approx <<calcarea_value>> \,\text{<<units>>}^2
   \end{align*}
 \end{minipage}
