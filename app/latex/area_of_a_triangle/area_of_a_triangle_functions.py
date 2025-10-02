@@ -90,7 +90,7 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None, show_dimens
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
     kv["calc_formula_part1"] = f"{calc_formula_part1}"
-    kv["calc_formula_part2"] = f"{calc_formula_part2}
+    kv["calc_formula_part2"] = f"{calc_formula_part2}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
