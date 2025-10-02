@@ -64,7 +64,7 @@ def get_area_of_a_triangle_right_dict(side_pair=None, rotation=None, show_dimens
         height = round(height * ratio, 3)
 
     calc_area_value = 0.5 * calc_base * calc_height
-    calc_formula_part1 = "\frac{1}{2}"
+    calc_formula_part1 = r"\frac{1}{2}"
     calc_formula_part2 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
@@ -134,7 +134,7 @@ def get_area_of_a_triangle_acute_dict(side_pair=None, rotation=None, show_dimens
 
     leftoffset = round(random.uniform(0, base - 1) + 0.5, 3)
     calc_area_value = 0.5 * calc_base * calc_height
-    calc_formula_part1 = "\frac{1}{2}"
+    calc_formula_part1 = r"\frac{1}{2}"
     calc_formula_part2 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
@@ -208,7 +208,7 @@ def get_area_of_a_triangle_obtuse_dict(side_pair=None, rotation=None, show_dimen
         height = round(height * ratio, 3)
 
     calc_area_value = 0.5 * calc_base * calc_height
-    calc_formula_part1 = "\frac{1}{2}"
+    calc_formula_part1 = r"\frac{1}{2}"
     calc_formula_part2 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
