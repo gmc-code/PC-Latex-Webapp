@@ -11,24 +11,39 @@ from .area_of_a_triangle_functions import get_area_of_a_triangle_dict, get_side_
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
     tex_diagram_template_txt_ans = tex_diagram_template_txt
-    tex_diagram_template_txt_q = tex_diagram_template_txt
     posttext = r"\vspace{1cm} \vfill"
-
-    def get_replacement(key, value):
-        if key in tex_keys_q:
-            return value
-        elif "calc_formula" in key:
-            return r"\dotuline{~~~}"
-        else:
-            return r"\dotuline{~~~~~~~}"
-
-
     for key, value in process_dict.items():
-        placeholder = f"<<{key}>>"
-        tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace(placeholder, value)
-        tex_diagram_template_txt_q = tex_diagram_template_txt_q.replace(placeholder, get_replacement(key, value))
+        tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace("<<" + key + ">>", value)
+    for key, value in process_dict.items():
+        if key in tex_keys_q:
+            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", value)
+        elif "calc_formula" in key:
+            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>","\\dotuline{~~~}")  # non breaking spaces
+        else:
+            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", "\\dotuline{~~~~~~~}")  # non breaking spaces for gaps
+    return tex_diagram_template_txt + posttext, tex_diagram_template_txt_ans + posttext
 
-    return tex_diagram_template_txt_q + posttext, tex_diagram_template_txt_ans + posttext
+
+# def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
+#     tex_diagram_template_txt_ans = tex_diagram_template_txt
+#     tex_diagram_template_txt_q = tex_diagram_template_txt
+#     posttext = r"\vspace{1cm} \vfill"
+
+#     def get_replacement(key, value):
+#         if key in tex_keys_q:
+#             return value
+#         elif "calc_formula" in key:
+#             return r"\dotuline{~~~}"
+#         else:
+#             return r"\dotuline{~~~~~~~}"
+
+
+#     for key, value in process_dict.items():
+#         placeholder = f"<<{key}>>"
+#         tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace(placeholder, value)
+#         tex_diagram_template_txt_q = tex_diagram_template_txt_q.replace(placeholder, get_replacement(key, value))
+
+#     return tex_diagram_template_txt_q + posttext, tex_diagram_template_txt_ans + posttext
 
 
 
