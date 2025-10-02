@@ -105,7 +105,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parallelogram", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
 
     # "calc_base", "calc_height", calcarea_value
-    tex_keys_q = ['draw_style', "calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "vA", "vB", "vC", "vD", "vE"]
+    tex_keys_q = ['draw_style', "calc_base", "calc_height", "rightoffset", "base", "height", 'rotation', 'units', "vA", "vB", "vC", "vD", "vE"]
 
     # Generate shuffled lists of parameters
     side_pairs_list = get_side_pairs()

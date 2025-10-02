@@ -105,7 +105,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 def create_booklet_circumference_of_a_circle(numq=20, title_text="circumference of a circle", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
 
     # calcside_value, calc_circumference_value
-    tex_keys_q = ['calc_radius', 'draw_radius', 'rotation']
+    tex_keys_q = ['calc_radius', 'draw_radius', 'rotation', 'units']
 
     # Generate shuffled lists of parameters
     radius_list = get_random_float_1dp_list()
