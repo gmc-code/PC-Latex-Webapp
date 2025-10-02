@@ -32,18 +32,18 @@ def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
 
 
 
-def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
-    tex_diagram_template_txt_ans = tex_diagram_template_txt
-    posttext = r"\vspace{1cm} \vfill"
+# def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
+#     tex_diagram_template_txt_ans = tex_diagram_template_txt
+#     posttext = r"\vspace{1cm} \vfill"
 
-    for key, value in process_dict.items():
-        tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace(
-            f"<<{key}>>", value)
-        replacement = value if key in tex_keys_q else r"\dotuline{~~~~~~~}"
-        tex_diagram_template_txt = tex_diagram_template_txt.replace(
-            f"<<{key}>>", replacement)
+#     for key, value in process_dict.items():
+#         tex_diagram_template_txt_ans = tex_diagram_template_txt_ans.replace(
+#             f"<<{key}>>", value)
+#         replacement = value if key in tex_keys_q else r"\dotuline{~~~~~~~}"
+#         tex_diagram_template_txt = tex_diagram_template_txt.replace(
+#             f"<<{key}>>", replacement)
 
-    return tex_diagram_template_txt + posttext, tex_diagram_template_txt_ans + posttext
+#     return tex_diagram_template_txt + posttext, tex_diagram_template_txt_ans + posttext
 
 
 def generate_diagram_text(numq, process_func):
