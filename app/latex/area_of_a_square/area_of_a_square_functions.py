@@ -43,6 +43,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
     calc_sidelength = side_int
     sidelength = round(random.uniform(0, 1.5) + 1.5, 3)
     calc_area_value = calc_sidelength * calc_sidelength
+    calc_formula_part1 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -63,6 +64,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
+    kv["calc_formula_part1"] = f"{calc_formula_part1}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"

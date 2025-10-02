@@ -43,10 +43,11 @@ def get_area_of_a_circle_dict(radius=None, rotation=None, show_dimension_lines_b
         units = get_random_units()
 
 
-    draw_radius = round(random.uniform(0, 1.8) + 1.3, 3)
+    draw_radius = round(random.uniform(0, 1.6) + 1.3, 3)
     calc_radius_value = radius
     calc_area_value = round(math.pi * radius ** 2,3)
     calc_formula_part1 = "\pi"
+    calc_formula_part2 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -61,6 +62,7 @@ def get_area_of_a_circle_dict(radius=None, rotation=None, show_dimension_lines_b
     kv["calc_radius_value"] = f"{calc_radius_value}"
     kv["calc_area_value"] = f"{calc_area_value}"
     kv["calc_formula_part1"] = f"{calc_formula_part1}"
+    kv["calc_formula_part2"] = f"{calc_formula_part2}"
 
     if show_dimension_lines_bool is True:
         kv["draw_style"] = "<->, gray"

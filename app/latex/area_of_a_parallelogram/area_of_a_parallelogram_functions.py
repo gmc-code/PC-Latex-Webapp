@@ -65,6 +65,7 @@ def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimensi
         height = round(height * ratio, 3)
 
     calc_area_value = calc_base * calc_height
+    calc_formula_part1 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -92,6 +93,7 @@ def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimensi
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
+    kv["calc_formula_part1"] = f"{calc_formula_part1}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"

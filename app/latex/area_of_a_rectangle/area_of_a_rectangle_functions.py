@@ -49,6 +49,7 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimension_l
         sidelength2 = round(sidelength2 * ratio, 3)
 
     calc_area_value = calc_sidelength1 * calc_sidelength2
+    calc_formula_part1 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -73,6 +74,7 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimension_l
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
+    kv["calc_formula_part1"] = f"{calc_formula_part1}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"

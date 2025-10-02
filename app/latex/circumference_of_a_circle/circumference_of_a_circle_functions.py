@@ -42,7 +42,7 @@ def get_circumference_of_a_circle_dict(radius=None, rotation=None, show_dimensio
         units = get_random_units()
 
 
-    draw_radius = round(random.uniform(0, 1.8) + 1.3, 3)
+    draw_radius = round(random.uniform(0, 1.6) + 1.3, 3)
     calc_radius_value = radius
     calc_circumference_value = round(2 * math.pi * radius,3)
     calc_formula_part1 = 2

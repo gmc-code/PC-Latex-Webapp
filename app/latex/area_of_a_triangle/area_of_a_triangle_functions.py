@@ -201,6 +201,7 @@ def get_area_of_a_triangle_obtuse_dict(side_pair=None, rotation=None, show_dimen
 
     calc_area_value = 0.5 * calc_base * calc_height
     calc_formula_part1 = "\frac{1}{2}"
+    calc_formula_part2 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
@@ -228,6 +229,7 @@ def get_area_of_a_triangle_obtuse_dict(side_pair=None, rotation=None, show_dimen
     kv["units"] = f"{units}"
     kv["calc_units"] = f"{units}"
     kv["calc_formula_part1"] = f"{calc_formula_part1}"
+    kv["calc_formula_part2"] = f"{calc_formula_part2}"
 
     kv["vA"] = f"{vA}"
     kv["vB"] = f"{vB}"
