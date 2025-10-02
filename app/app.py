@@ -1281,7 +1281,8 @@ def area_of_a_rectangle():
         img_filename="area_of_a_rectangle.png",
         pdf_filename="area_of_a_rectangle.pdf",
         title_text="Area of a Rectangle",
-        checkbox_text="Show Dimension Lines",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Allow rotation",
     )
 
 
@@ -1321,7 +1322,8 @@ def area_of_a_triangle():
         img_filename="area_of_a_triangle.png",
         pdf_filename="area_of_a_triangle.pdf",
         title_text="Area of a Triangle",
-        checkbox_text="Show Dimension Lines",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Allow rotation",
     )
 
 
@@ -1359,7 +1361,8 @@ def area_of_a_parallelogram():
         img_filename="area_of_a_parallelogram.png",
         pdf_filename="area_of_a_parallelogram.pdf",
         title_text="Area of a Parallelogram",
-        checkbox_text="Show Dimension Lines",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Allow rotation",
     )
 
 
@@ -1396,7 +1399,8 @@ def area_of_a_circle():
         img_filename="area_of_a_circle.png",
         pdf_filename="area_of_a_circle.pdf",
         title_text="Area of a Circle",
-        checkbox_text="Show Dimension Lines",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Allow rotation",
     )
 
 
@@ -1433,7 +1437,8 @@ def circumference_of_a_circle():
         img_filename="circumference_of_a_circle.png",
         pdf_filename="circumference_of_a_circle.pdf",
         title_text="Circumference of a Circle",
-        checkbox_text="Show Dimension Lines",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Allow rotation",
     )
 
 
