@@ -1496,7 +1496,7 @@ def coming_soon():
 @app.after_request
 def cleanup_after_request(response):
     """Cleanup any files not in current use; after any route call"""
-    clean_output()
+    # clean_output()
     return response
 
 
@@ -1506,7 +1506,7 @@ def add_cleanup_after_request():
 
     @after_this_request
     def after_request(response):
-        clean_output()
+        # clean_output()
         return response
 
     return after_request
