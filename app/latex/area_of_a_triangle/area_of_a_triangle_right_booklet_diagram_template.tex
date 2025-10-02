@@ -6,8 +6,8 @@
         % Draw
 
         \draw (0,0) coordinate (<<vA>>) --
-         ++(<<sidelength1>>,0) coordinate (<<vB>>) --
-         ++(90:<<sidelength2>>) coordinate (<<vC>>) -- cycle;
+         ++(<<base>>,0) coordinate (<<vB>>) --
+         ++(90:<<height>>) coordinate (<<vC>>) -- cycle;
 
         \pic [draw, -, angle radius=0.2cm] {right angle=<<vC>>--<<vB>>--<<vA>>};
 
