@@ -151,7 +151,7 @@ def get_kv(num, side_pair, rotation, show_dimension_lines_bool, show_vertices_bo
 
 
 def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text="Area of a Triangle", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
-    title_text = "Area of a Triangle"
+
     side_pairs_list = get_side_pairs()
     rotations_list = get_rotations_shuffled()
     diagram_templates = [
@@ -176,8 +176,7 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text="
             1, 3) if triangle_type_num == 4 else triangle_type_num
 
         tex_keys_q = get_keys(tri_num)
-        triangle_dict = get_kv(tri_num, side_pair, rotation,
-                               show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units)
+        triangle_dict = get_kv(tri_num, side_pair, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units)
         tex_diagram_template_txt = diagram_template_texts_dict[tri_num]
 
         return make_diagram(tex_diagram_template_txt, tex_keys_q, triangle_dict)
