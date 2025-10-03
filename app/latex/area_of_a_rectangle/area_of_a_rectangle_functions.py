@@ -91,7 +91,7 @@ def get_area_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimension_l
         kv["draw_style"] = "draw=none"
 
     if show_vertices_bool is True:
-        kv["show_vertices"] = r"\ifTrue "
+        kv["show_vertices"] = r"\ifTrue"
     else:
         kv["show_vertices"] = r"\ifFalse"
 

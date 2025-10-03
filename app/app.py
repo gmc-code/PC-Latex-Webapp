@@ -1274,7 +1274,7 @@ def area_of_a_square_create():
 @app.route("/area_of_a_rectangle")
 def area_of_a_rectangle():
     return render_template(
-        "genform_tq2cbof.html",
+        "genform_tq3cbof.html",
         title="Area of a Rectangle",
         link="/area_of_a_rectangle_create",
         num_per_page="4",
@@ -1315,7 +1315,7 @@ def area_of_a_rectangle_create():
 @app.route("/area_of_a_triangle")
 def area_of_a_triangle():
     return render_template(
-        "genform_tq2o2cbf.html",
+        "genform_tq3cb2of.html",
         title="Area of a Triangle",
         option_label1="Triangle Type",
         ops1=atops.keys(),
@@ -1360,7 +1360,7 @@ def area_of_a_triangle_create():
 @app.route("/area_of_a_parallelogram")
 def area_of_a_parallelogram():
     return render_template(
-        "genform_tq2cbof.html",
+        "genform_tq3cbof.html",
         title="Area of a Parallelogram",
         link="/area_of_a_parallelogram_create",
         num_per_page="4",

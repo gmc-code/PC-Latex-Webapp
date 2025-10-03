@@ -80,7 +80,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
         kv["draw_style"] = r"draw=none"
 
     if show_vertices_bool is True:
-        kv["show_vertices"] = r"\ifTrue "
+        kv["show_vertices"] = r"\ifTrue"
     else:
         kv["show_vertices"] = r"\ifFalse"
 

@@ -53,12 +53,18 @@
 
                  <!-- Row option -->
                 <div class="w3-row">
-                    <div class="w3-half w3-padding">
+                  <div class="w3-half w3-padding">
+                        <label>{{ option_label1 }}</label>
+                        <select class="w3-select w3-border" name="option1" required>
+                            {% for x in ops %}
+                            <option value="{{x}}">{{x}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <div class="w3-half w3-padding">
-                        <label>{{ option_label }}</label>
-                        <select class="w3-select w3-border" name="option" required>
+                        <label>{{ option_label2 }}</label>
+                        <select class="w3-select w3-border" name="option2" required>
                             {% for x in ops %}
                             <option value="{{x}}">{{x}}</option>
                             {% endfor %}
