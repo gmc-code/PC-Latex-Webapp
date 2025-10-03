@@ -39,7 +39,7 @@ def get_random_units():
     return random.choice(["mm", "cm", "m", "km"])
 
 
-def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
+def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
