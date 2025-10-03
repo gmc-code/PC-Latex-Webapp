@@ -29,7 +29,22 @@
                     </div>
                 </div>
 
-                <!-- Row for 2 options -->
+                <!-- Row for 2 checkboxes -->
+                <div class="w3-row">
+                    <div class="w3-half w3-padding">
+                        <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check"> -->
+                        <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" {% if checkbox1_checked %}checked{% endif %}> -->
+                        <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" checked>
+                        <label for="checkbox1">{{ checkbox_text1 }}</label>
+                    </div>
+
+                    <div class="w3-half w3-padding">
+                        <input type="checkbox" id="checkbox2" name="checkbox2" class="w3-check" checked>
+                        <label for="checkbox2">{{ checkbox_text2 }}</label>
+                    </div>
+                </div>
+
+               <!-- Row for 2 options -->
                 <div class="w3-row">
 
                     <div class="w3-half w3-padding">
@@ -51,22 +66,7 @@
 
                 </div>
 
-                <!-- Row for 2 checkboxes -->
-                <div class="w3-row">
-                    <div class="w3-half w3-padding">
-                        <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check"> -->
-                        <!-- <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" {% if checkbox1_checked %}checked{% endif %}> -->
-                        <input type="checkbox" id="checkbox1" name="checkbox1" class="w3-check" checked>
-                        <label for="checkbox1">{{ checkbox_text1 }}</label>
-                    </div>
-
-                    <div class="w3-half w3-padding">
-                        <input type="checkbox" id="checkbox2" name="checkbox2" class="w3-check" checked>
-                        <label for="checkbox2">{{ checkbox_text2 }}</label>
-                    </div>
-                </div>
-
-                <!-- Row for file type selection -->
+                 <!-- Row for file type selection -->
                 <div class="w3-row w3-padding w3-margin-right">
                     <fieldset class="w3-col s6 m6 l6">
                         <legend>Choose file type:</legend>
