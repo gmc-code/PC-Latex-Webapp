@@ -31,6 +31,8 @@ import latex.area_of_a_triangle.area_of_a_triangle_maker as areatri
 import latex.area_of_a_parallelogram.area_of_a_parallelogram_maker as areapar
 import latex.area_of_a_circle.area_of_a_circle_maker as areacirc
 
+import latex.perimeter_of_a_square.perimeter_of_a_square_maker as perimsq
+import latex.perimeter_of_a_rectangle.perimeter_of_a_rectangle_maker as perimrect
 import latex.circumference_of_a_circle.circumference_of_a_circle_maker as circcirc
 
 import latex.paper.lined_paper_maker as linedpaper
@@ -1222,6 +1224,47 @@ def coordinates_create():
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = coords.create_booklet_coords(numq, title_text, num_points, file_type=file_type)
+    return send_file(file, as_attachment=True, mimetype=mimetype)
+
+
+##########################################################################
+# perimeter of a square
+##########################################################################
+
+
+@app.route("/perimeter_of_a_square")
+def perimeter_of_a_square():
+    return render_template(
+        "genform_tq3cbof.html",
+        title="Perimeter of a Square",
+        link="/perimeter_of_a_square_create",
+        num_per_page="4",
+        min_questions="1",
+        max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
+        img_filename="perimeter_of_a_square.png",
+        pdf_filename="perimeter_of_a_square.pdf",
+        title_text="Perimeter of a Square",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Show vertices",
+        checkbox_text3="Allow rotation",
+    )
+
+
+@app.route("/perimeter_of_a_square_create", methods=["POST"])
+def perimeter_of_a_square_create():
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
+    #
+    show_dimension_lines_bool = request.form.get("checkbox1") == "on"
+    show_vertices_bool = request.form.get("checkbox2") == "on"
+    allow_rotation_bool = request.form.get("checkbox3") == "on"
+    units = request.form.get("option")
+    title_text = request.form.get("title_text", "")
+    file_type = request.form.get("file_type", "pdf")
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
+    file = perimsq.create_booklet_perimeter_of_a_square(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, show_vertices_bool=show_vertices_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 

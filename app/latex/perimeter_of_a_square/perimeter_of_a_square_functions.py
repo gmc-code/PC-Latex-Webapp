@@ -42,8 +42,8 @@ def get_perimeter_of_a_square_dict(side_int=None, rotation=None, show_dimension_
 
     calc_sidelength = side_int
     sidelength = round(random.uniform(0, 1.5) + 1.5, 3)
-    calc_perimeter_value = calc_sidelength * calc_sidelength
-    calc_formula_part1 = "^2"
+    calc_perimeter_value = 4 * calc_sidelength
+    calc_formula_part1 = "4"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
 
