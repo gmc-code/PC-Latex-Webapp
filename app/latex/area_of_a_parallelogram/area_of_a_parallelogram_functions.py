@@ -110,4 +110,9 @@ def get_area_of_a_parallelogram_dict(side_pair=None, rotation=None, show_dimensi
     else:
         kv["draw_style"] = "draw=none"
 
+    if show_vertices_bool is True:
+        kv["show_vertices"] = r"\ifTrue "
+    else:
+        kv["show_vertices"] = r"\ifFalse"
+
     return kv

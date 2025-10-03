@@ -29,7 +29,7 @@ def get_random_units():
     return random.choice(["mm", "cm", "m", "km"])
 
 
-def get_perimeter_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines_bool=True, allow_rotation_bool=True, units="cm"):
+def get_perimeter_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="cm"):
     if side_int is None:
         side_int = get_ints_shuffled_one_dig_first()[0]
     if rotation is None:
@@ -78,5 +78,10 @@ def get_perimeter_of_a_square_dict(side_int=None, rotation=None, show_dimension_
         kv["draw_style"] = "<->, gray"
     else:
         kv["draw_style"] = "draw=none"
+
+    if show_vertices_bool is True:
+        kv["show_vertices"] = r"\ifTrue "
+    else:
+        kv["show_vertices"] = r"\ifFalse"
 
     return kv

@@ -1286,7 +1286,8 @@ def area_of_a_rectangle():
         pdf_filename="area_of_a_rectangle.pdf",
         title_text="Area of a Rectangle",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Allow rotation",
+        checkbox_text2="Show vertices",
+        checkbox_text3="Allow rotation",
     )
 
 
@@ -1296,12 +1297,13 @@ def area_of_a_rectangle_create():
     numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
-    allow_rotation_bool = request.form.get("checkbox2") == "on"
+    show_vertices_bool = request.form.get("checkbox2") == "on"
+    allow_rotation_bool = request.form.get("checkbox3") == "on"
     units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
+    file = arearect.create_booklet_area_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, show_vertices_bool=show_vertices_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1327,7 +1329,8 @@ def area_of_a_triangle():
         pdf_filename="area_of_a_triangle.pdf",
         title_text="Area of a Triangle",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Allow rotation",
+        checkbox_text2="Show vertices",
+        checkbox_text3="Allow rotation",
     )
 
 
@@ -1337,13 +1340,14 @@ def area_of_a_triangle_create():
     numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
-    allow_rotation_bool = request.form.get("checkbox2") == "on"
+    show_vertices_bool = request.form.get("checkbox2") == "on"
+    allow_rotation_bool = request.form.get("checkbox3") == "on"
     units = request.form.get("option2")
     triangle_type_num = atops[request.form.get("option1")]
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = areatri.create_booklet_area_of_a_triangle(numq, triangle_type_num, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
+    file = areatri.create_booklet_area_of_a_triangle(numq, triangle_type_num, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, show_vertices_bool=show_vertices_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
@@ -1368,7 +1372,8 @@ def area_of_a_parallelogram():
         pdf_filename="area_of_a_parallelogram.pdf",
         title_text="Area of a Parallelogram",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Allow rotation",
+        checkbox_text2="Show vertices",
+        checkbox_text3="Allow rotation",
     )
 
 
@@ -1378,12 +1383,13 @@ def area_of_a_parallelogram_create():
     numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
-    allow_rotation_bool = request.form.get("checkbox2") == "on"
+    show_vertices_bool = request.form.get("checkbox2") == "on"
+    allow_rotation_bool = request.form.get("checkbox3") == "on"
     units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
-    file = areapar.create_booklet_area_of_a_parallelogram(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
+    file = areapar.create_booklet_area_of_a_parallelogram(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, show_vertices_bool=show_vertices_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 

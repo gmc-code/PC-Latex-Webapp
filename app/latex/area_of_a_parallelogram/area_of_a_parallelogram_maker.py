@@ -104,10 +104,10 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 ##############################################################################
 
 
-def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parallelogram", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
+def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parallelogram", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
 
     # "calc_base", "calc_height", calc_area_value
-    tex_keys_q = ['draw_style', "calc_base", "calc_height", "rightoffset", "base", "height", 'rotation', 'units', "vA", "vB", "vC", "vD", "vE"]
+    tex_keys_q = ['draw_style', 'show_vertices', "calc_base", "calc_height", "rightoffset", "base", "height", 'rotation', 'units', "vA", "vB", "vC", "vD", "vE"]
 
     # Generate shuffled lists of parameters
     side_pairs_list = get_side_pairs()
@@ -118,7 +118,7 @@ def create_booklet_area_of_a_parallelogram(numq=20, title_text="Area of a parall
         # within which generate_diagram_text uses the tex_diagram_template_txt parameter and gets the idx parameter from the repeat loop
         side_pair = side_pairs_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_parallelogram_dict(side_pair, rotation, show_dimension_lines_bool, allow_rotation_bool, units))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_parallelogram_dict(side_pair, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units))
 
     return create_booklet(
         numq,

@@ -130,11 +130,11 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 
 def get_keys(num):
-    tex_keys_q_right = ["draw_style", "calc_base", "calc_height",
+    tex_keys_q_right = ["draw_style", 'show_vertices', "calc_base", "calc_height",
                         "base", "height", 'rotation', 'units', "vA", "vB", "vC"]
-    tex_keys_q_acute = ["draw_style", "calc_base", "calc_height",
+    tex_keys_q_acute = ["draw_style", 'show_vertices', "calc_base", "calc_height",
                         "leftoffset", "base", "height", 'rotation', 'units', "vA", "vB", "vC", "vD"]
-    tex_keys_q_obtuse = ["draw_style", "calc_base", "calc_height",
+    tex_keys_q_obtuse = ["draw_style", 'show_vertices', "calc_base", "calc_height",
                          "rightoffset", "base", "height", 'rotation', 'units', "vA", "vB", "vC", "vD"]
 
     match num:
@@ -146,11 +146,11 @@ def get_keys(num):
             return tex_keys_q_obtuse
 
 
-def get_kv(num, side_pair, rotation, show_dimension_lines_bool, allow_rotation_bool, units):
-    return get_area_of_a_triangle_dict(num, side_pair, rotation, show_dimension_lines_bool, allow_rotation_bool, units)
+def get_kv(num, side_pair, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units):
+    return get_area_of_a_triangle_dict(num, side_pair, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units)
 
 
-def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text="Area of a Triangle", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
+def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text="Area of a Triangle", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
     title_text = "Area of a Triangle"
     side_pairs_list = get_side_pairs()
     rotations_list = get_rotations_shuffled()
@@ -177,7 +177,7 @@ def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, title_text="
 
         tex_keys_q = get_keys(tri_num)
         triangle_dict = get_kv(tri_num, side_pair, rotation,
-                               show_dimension_lines_bool, allow_rotation_bool, units)
+                               show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units)
         tex_diagram_template_txt = diagram_template_texts_dict[tri_num]
 
         return make_diagram(tex_diagram_template_txt, tex_keys_q, triangle_dict)
