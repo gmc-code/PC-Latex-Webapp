@@ -44,6 +44,22 @@
                     </div>
 
                     <div class="w3-third w3-padding">
+                        <input type="checkbox" id="checkbox3" name="checkbox3" class="w3-check" checked>
+                        <label for="checkbox3">{{ checkbox_text3 }}</label>
+                    </div>
+
+
+                </div>
+
+                 <!-- Row option -->
+                <div class="w3-row">
+                    <div class="w3-third w3-padding">
+                    </div>
+
+                    <div class="w3-third w3-padding">
+                    </div>
+
+                    <div class="w3-third w3-padding">
                         <label>{{ option_label }}</label>
                         <select class="w3-select w3-border" name="option" required>
                             {% for x in ops %}
@@ -51,8 +67,6 @@
                             {% endfor %}
                         </select>
                     </div>
-
-
                 </div>
 
                 <!-- Row for file type selection -->

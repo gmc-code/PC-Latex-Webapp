@@ -29,7 +29,7 @@ def get_random_units():
     return random.choice(["mm", "cm", "m", "km"])
 
 
-def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="cm"):
+def get_perimeter_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines_bool=True, allow_rotation_bool=True, units="cm"):
     if side_int is None:
         side_int = get_ints_shuffled_one_dig_first()[0]
     if rotation is None:
@@ -42,7 +42,7 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
 
     calc_sidelength = side_int
     sidelength = round(random.uniform(0, 1.5) + 1.5, 3)
-    calc_area_value = calc_sidelength * calc_sidelength
+    calc_perimeter_value = calc_sidelength * calc_sidelength
     calc_formula_part1 = "^2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
@@ -72,16 +72,11 @@ def get_area_of_a_square_dict(side_int=None, rotation=None, show_dimension_lines
     kv["vD"] = f"{vD}"
 
     kv["calcside_value"] = f"{calc_sidelength}"
-    kv["calc_area_value"] = f"{calc_area_value}"
+    kv["calc_perimeter_value"] = f"{calc_perimeter_value}"
 
     if show_dimension_lines_bool is True:
-        kv["draw_style"] = r"<->, gray"
+        kv["draw_style"] = "<->, gray"
     else:
-        kv["draw_style"] = r"draw=none"
-
-    if show_vertices_bool is True:
-        kv["show_vertices"] = r"\ifTrue "
-    else:
-        kv["show_vertices"] = r"\ifFalse"
+        kv["draw_style"] = "draw=none"
 
     return kv

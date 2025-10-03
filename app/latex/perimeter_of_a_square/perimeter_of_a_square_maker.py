@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 import time
 from ..utilities.util_functions import merge_files, convert_to_pdf
-from .area_of_a_square_functions import get_area_of_a_square_dict, get_ints_shuffled_one_dig_first, get_rotations_shuffled
+from .perimeter_of_a_square_functions import get_perimeter_of_a_square_dict, get_ints_shuffled_one_dig_first, get_rotations_shuffled
 
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
@@ -104,10 +104,10 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 ##############################################################################
 
 
-def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
+def create_booklet_perimeter_of_a_square(numq=20, title_text="perimeter of a Square", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
 
-    # calcside_value, calc_area_value
-    tex_keys_q = ['draw_style', 'show_vertices', 'calc_sidelength', 'sidelength', 'rotation', 'units', 'vA', 'vB', 'vC', 'vD']
+    # calcside_value, calc_perimeter_value
+    tex_keys_q = ['draw_style', 'calc_sidelength', 'sidelength', 'rotation', 'units', 'vA', 'vB', 'vC', 'vD']
 
     # Generate shuffled lists of parameters
     side_ints_list = get_ints_shuffled_one_dig_first()
@@ -116,16 +116,16 @@ def create_booklet_area_of_a_square(numq=20, title_text="Area of a Square", file
     def make_diagram_wrapper(tex_diagram_template_txt, idx):
         side_int = side_ints_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_area_of_a_square_dict(side_int, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_perimeter_of_a_square_dict(side_int, rotation, show_dimension_lines_bool, allow_rotation_bool, units))
 
     return create_booklet(
             numq,
             title_text,
             make_diagram_wrapper,
-            "area_of_a_square_booklet_template.tex",
-            "area_of_a_square_booklet_ans_template.tex",
-            "area_of_a_square_booklet_diagram_template.tex",
-            "areasq",
+            "perimeter_of_a_square_booklet_template.tex",
+            "perimeter_of_a_square_booklet_ans_template.tex",
+            "perimeter_of_a_square_booklet_diagram_template.tex",
+            "perimetersq",
             file_type,
         )
 

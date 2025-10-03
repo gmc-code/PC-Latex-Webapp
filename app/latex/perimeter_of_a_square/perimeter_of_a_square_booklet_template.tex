@@ -8,10 +8,10 @@
 \usepackage[a4paper, portrait, margin=1cm]{geometry}
 \usepackage{fancyhdr}
 
-\newcommand{\HeadingAnswers}{%
+\newcommand{\HeadingQuestions}{%
 \section*{\Large Name: \underline{\hspace{8cm}} \hfill Date: \underline{\hspace{3cm}}}%
 \vspace{-3mm}\par
-\textbf{<<title>>: Answers}\vspace{1pt}\hrule
+\textbf{<<title>>: Questions} \vspace{1pt}\hrule
 }
 
 % raise footer with page number; no header
@@ -22,16 +22,10 @@
 }
 \pagestyle{myfancypagestyle}  % apply myfancypagestyle
 
-\newif\ifTrue
-\newif\ifFalse
-
-\Truetrue   % Enables \ifTrue
-\Falsefalse % Enables \ifFalse
-
 \newcounter{minipagecount}
 
 \begin{document}
-\HeadingAnswers
+\HeadingQuestions
 \vspace{8mm}
 
 <<diagrams>>
