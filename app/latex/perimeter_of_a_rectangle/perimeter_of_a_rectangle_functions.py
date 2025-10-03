@@ -48,7 +48,7 @@ def get_perimeter_of_a_rectangle_dict(side_pair=None, rotation=None, show_dimens
         sidelength1 = round(sidelength1 * ratio, 3)
         sidelength2 = round(sidelength2 * ratio, 3)
 
-    calc_perimeter_value = calc_sidelength1 * calc_sidelength2
+    calc_perimeter_value = 2 * (calc_sidelength1 + calc_sidelength2)
     calc_formula_part1 = "2"
 
     # gap_to_fill = "\\dotuline{~~~~~~~}"
