@@ -1245,8 +1245,8 @@ def area_of_a_square():
         pdf_filename="area_of_a_square.pdf",
         title_text="Area of a Square",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Allow rotation",
-        checkbox_text3="Show vertices",
+        checkbox_text2="Show vertices",
+        checkbox_text3="Allow rotation",
     )
 
 
@@ -1256,8 +1256,8 @@ def area_of_a_square_create():
     numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
     #
     show_dimension_lines_bool = request.form.get("checkbox1") == "on"
-    allow_rotation_bool = request.form.get("checkbox2") == "on"
-    show_vertices_bool = request.form.get("checkbox3") == "on"
+    show_vertices_bool = request.form.get("checkbox2") == "on"
+    allow_rotation_bool = request.form.get("checkbox3") == "on"
     units = request.form.get("option")
     title_text = request.form.get("title_text", "")
     file_type = request.form.get("file_type", "pdf")
