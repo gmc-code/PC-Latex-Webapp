@@ -110,9 +110,9 @@ def create_booklet(numq, triangle_type_num, title_text, process_func, tex_templa
 
 
 def get_keys(num):
-    tex_keys_q_right = ["calc_base", "calc_height", "base", "height", "rotation", "units", "vA", "vB", "vC"]
-    tex_keys_q_acute = ["calc_base", "calc_height", "leftoffset", "base", "height", "rotation", "units", "vA", "vB", "vC", "vD"]
-    tex_keys_q_obtuse = ["calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "units", "vA", "vB", "vC", "vD"]
+    tex_keys_q_right = ['draw_style', 'show_vertices', "calc_base", "calc_height", "base", "height", "rotation", "units", "vA", "vB", "vC"]
+    tex_keys_q_acute = ['draw_style', 'show_vertices', "calc_base", "calc_height", "leftoffset", "base", "height", "rotation", "units", "vA", "vB", "vC", "vD"]
+    tex_keys_q_obtuse = ['draw_style', 'show_vertices', "calc_base", "calc_height", "rightoffset", "base", "height", "rotation", "units", "vA", "vB", "vC", "vD"]
     match num:
         case 1:
             return tex_keys_q_right
@@ -122,10 +122,10 @@ def get_keys(num):
             return tex_keys_q_obtuse
 
 def get_kv(num,side_pair, rotation):
-    return get_area_of_a_triangle_dict(num,side_pair, rotation)
+    return get_area_of_a_triangle_dict(num, side_pair, rotation)
 
 
-def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
+def create_booklet_area_of_a_triangle(numq=20, triangle_type_num=4, file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True,  allow_rotation_bool=True, units="Random"):
     # from webpage app
 
 
