@@ -1310,6 +1310,47 @@ def area_of_a_square_create():
 
 
 ##########################################################################
+# perimeter of a rectangle
+##########################################################################
+
+
+@app.route("/perimeter_of_a_rectangle")
+def perimeter_of_a_rectangle():
+    return render_template(
+        "genform_tq3cbof.html",
+        title="Perimeter of a Rectangle",
+        link="/perimeter_of_a_rectangle_create",
+        num_per_page="4",
+        min_questions="1",
+        max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
+        img_filename="perimeter_of_a_rectangle.png",
+        pdf_filename="perimeter_of_a_rectangle.pdf",
+        title_text="Perimeter of a Rectangle",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Show vertices",
+        checkbox_text3="Allow rotation",
+    )
+
+
+@app.route("/perimeter_of_a_rectangle_create", methods=["POST"])
+def perimeter_of_a_rectangle_create():
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
+    #
+    show_dimension_lines_bool = request.form.get("checkbox1") == "on"
+    show_vertices_bool = request.form.get("checkbox2") == "on"
+    allow_rotation_bool = request.form.get("checkbox3") == "on"
+    units = request.form.get("option")
+    title_text = request.form.get("title_text", "")
+    file_type = request.form.get("file_type", "pdf")
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
+    file = perimrect.create_booklet_perimeter_of_a_rectangle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, show_vertices_bool=show_vertices_bool, allow_rotation_bool=allow_rotation_bool, units=units)
+    return send_file(file, as_attachment=True, mimetype=mimetype)
+
+
+##########################################################################
 # area of a rectangle
 ##########################################################################
 
