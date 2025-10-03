@@ -104,7 +104,7 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 ##############################################################################
 
 
-def create_booklet_perimeter_of_a_square(numq=20, title_text="Perimeter of a Square", file_type="pdf", show_dimension_lines_bool=True, allow_rotation_bool=True, units="Random"):
+def create_booklet_perimeter_of_a_square(numq=20, title_text="Perimeter of a Square", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True,  allow_rotation_bool=True, units="Random"):
 
     # calcside_value, calc_perimeter_value
     tex_keys_q = ['draw_style', 'show_vertices', 'calc_sidelength', 'sidelength', 'rotation', 'units', 'vA', 'vB', 'vC', 'vD']
@@ -116,7 +116,7 @@ def create_booklet_perimeter_of_a_square(numq=20, title_text="Perimeter of a Squ
     def make_diagram_wrapper(tex_diagram_template_txt, idx):
         side_int = side_ints_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_perimeter_of_a_square_dict(side_int, rotation, show_dimension_lines_bool, allow_rotation_bool, units))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_perimeter_of_a_square_dict(side_int, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units))
 
     return create_booklet(
             numq,
