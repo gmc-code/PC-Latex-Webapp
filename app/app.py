@@ -35,6 +35,8 @@ import latex.perimeter_of_a_square.perimeter_of_a_square_maker as perimsq
 import latex.perimeter_of_a_rectangle.perimeter_of_a_rectangle_maker as perimrect
 import latex.circumference_of_a_circle.circumference_of_a_circle_maker as circcirc
 
+import latex.volume_of_a_rectangular_prism.volume_of_a_rectangular_prism_maker as volrectprism
+
 import latex.paper.lined_paper_maker as linedpaper
 import latex.gridpapers.grids_isometric_maker as grdpiso
 import latex.gridpapers.gridpapers_std_maker as grdpstd
@@ -1554,6 +1556,48 @@ def circumference_of_a_circle_create():
     file_type = request.form.get("file_type", "pdf")
     mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
     file = circcirc.create_booklet_circumference_of_a_circle(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, allow_rotation_bool=allow_rotation_bool, units=units)
+    return send_file(file, as_attachment=True, mimetype=mimetype)
+
+
+
+##########################################################################
+# volume of a rectangular prism
+##########################################################################
+
+
+@app.route("/volume_of_a_rectangular_prism")
+def volume_of_a_rectangular_prism():
+    return render_template(
+        "genform_tq3cbof.html",
+        title="Area of a Rectangle",
+        link="/volume_of_a_rectangular_prism",
+        num_per_page="4",
+        min_questions="1",
+        max_questions="20",
+        option_label="Units",
+        ops=measops.keys(),
+        img_filename="volume_of_a_rectangular_prism.png",
+        pdf_filename="volume_of_a_rectangular_prism.pdf",
+        title_text="Area of a Rectangle",
+        checkbox_text1="Show Dimension Lines",
+        checkbox_text2="Show vertices",
+        checkbox_text3="Allow rotation",
+    )
+
+
+@app.route("/volume_of_a_rectangular_prism_create", methods=["POST"])
+def volume_of_a_rectangular_prism_create():
+    # Safely parse and clamp numq
+    numq = parse_and_clamp(request.form, "numq", 4, 1, 20, cast_type=int)
+    #
+    show_dimension_lines_bool = request.form.get("checkbox1") == "on"
+    show_vertices_bool = request.form.get("checkbox2") == "on"
+    allow_rotation_bool = request.form.get("checkbox3") == "on"
+    units = request.form.get("option")
+    title_text = request.form.get("title_text", "")
+    file_type = request.form.get("file_type", "pdf")
+    mimetype = {"zip": "application/zip", "pdf": "application/pdf"}.get(file_type, "application/pdf")
+    file = volrectprism.create_booklet_volume_of_a_rectangular_prism(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, show_vertices_bool=show_vertices_bool, allow_rotation_bool=allow_rotation_bool, units=units)
     return send_file(file, as_attachment=True, mimetype=mimetype)
 
 
