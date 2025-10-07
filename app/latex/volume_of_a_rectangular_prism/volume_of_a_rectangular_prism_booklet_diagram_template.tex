@@ -31,18 +31,22 @@
         % Labels relative to shape geometry
         % \ifTrue  or \ifFalse
         <<show_vertices>>
-            % \node at ($(<<vA>>)+(-0.2,-0.2)$) {<<vA>>};
-            % \node at ($(<<vB>>)+(0.2,-0.2)$) {<<vB>>};
-            % \node at ($(<<vC>>)+(0.2,0.2)$) {<<vC>>};
-            % \node at ($(<<vD>>)+(-0.2,0.2)$) {<<vD>>};
-            \node[above left] at (<<vA>>) {<<vA>>};
-            \node[below right] at (<<vB>>) {<<vB>>};
-            \node[above right] at (<<vC>>) {<<vC>>};
-            \node[above left] at (<<vD>>) {<<vD>>};
-            \node[below left] at (<<vE>>) {<<vE>>};
-            \node[below right] at (<<vF>>) {<<vF>>};
-            \node[above right] at (<<vG>>) {<<vG>>};
-            \node[above left] at (<<vH>>) {<<vH>>};
+            \node at ($(<<vA>>)+(0.2,0.2)$) {<<vA>>};
+            \node at ($(<<vB>>)+(-0.2,0.2)$) {<<vB>>};
+            \node at ($(<<vC>>)+(0.2,0.2)$) {<<vC>>};
+            \node at ($(<<vD>>)+(-0.2,0.2)$) {<<vD>>};
+            \node at ($(<<vE>>)+(0.2,0.2)$) {<<vE>>};
+            \node at ($(<<vF>>)+(-0.2,0.2)$) {<<vF>>};
+            \node at ($(<<vG>>)+(0.2,0.2)$) {<<vG>>};
+            \node at ($(<<vH>>)+(-0.2,0.2)$) {<<vH>>};
+            % \node[above left] at (<<vA>>) {<<vA>>};
+            % \node[below right] at (<<vB>>) {<<vB>>};
+            % \node[above right] at (<<vC>>) {<<vC>>};
+            % \node[above left] at (<<vD>>) {<<vD>>};
+            % \node[below left] at (<<vE>>) {<<vE>>};
+            % \node[below right] at (<<vF>>) {<<vF>>};
+            % \node[above right] at (<<vG>>) {<<vG>>};
+            % \node[above left] at (<<vH>>) {<<vH>>};
         \fi
 
 
@@ -63,26 +67,6 @@
             node[black, midway, fill=white, fill opacity=1.0, text opacity=1, inner sep=1pt, shift={(1.15,-0.15)}]
             {\small $w=<<calc_w>>\,<<units>>$};
 
-
-        % dimension lines enabled
-        % \coordinate (P1offAB) at ($ (<<vA>>)+(0,-0.2) $);
-        % \coordinate (P2offAB) at ($ (<<vB>>)+(0,-0.2) $);
-        % \draw[<<draw_style>>] (P1offAB)--(P2offAB);
-        % \node[black, fill=white, fill opacity=1.0, text opacity=1, inner sep=1pt]
-        %     at ($ (P1offAB)!0.5!(P2offAB) + (0,-0.4) $) {\small $l=<<calc_l>> <<units>>$};
-
-
-        % \coordinate (P1offAD) at ($ (<<vA>>)+(-0.2,0) $);
-        % \coordinate (P2offAD) at ($ (<<vD>>)+(-0.2,0) $);
-        % \draw[<<draw_style>>] (P1offAD)--(P2offAD);
-        % \node[black, fill=white, fill opacity=1.0, text opacity=1, inner sep=1pt]
-        %     at ($ (P1offAD)!0.5!(P2offAD) + (-1.0,0) $) {\small $H=<<calc_H>> <<units>>$};
-
-        % \coordinate (P1offBF) at ($ (<<vB>>)+(0.4,0) $);
-        % \coordinate (P2offBF) at ($ (<<vF>>)+(0.4,0) $);
-        % \draw[<<draw_style>>] (P1offBF)--(P2offBF);
-        % \node[black, fill=white, fill opacity=1.0, text opacity=1, inner sep=1pt]
-        %     at ($ (P1offBF)!0.5!(P2offBF) + (1.15,-0.15) $) {\small $w=<<calc_w>> <<units>>$};
 
     \end{scope}
 \end{tikzpicture}
