@@ -40,7 +40,7 @@ def get_random_units():
 
 
 
-def get_volume_rectangular_prism_dict(side_pair=None, rotation=None, show_dimension_lines_bool=True,  show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
+def get_volume_of_a_rectangular_prism_dict(side_pair=None, rotation=None, show_dimension_lines_bool=True,  show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
     # 1 longer than 2 and to scale
     if side_pair is None:
         side_pair = get_side_pairs()[0]
@@ -140,4 +140,4 @@ def get_volume_rectangular_prism_dict(side_pair=None, rotation=None, show_dimens
     return kv
 
 
-print(get_volume_rectangular_prism_dict().keys())
+print(get_volume_of_a_rectangular_prism_dict().keys())

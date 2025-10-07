@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 import time
 from ..utilities.util_functions import merge_files, convert_to_pdf
-from .volume_of_a_rectangular_prism_functions import get_volume_rectangular_prism_dict, get_side_pairs, get_rotations_shuffled
+from .volume_of_a_rectangular_prism_functions import get_volume_of_a_rectangular_prism_dict, get_side_pairs, get_rotations_shuffled
 
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
@@ -106,8 +106,8 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 def create_booklet_volume_of_a_rectangular_prism(numq=20, title_text="Volume of a Rectangular Prism", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
 
-    # calcside_value1, calcside_value2, calc_area_value
-    tex_keys_q = ['draw_style', 'show_vertices', 'calc_l', 'calc_w', 'calc_H', 'calc_V', 'length', 'width', 'height', 'rotation', 'units', 'dx', 'dy', 'vA', 'vB', 'vC', 'vD','vE', 'vF', 'vG', 'vH', 'calc_l_value', 'calc_w_value', 'calc_H_value', 'calc_V_value', 'calc_formula_part1']
+    #  'calc_l_value', 'calc_w_value', 'calc_H_value', 'calc_V_value', 'calc_formula_part1'
+    tex_keys_q = ['draw_style', 'show_vertices', 'calc_l', 'calc_w', 'calc_H', 'calc_V', 'length', 'width', 'height', 'rotation', 'units', 'dx', 'dy', 'vA', 'vB', 'vC', 'vD','vE', 'vF', 'vG', 'vH']
 
     # Generate shuffled lists of parameters
     side_pairs_list = get_side_pairs()
@@ -118,7 +118,7 @@ def create_booklet_volume_of_a_rectangular_prism(numq=20, title_text="Volume of 
         # within which generate_diagram_text uses the tex_diagram_template_txt parameter and gets the idx parameter from the repeat loop
         side_pair = side_pairs_list[idx - 1]
         rotation = rotations_list[idx - 1]
-        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_volume_rectangular_prism_dict(side_pair, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units))
+        return make_diagram(tex_diagram_template_txt, tex_keys_q, get_volume_of_a_rectangular_prism_dict(side_pair, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units))
 
     return create_booklet(
         numq,
