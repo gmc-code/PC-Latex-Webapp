@@ -73,8 +73,9 @@ def get_volume_of_a_rectangular_prism_dict(side_pair=None, rotation=None, show_d
         H = round(H * ratio, 3)
 
     # % skew shift
-    fx = skew_factor_x()
-    # fy = skew_factor_y()
+    # fy = skew_factor_y() cma;p sp fx < 1
+    fx = min(skew_factor_x(), 0.999)
+
     fy = math.sqrt(1 - (fx)**2)
     dx = round(0.7 * fx * w,3)
     dy = round(0.7 * fy * w,3)
