@@ -128,7 +128,7 @@ def create_booklet_volume_of_a_rectangular_prism(numq=20, title_text="Volume of 
         "volume_of_a_rectangular_prism_booklet_template.tex",
         "volume_of_a_rectangular_prism_booklet_ans_template.tex",
         "volume_of_a_rectangular_prism_booklet_diagram_template.tex",
-        "arearect",
+        "volrectprism",
         file_type,
     )
 
