@@ -102,12 +102,12 @@ def create_booklet(numq, title_text, process_func, tex_template_file, tex_ans_te
 
 
 ##############################################################################
+# create_booklet_volume_of_a_rectangular_prism(numq, title_text, file_type=file_type, show_dimension_lines_bool=show_dimension_lines_bool, show_vertices_bool=show_vertices_bool, allow_rotation_bool=allow_rotation_bool, units=units)
 
-
-def create_booklet_volume_rectangular_prism(numq=20, title_text="Area of a Rectangle", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
+def create_booklet_volume_of_a_rectangular_prism(numq=20, title_text="Volume of a Rectangular Prism", file_type="pdf", show_dimension_lines_bool=True, show_vertices_bool=True, allow_rotation_bool=True, units="Random"):
 
     # calcside_value1, calcside_value2, calc_area_value
-    tex_keys_q = ['draw_style', 'show_vertices', 'calc_l', 'calc_w', 'calc_H', 'calc_V', 'length', 'width', 'height', 'rotation', 'units, 'dx', 'dy', 'vA', 'vB', 'vC', 'vD', 'vE', 'vF', 'vG', 'vH', 'calc_l_value', 'calc_w_value', 'calc_H_value', 'calc_V_value', 'calc_formula_part1']
+    tex_keys_q = ['draw_style', 'show_vertices', 'calc_l', 'calc_w', 'calc_H', 'calc_V', 'length', 'width', 'height', 'rotation', 'units', 'dx', 'dy', 'vA', 'vB', 'vC', 'vD','vE', 'vF', 'vG', 'vH', 'calc_l_value', 'calc_w_value', 'calc_H_value', 'calc_V_value', 'calc_formula_part1']
 
     # Generate shuffled lists of parameters
     side_pairs_list = get_side_pairs()

@@ -1569,7 +1569,7 @@ def circumference_of_a_circle_create():
 def volume_of_a_rectangular_prism():
     return render_template(
         "genform_tq3cbof.html",
-        title="Area of a Rectangle",
+        title="Volume of a Rectangular Prism",
         link="/volume_of_a_rectangular_prism",
         num_per_page="4",
         min_questions="1",
@@ -1578,7 +1578,7 @@ def volume_of_a_rectangular_prism():
         ops=measops.keys(),
         img_filename="volume_of_a_rectangular_prism.png",
         pdf_filename="volume_of_a_rectangular_prism.pdf",
-        title_text="Area of a Rectangle",
+        title_text="Volume of a Rectangular Prism",
         checkbox_text1="Show Dimension Lines",
         checkbox_text2="Show vertices",
         checkbox_text3="Allow rotation",
