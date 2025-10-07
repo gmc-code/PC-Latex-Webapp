@@ -17,8 +17,10 @@ def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
             tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", value)
         elif "calc_formula" in key:
             tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>","\\dotuline{~~~}")  # non breaking spaces
+        elif "calc_units" in key:
+            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>","\\dotuline{~~~~}")  # non breaking spaces
         else:
-            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", "\\dotuline{~~~~~~~}")  # non breaking spaces for gaps
+            tex_diagram_template_txt = tex_diagram_template_txt.replace("<<" + key + ">>", "\\dotuline{~~~~~~}")  # non breaking spaces for gaps
     return tex_diagram_template_txt + posttext, tex_diagram_template_txt_ans + posttext
 
 

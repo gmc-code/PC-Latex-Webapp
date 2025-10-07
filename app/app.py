@@ -1636,56 +1636,56 @@ def coming_soon():
 ##########################################################################
 
 
-# @app.after_request
-# def cleanup_after_request(response):
-#     """Cleanup any files not in current use; after any route call"""
-#     clean_output()
-#     return response
+@app.after_request
+def cleanup_after_request(response):
+    """Cleanup any files not in current use; after any route call"""
+    clean_output()
+    return response
 
 
-# def add_cleanup_after_request():
-#     """Add cleanup task after the request to delete other files not in current use.
-#     Need to insert a line in each route call making files: add_cleanup_after_request()"""
+def add_cleanup_after_request():
+    """Add cleanup task after the request to delete other files not in current use.
+    Need to insert a line in each route call making files: add_cleanup_after_request()"""
 
-#     @after_this_request
-#     def after_request(response):
-#         clean_output()
-#         return response
+    @after_this_request
+    def after_request(response):
+        clean_output()
+        return response
 
-#     return after_request
-
-
-# # admin
-# def get_output_path():
-#     app_dir = Path(__file__).parent
-#     return app_dir / "output"
+    return after_request
 
 
-# def remove_output_files(directory):
-#     """not use here yet"""
-#     # List of file extensions to remove
-#     file_extensions = ["*.tex", "*.pdf", "*.aux", "*fdb_latexmk", "*.fls", "*.log", "*.zip"]
-#     # file_extensions = ["*.aux", "*fdb_latexmk", "*.fls"]
-#     # standard_file_extensions = ["*.tex", "*.pdf"]
-#     # Iterate over each extension and remove matching files
-#     for ext in file_extensions:
-#         files = glob.glob(os.path.join(directory, ext))
-#         for file in files:
-#             try:
-#                 os.remove(file)
-#                 print(f"Removed: {file}")
-#             except Exception as e:
-#                 print(f"Error removing {file}: {e}")
+# admin
+def get_output_path():
+    app_dir = Path(__file__).parent
+    return app_dir / "output"
 
 
-# @app.route("/clean_output")
-# def clean_output():
-#     remove_output_files(get_output_path())
-#     """Renders the clean_output page."""
-#     return render_template(
-#         "clean_output.html",
-#         title="Cleaned Output",
-#     )
+def remove_output_files(directory):
+    """not use here yet"""
+    # List of file extensions to remove
+    file_extensions = ["*.tex", "*.pdf", "*.aux", "*fdb_latexmk", "*.fls", "*.log", "*.zip"]
+    # file_extensions = ["*.aux", "*fdb_latexmk", "*.fls"]
+    # standard_file_extensions = ["*.tex", "*.pdf"]
+    # Iterate over each extension and remove matching files
+    for ext in file_extensions:
+        files = glob.glob(os.path.join(directory, ext))
+        for file in files:
+            try:
+                os.remove(file)
+                print(f"Removed: {file}")
+            except Exception as e:
+                print(f"Error removing {file}: {e}")
+
+
+@app.route("/clean_output")
+def clean_output():
+    remove_output_files(get_output_path())
+    """Renders the clean_output page."""
+    return render_template(
+        "clean_output.html",
+        title="Cleaned Output",
+    )
 
 
 
