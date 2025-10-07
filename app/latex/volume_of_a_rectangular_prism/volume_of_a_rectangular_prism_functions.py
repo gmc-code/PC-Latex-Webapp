@@ -110,6 +110,8 @@ def get_volume_of_a_rectangular_prism_dict(side_pair=None, rotation=None, show_d
     kv["height"] = f"{H}"
     kv["rotation"] = f"{rotation}"
     kv["units"] = f"{units}"
+    kv["calc_units"] = f"{units}"
+
     kv["dx"] = f"{dx}"
     kv["dy"] = f"{dy}"
 
