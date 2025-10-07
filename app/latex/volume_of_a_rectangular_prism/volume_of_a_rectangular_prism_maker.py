@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 import time
 from ..utilities.util_functions import merge_files, convert_to_pdf
-from .volume_rectangular_prism_functions import get_volume_rectangular_prism_dict, get_side_pairs, get_rotations_shuffled
+from .volume_of_a_rectangular_prism_functions import get_volume_rectangular_prism_dict, get_side_pairs, get_rotations_shuffled
 
 
 def make_diagram(tex_diagram_template_txt, tex_keys_q, process_dict):
