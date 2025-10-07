@@ -1,7 +1,9 @@
 from pathlib import Path
 import os
 import glob
+import sys
 
+sys.path.append(os.path.dirname(__file__))
 # from flask import Flask, render_template, request, send_file, after_this_request, jsonify, url_for, send_from_directory, render_template_string
 from flask import Flask, render_template, request, send_file, after_this_request, abort, url_for
 
@@ -42,6 +44,10 @@ import latex.gridpapers.grids_isometric_maker as grdpiso
 import latex.gridpapers.gridpapers_std_maker as grdpstd
 import latex.gridpapers.gridpapers_dot_maker as grdpdot
 import latex.gridpapers.gridpapers_tri_maker as grdptri
+
+
+
+# That forces Python to include the current directory (app/) in its import path.
 
 
 app = Flask(__name__)
@@ -1571,7 +1577,7 @@ def volume_of_a_rectangular_prism():
     return render_template(
         "genform_tq3cbof.html",
         title="Volume of a Rectangular Prism",
-        link="/volume_of_a_rectangular_prism",
+        link="/volume_of_a_rectangular_prism_create",
         num_per_page="4",
         min_questions="1",
         max_questions="20",
@@ -1682,6 +1688,28 @@ def clean_output():
     )
 
 
+
+##########################################################################
+# for debugging only
+##########################################################################
+
+# if __name__ == "__main__":
+
+#     # app.run()
+#     app.run(debug=True)
+
+# # At the bottom of app.py, outside any functions or conditionals
+# print("Registered routes:")
+# for rule in app.url_map.iter_rules():
+#     print(f"Endpoint: {rule.endpoint}, URL: {rule}")
+
+
+##########################################################################
+# working app neeeds this
+##########################################################################
+
 if __name__ == "__main__":
     # app.run()
     app.run(debug=True)
+
+

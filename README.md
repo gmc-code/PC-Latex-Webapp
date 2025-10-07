@@ -74,25 +74,18 @@ If making more updates to the repo in git, then having already done the above in
 
 ----
 
-### Error logs in bash terminal
+### Testing locally
 
-1. In the Bash console, type the following command to show the last 30 lines of the error log:
+1. Run the App Locally
+In the terminal, navigate to the project folder and run:
 
-   ```bash
-   tail -n 30 /var/log/username.pythonanywhere.com.error.log
-   ```
-   e.g.
-   ```bash
-   tail -n 30 /var/log/gmc.pythonanywhere.com.error.log
-   ```
+cd C:\Users\gmccarthy\Documents\PC_RTD_GITHUB_resources\PC_flask_latex
+flask --app app.app --debug run
 
-2. In the Bash console, type the following command to clear the error log:
+from the app folder:
 
-   ```bash
-   > /var/log/username.pythonanywhere.com.error.log
-   ```
-   e.g.
-   ```bash
-   > /var/log/gmc.pythonanywhere.com.error.log
-   ```
+flask --app app.py --debug run
+
+This will start a local server at http://127.0.0.1:5000/. Open it in your browser to test.
+Press CTRL+C to quit
 

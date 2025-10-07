@@ -120,6 +120,7 @@ def create_booklet_volume_of_a_rectangular_prism(numq=20, title_text="Volume of 
         rotation = rotations_list[idx - 1]
         return make_diagram(tex_diagram_template_txt, tex_keys_q, get_volume_of_a_rectangular_prism_dict(side_pair, rotation, show_dimension_lines_bool, show_vertices_bool, allow_rotation_bool, units))
 
+
     return create_booklet(
         numq,
         title_text,
