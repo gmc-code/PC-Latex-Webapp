@@ -1256,7 +1256,7 @@ def perimeter_of_a_square():
         pdf_filename="perimeter_of_a_square.pdf",
         title_text="Perimeter of a Square",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Show vertices",
+        checkbox_text2="Show vertex labels",
         checkbox_text3="Allow rotation",
     )
 
@@ -1297,7 +1297,7 @@ def area_of_a_square():
         pdf_filename="area_of_a_square.pdf",
         title_text="Area of a Square",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Show vertices",
+        checkbox_text2="Show vertex labels",
         checkbox_text3="Allow rotation",
     )
 
@@ -1338,7 +1338,7 @@ def perimeter_of_a_rectangle():
         pdf_filename="perimeter_of_a_rectangle.pdf",
         title_text="Perimeter of a Rectangle",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Show vertices",
+        checkbox_text2="Show vertex labels",
         checkbox_text3="Allow rotation",
     )
 
@@ -1379,7 +1379,7 @@ def area_of_a_rectangle():
         pdf_filename="area_of_a_rectangle.pdf",
         title_text="Area of a Rectangle",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Show vertices",
+        checkbox_text2="Show vertex labels",
         checkbox_text3="Allow rotation",
     )
 
@@ -1422,7 +1422,7 @@ def area_of_a_triangle():
         pdf_filename="area_of_a_triangle.pdf",
         title_text="Area of a Triangle",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Show vertices",
+        checkbox_text2="Show vertex labels",
         checkbox_text3="Allow rotation",
     )
 
@@ -1465,7 +1465,7 @@ def area_of_a_parallelogram():
         pdf_filename="area_of_a_parallelogram.pdf",
         title_text="Area of a Parallelogram",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Show vertices",
+        checkbox_text2="Show vertex labels",
         checkbox_text3="Allow rotation",
     )
 
@@ -1587,7 +1587,7 @@ def volume_of_a_rectangular_prism():
         pdf_filename="volume_of_a_rectangular_prism.pdf",
         title_text="Volume of a Rectangular Prism",
         checkbox_text1="Show Dimension Lines",
-        checkbox_text2="Show vertices",
+        checkbox_text2="Show vertex labels",
         checkbox_text3="Allow rotation",
     )
 
